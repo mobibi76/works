@@ -1,0 +1,122 @@
+:root {
+    --background-color: white;
+    --font-color: black;
+    --border-color: dimgrey;
+    --hyperlink-color: firebrick;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+@font-face {
+    font-family: 'freesentation4';
+    src: url('../font/Freesentation-4Regular.ttf') format('truetype');
+}
+
+html, body {
+    margin: 0px;
+    overflow: hidden;
+    filter: grayscale(0%);
+}
+
+#flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-color);
+    border-bottom: 0.4rem var(--border-color) dashed;
+    width: 100%;
+}
+
+#nav ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#nav li {
+    display: inline-block;
+    margin-right: 40px;
+}
+
+#nav li:last-child {
+    margin-right: 0px;
+}
+
+#nav a {
+    font-family:'freesentation4';
+    font-size: 28px;
+    color: var(--hyperlink-color);
+    text-decoration: none;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    scrollbar-width: none;
+    background-color: var(--background-color);
+    max-width: 1000px;
+    text-align: center;
+}
+
+a {
+    color: var(--hyperlink-color);
+    text-decoration: none;
+}
+
+h1 {
+    margin: 0px;
+    font-family: 'freesentation4';
+    font-size: 20px;
+    color: var(--font-color);
+    text-align: center;
+    background-color: var(--background-color);
+}
+
+h2 {
+    margin: 0px;
+    font-family: 'freesentation4';
+    font-size: 28px;
+    color: var(--font-color);
+    text-align: center;
+    background-color: var(--background-color);
+}
+
+footer {
+    position: sticky;
+    bottom: 0px;
+    font-family: 'freesentation4';
+    font-size: 18px;
+    background-color: var(--background-color);
+    color: var(--font-color);
+    text-align: center;
+    border-top: 0.4rem var(--border-color) dashed;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 0px;
+}
+
+p a {
+    font-family: 'freesentation4';
+    font-size: 28px;
+    color: var(--hyperlink-color);
+    text-decoration: none;
+}
+
+iframe {
+    height: 100vh;
+}
+
+/*@media(max-width: 600px) {
+}*/

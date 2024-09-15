@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <title>프로세스 디자인 기반 운영 | 리스크 애자일 프로세스와 팀 네트워크 디자인</title>
+
+        <!--meta: SEO, mobile ops. and encoding-->
+        <meta name="description"
+            content="고객의 목표와 도메인에 대한 체계역학 구조 기반 리스크 애자일 프로세스와 팀 네트워크 디자인">
+        <meta name="viewport" content="width=device-width" initial-scale="0.5">
+        <meta charset="utf-8">
+
+        <link rel="stylesheet" href="./style/style.css">
+
+        <!--use: jQuery Google CDN-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" async></script>
+        <!--use: fetch.js-->
+        <script src="./source/fetch.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <h1>pdbops.com {Process Design-Based Operations}</h1>
+            <h2><a href="./index.html">서비스 소개 (the Service)</a></h2>
+        </header>
+
+        <article id="flex">
+            <nav id="nav"></nav>
+            <main id="container"></main>
+        </article>
+
+        <script>
+            /*--fetch.js control--*/
+            // function: define introFetch function
+            function introFetch(pageTitle) {
+                fetch(pageTitle).then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not OK.');
+                    }
+                    return response.text();
+                }).then(text => {
+                    const containerElement = document.querySelector('#container');
+                    if (containerElement) {
+                        containerElement.innerHTML = text;
+                        containerElement.scrollTop = 0;
+                    }
+                }).catch(error => {
+                    console.error('There has been a problem with the fetch operation:', error);
+                });
+            }
+
+            // function: load pages through fetch.js with ERROR handle
+            function fetchPageContent(pageTitle, targetElementSelector) {
+                return fetch(pageTitle).then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not OK.');
+                    }
+                    return response.text();
+                }).then(text => {
+                    const targetElement = document.querySelector(targetElementSelector);
+                    if (targetElement) {
+                        targetElement.innerHTML = text;
+                        targetElement.scrollTop = 0;
+                    }
+                }).catch(error => {
+                    console.error('There has been a problem with the fetch operation:', error);
+                });
+            }
+
+            /*--load content on page--*/
+                    // function: calculate header-flex to fix scroll issue on container
+                    function adjustContainerHeight() {
+                        const headers = document.querySelectorAll('header h1, header h2');
+                        let headerHeight = 0;
+                        headers.forEach(header => {
+                            headerHeight += header.getBoundingClientRect().height;
+                        });
+
+                        const windowHeight = window.innerHeight;
+                        const flexHeight = windowHeight - headerHeight;
+                        document.querySelector('#flex').style.height = `${flexHeight}px`;
+
+                        const navElement = document.querySelector('#nav');
+                        if (navElement) {
+                            navElement.style.height = 'auto';
+                            const navHeight = navElement.scrollHeight;
+                            navElement.style.height = `${navHeight}px`;
+                        }
+
+                        const containerHeight = flexHeight - navElement.offsetHeight;
+                        document.querySelector('#container').style.height = `${containerHeight}px`;
+                    }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                // DOMContentLoaded control and adjust Heithts
+                Promise.all([
+                    fetchPageContent('Menu', '#nav'),
+                    fetchPageContent('Home_Ko', '#container')
+                ]).then(() => {
+                    adjustContainerHeight();
+                    window.addEventListener('resize', adjustContainerHeight);
+                });
+            });
+
+            /*--prevent contents from the mouse right click event--*/
+            document.addEventListener('contextmenu', function(event) {
+                event.preventDefault();
+            });
+        </script>
+    </body>
+</html>
