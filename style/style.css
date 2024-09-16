@@ -65,7 +65,7 @@ html, body {
     overflow-y: auto;
     scrollbar-width: none;
     background-color: var(--page-color);
-    max-width: 1000px;
+    max-width: 800px;
     text-align: center;
 }
 
@@ -75,7 +75,7 @@ html, body {
 
 #formlink a {
     font-family:'freesentation4';
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--hyperlink-color);
     text-decoration: none;
 }
