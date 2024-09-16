@@ -106,7 +106,6 @@ footer {
 
 footer p {
     margin: 0px;
-    border-top: 0.1rem var(--border-color);
 }
 
 p a {
