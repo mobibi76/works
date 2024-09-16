@@ -71,7 +71,13 @@ html, body {
 
 #formlink {
     margin: 10px;
-    border-top: 0.1rem var(--hyperlink-color);
+}
+
+#formlink a {
+    font-family: 'freesentation4';
+    font-size: 2rem;
+    color: var(--hyperlink-color);
+    text-decoration: none;
 }
 
 a {
@@ -111,13 +117,6 @@ footer {
 
 footer p {
     margin: 0px;
-}
-
-p a {
-    font-family: 'freesentation4';
-    font-size: 2rem;
-    color: var(--hyperlink-color);
-    text-decoration: none;
 }
 
 iframe {
