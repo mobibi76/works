@@ -1,4 +1,4 @@
 <ul>
     <li><a href="#!Service_Ko" onclick="introFetch('Home_Ko')">한글</a></li>
-    <li><a href="#!Service_En" onclick="introFetch('Home_En')">ENGLISH</a></li>
+    <li><a href="#!Service_En" onclick="introFetch('Home_En')">English</a></li>
 </ul>

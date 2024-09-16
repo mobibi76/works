@@ -1,8 +1,9 @@
 :root {
-    --background-color: ghostwhite;
+    --background-color: whitesmoke;
     --font-color: black;
     --border-color: dimgrey;
     --hyperlink-color: firebrick;
+    --accent-color: chocolate;
 }
 
 ::-webkit-scrollbar {
@@ -53,7 +54,7 @@ html, body {
 
 #nav a {
     font-family:'freesentation4';
-    font-size: 24px;
+    font-size: 1.5rem;
     color: var(--hyperlink-color);
     text-decoration: none;
 }
@@ -76,7 +77,7 @@ a {
 h1 {
     margin: 0px;
     font-family: 'freesentation4';
-    font-size: 18px;
+    font-size: 1.2rem;
     color: var(--font-color);
     text-align: center;
     background-color: var(--background-color);
@@ -85,7 +86,7 @@ h1 {
 h2 {
     margin: 0px;
     font-family: 'freesentation4';
-    font-size: 24px;
+    font-size: 1.8rem;
     color: var(--font-color);
     text-align: center;
     background-color: var(--background-color);
@@ -95,7 +96,7 @@ footer {
     position: sticky;
     bottom: 0px;
     font-family: 'freesentation4';
-    font-size: 18px;
+    font-size: 1.1rem;
     background-color: var(--background-color);
     color: var(--font-color);
     text-align: center;
@@ -109,9 +110,10 @@ footer p {
 
 p a {
     font-family: 'freesentation4';
-    font-size: 28px;
+    font-size: 2rem;
     color: var(--hyperlink-color);
     text-decoration: none;
+    border-top: 0.1rem var(--accent-color);
 }
 
 iframe {
