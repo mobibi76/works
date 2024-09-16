@@ -108,12 +108,17 @@ footer p {
     margin: 0px;
 }
 
+main p {
+    margin: 10px;
+    border-top: 0.1rem var(--border-color);
+    background-color: var(--accent-color);
+}
+
 p a {
     font-family: 'freesentation4';
     font-size: 2rem;
     color: var(--hyperlink-color);
     text-decoration: none;
-    background-color: var(--accent-color);
 }
 
 iframe {
