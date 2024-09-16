@@ -1,5 +1,5 @@
 <ul>
+    <li><a href="#!Solution" onclick="introFetch('Home')">첫장(Home)</a></li>
     <li><a href="#!Service_Ko" onclick="introFetch('Home_Ko')">한글</a></li>
     <li><a href="#!Service_En" onclick="introFetch('Home_En')">English</a></li>
-    <li><a href="#!Solution" onclick="introFetch('Home')">English</a></li>
 </ul>
