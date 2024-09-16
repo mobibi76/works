@@ -11,7 +11,7 @@
 }
 
 @font-face {
-    font-family: 'freesentation4';
+    font-family:'freesentation4';
     src: url('../font/Freesentation-4Regular.ttf') format('truetype');
 }
 
@@ -74,7 +74,7 @@ html, body {
 }
 
 #formlink a {
-    font-family: 'freesentation4';
+    font-family:'freesentation4';
     font-size: 2rem;
     color: var(--hyperlink-color);
     text-decoration: none;
@@ -87,7 +87,7 @@ a {
 
 h1 {
     margin: 0px;
-    font-family: 'freesentation4';
+    font-family:'freesentation4';
     font-size: 1.2rem;
     color: var(--font-color);
     text-align: center;
@@ -96,7 +96,7 @@ h1 {
 
 h2 {
     margin: 0px;
-    font-family: 'freesentation4';
+    font-family:'freesentation4';
     font-size: 1.8rem;
     color: var(--font-color);
     text-align: center;
@@ -106,7 +106,7 @@ h2 {
 footer {
     position: sticky;
     bottom: 0px;
-    font-family: 'freesentation4';
+    font-family:'freesentation4';
     font-size: 1.1rem;
     background-color: var(--background-color);
     color: var(--font-color);
