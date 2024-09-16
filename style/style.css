@@ -1,5 +1,5 @@
 :root {
-    --background-color: white;
+    --background-color: ghostwhite;
     --font-color: black;
     --border-color: dimgrey;
     --hyperlink-color: firebrick;
@@ -32,7 +32,7 @@ html, body {
     align-items: center;
     justify-content: center;
     background-color: var(--background-color);
-    border-bottom: 0.4rem var(--border-color) dashed;
+    border-bottom: 0.1rem var(--border-color) dashed;
     width: 100%;
 }
 
@@ -99,7 +99,7 @@ footer {
     background-color: var(--background-color);
     color: var(--font-color);
     text-align: center;
-    border-top: 0.4rem var(--border-color) dashed;
+    border-top: 0.1rem var(--border-color) dashed;
     margin-top: auto;
 }
 
