@@ -1,5 +1,5 @@
 <img src="./notice/notice_ko.png" width="100%">
-<video width="100%" autoplay loop>
+<video width="100%" autoplay loop preload="auto">
   <source src="./notice/pdbops.mp4" type="video/mp4">
 </video>
 <img src="./notice/notice_en.png" width="100%">
