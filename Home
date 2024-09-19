@@ -1,6 +1,7 @@
 <img src="./notice/notice_ko.png" width="100%">
 <video width="640" height="360" autoplay loop>
   <source src="./notice/pdbops.mp4" type="video/mp4">
+</video>
 <img src="./notice/notice_en.png" width="100%">
 <footer>
     <p id="formlink">
