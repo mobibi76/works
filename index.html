@@ -112,18 +112,26 @@
                 var video = document.getElementById("pdbopsVideo");
                 
                 // fix.canvas.animation from the conflict video.play
-                video.play().then(function() {
-                    console.log("video is playing");
+                if (video) {
+                    video.play().then(function() {
+                        console.log("video is playing");
+                        startCanvasAnimation();
+                    }).catch(function(error) {
+                        console.log("video is not playing:", error);
+                    }).finally(function() {
+                        startCanvasAnimation();
+                    });
+                } else {
+                    console.warn("video is not loading");
                     startCanvasAnimation();
-                }).catch(function(error) {
-                    console.log("video is not playing:", error);
-                    startCanvasAnimation();
-                });
+                }
+            };
 
-                    /*--Canvas Animation--*/
-                    // start animation
-                function startCanvasAnimation() {
-                    var canvas = document.getElementById("aniCanvas");
+            /*--Canvas Animation--*/
+            // start animation
+            function startCanvasAnimation() {
+                var canvas = document.getElementById("aniCanvas");
+                if (canvas) {
                     var obj = canvas.getContext('2d');
 
                     // resize canvas
@@ -169,8 +177,10 @@
                         canvas.width = window.innerWidth;
                         canvas.height = window.innerHeight;
                     });
+                } else {
+                    console.error("canvas is not loading");
                 }
-            };
+            }
         </script>
     </body>
 </html>
