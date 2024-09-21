@@ -2,4 +2,5 @@
     <li><a href="#!Solution" onclick="introFetch('Home')">커버(Cover)</a></li>
     <li><a href="#!Service_Ko" onclick="introFetch('Home_Ko')">한글</a></li>
     <li><a href="#!Service_En" onclick="introFetch('Home_En')">English</a></li>
+    <li><a href="#!Quiz_Ko" onclick="introFetch('Quiz_Ko')">퀴즈(한글)</a></li>
 </ul>
