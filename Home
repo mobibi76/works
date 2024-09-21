@@ -3,6 +3,7 @@
   <source src="./notice/pdbops72.mp4" type="video/mp4">
 </video>
 <img src="./notice/notice_en.png" width="100%">
+
 <table>
     <tr>
         <td>컨설턴트 소개</td>
@@ -133,6 +134,7 @@
         </td>
     </tr>
 </table>
+
 <footer>
   <p id="formlink">
       <a href="https://forms.gle/1NiC53k2jivfyrcr8" target="_blank">🖱️데모(DEMO)🖱️</a>
