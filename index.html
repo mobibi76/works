@@ -111,13 +111,18 @@
             window.onload = function() {
                 var video = document.getElementById("pdbopsVideo");
                 
-                // fix.canvas.animation - play animation after video play because of function conflict
-                video.addEventListener('play', function() {
-                    consol.log("video is playing");
-                //})
+                // fix.canvas.animation from the conflict video.play
+                video.play().then(function() {
+                    console.log("video is playing");
+                    startCanvasAnimation();
+                }).catch(function(error) {
+                    console.log("video is not playing:", error);
+                    startCanvasAnimation();
+                });
 
                     /*--Canvas Animation--*/
                     // start animation
+                function startCanvasAnimation() {
                     var canvas = document.getElementById("aniCanvas");
                     var obj = canvas.getContext('2d');
 
@@ -158,18 +163,13 @@
                         requestAnimationFrame(drawObject);
                     }
                     drawObject();
-                });
 
-                // try to play the video
-                video.play().catch(function(error) {
-                    consol.error("video is not playing:", error);
-                });
-
-                // resize canvas again
-                window.addEventListener('resize', function() {
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
-                });
+                    // resize canvas again
+                    window.addEventListener('resize', function() {
+                        canvas.width = window.innerWidth;
+                        canvas.height = window.innerHeight;
+                    });
+                }
             };
         </script>
     </body>
