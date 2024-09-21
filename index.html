@@ -110,53 +110,64 @@
             /*--push forward to autoplay the video identified--*/
             window.onload = function() {
                 var video = document.getElementById("pdbopsVideo");
-                video.play();
+                
+                // fix.canvas.animation - play animation after video play because of function conflict
+                video.addEventListener('play', function() {
+                    consol.log("video is playing");
+                //})
 
-                /*--Canvas Animation--*/
-                // start animation
-                var canvas = document.getElementById("aniCanvas");
-                var obj = canvas.getContext('2d');
+                    /*--Canvas Animation--*/
+                    // start animation
+                    var canvas = document.getElementById("aniCanvas");
+                    var obj = canvas.getContext('2d');
 
-                // resize canvas
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
+                    // resize canvas
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
 
-                // set-up object
-                var objAction = [];
-                for (var i = 0; i <100; i++) {
-                    objAction.push ({
-                        x: Math.random() * canvas.width,
-                        y: Math.random() * canvas.height,
-                        length: Math.random() * 20 + 10,
-                        velocity: Math.random() * 5 + 2
-                    });
-                }
-
-                // draw object
-                function drawObject() {
-                    obj.clearRect(0, 0, canvas.width, canvas.height);
-                    obj.strokeStyle = 'rgba(175, 195, 225, 0.5)';
-                    obj.lineWidth = 1;
-
-                    for (var i = 0; i < objAction.length; i++) {
-                        var action = objAction[i];
-                        obj.beginPath();
-                        obj.moveTo(action.x, action.y);
-                        obj.lineTo(action.x, action.y + action.length);
-                        obj.stroke();
-
-                        // object movement
-                        action.y += action.velocity;
-                        if (action.y > canvas.height) {
-                            action.y = -action.length;
-                        }
+                    // set-up object
+                    var objAction = [];
+                    for (var i = 0; i <100; i++) {
+                        objAction.push ({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            length: Math.random() * 20 + 10,
+                            velocity: Math.random() * 5 + 2
+                        });
                     }
-                    requestAnimationFrame(drawObject);
-                }
-                drawObject();
+
+                    // draw object
+                    function drawObject() {
+                        obj.clearRect(0, 0, canvas.width, canvas.height);
+                        obj.strokeStyle = 'rgba(175, 195, 225, 0.5)';
+                        obj.lineWidth = 1;
+
+                        for (var i = 0; i < objAction.length; i++) {
+                            var action = objAction[i];
+                            obj.beginPath();
+                            obj.moveTo(action.x, action.y);
+                            obj.lineTo(action.x, action.y + action.length);
+                            obj.stroke();
+
+                            // object movement
+                            action.y += action.velocity;
+                            if (action.y > canvas.height) {
+                                action.y = -action.length;
+                            }
+                        }
+                        requestAnimationFrame(drawObject);
+                    }
+                    drawObject();
+                });
+
+                // try to play the video
+                video.play().catch(function(error) {
+                    consol.error("video is not playing:", error);
+                });
 
                 // resize canvas again
                 window.addEventListener('resize', function() {
+                    var canvas = document.getElementById("aniCanvas");
                     canvas.width = window.innerWidth;
                     canvas.height = window.innerHeight;
                 });
