@@ -108,6 +108,7 @@ table {
     font-size: 1.1rem;
     color: var(--font-color);
     text-align: left;
+    width: 100%;
 }
 
 table th {
