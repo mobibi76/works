@@ -1,14 +1,1 @@
 <iframe id="python3" src="https://172.25.84.206:8000/game-ko/" width="100%"></iframe>
-
-<script>
-  fetch('https://172.25.84.206:8000/game-ko/', { method: 'HEAD' })
-    .then(response => {
-      if (!response.ok) {
-        document.getElementById('python3').style.display = 'none';
-      }
-    })
-    .catch(error => {
-      console.error('서버에 접속할 수 없습니다:', error);
-      document.getElementById('python3').style.display = 'none';
-    });
-</script>
