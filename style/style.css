@@ -142,6 +142,7 @@ footer p {
 }
 
 iframe {
+    border: none;
     height: 100vh;
 }
 
