@@ -2,18 +2,3 @@
     <iframe id="myIframe" src="https://172.25.84.206:8000/game-ko/"></iframe>
     <div id="loading" style="display: block;">불러오는 중...</div>
 </div>
-
-<script>
-const iframe = document.getElementById('myIframe');
-const loadingMessage = document.getElementById('loading');
-
-iframe.onload = () => {
-    loadingMessage.style.display = 'none';  // 로드되면 로딩 메시지 숨김
-};
-
-setTimeout(() => {
-    if (!iframe.contentWindow || iframe.contentWindow.location.href === 'about:blank') {
-        loadingMessage.innerHTML = '페이지를 불러올 수 없습니다.';
-    }
-}, 3000);  // 3초 대기 후 검사
-</script>
