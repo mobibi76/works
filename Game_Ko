@@ -1,4 +1,1 @@
-<div id="iframe-container">
-    <iframe id="myIframe" src="https://172.25.84.206:8000/game-ko/"></iframe>
-    <div id="loading" style="display: block;">불러오는 중...</div>
-</div>
+<iframe src="https://172.25.84.206:8000/game-ko/" width="100%"></iframe>
