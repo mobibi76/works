@@ -143,7 +143,6 @@ footer p {
 
 iframe {
     border: none;
-    height: 100vh;
 }
 
 @media(max-width: 600px) {
