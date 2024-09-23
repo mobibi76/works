@@ -1,1 +1,39 @@
-<iframe src="https://test.pdbops.com:8000/game-ko/" width="100%"></iframe>
+<!--<iframe src="https://test.pdbops.com:8000/game-ko/" width="100%"></iframe>-->
+
+<iframe id="gameFrame" src="https://test.pdbops.com:8000/game-ko/" width="100%" onload="hideLoader()" style="display: none;"></iframe>
+<div id="loading" style="display: none;">Loading the game...</div>
+<div id="fallback" style="display: none;">The game server is currently down. Please try again later.</div>
+
+<script>
+    const loading = document.getElementById("loading");
+    const fallback = document.getElementById("fallback");
+    const iframe = document.getElementById("gameFrame");
+
+    function showLoader() {
+        loading.style.display = "block";
+        iframe.style.display = "none";
+        fallback.style.display = "none";
+    }
+
+    function hideLoader() {
+        loading.style.display = "none";
+        iframe.style.display = "block";
+    }
+
+    function checkServerStatus(url) {
+        return fetch(url, { method: 'HEAD' })
+            .then(response => response.ok)
+            .catch(() => false);
+    }
+
+    // 서버 상태를 체크하고 iframe 로드
+    checkServerStatus('https://test.pdbops.com:8000')
+        .then(isOnline => {
+            if (isOnline) {
+                showLoader();
+                iframe.src = "https://test.pdbops.com:8000/game-ko/";
+            } else {
+                fallback.style.display = "block"; // 서버가 꺼져 있을 경우 메시지 표시
+            }
+        });
+</script>
