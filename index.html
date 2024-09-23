@@ -25,7 +25,10 @@
 
         <article id="flex">
             <nav id="nav"></nav>
-            <main id="container"></main>
+            <main id="container">
+                <div id="loading" style="display: none;">불러오는 중...</div> <!--240923-->
+                <div id="fallback" style="display: none;">테스트서버가 꺼져있습니다. 나중에 다시...</div> <!--240923-->
+            </main>
             <canvas id="aniCanvas"></canvas>
         </article>
 
@@ -52,19 +55,31 @@
             // function: load pages through fetch.js with ERROR handle
             function fetchPageContent(pageTitle, targetElementSelector) {
                 return fetch(pageTitle).then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not OK.');
-                    }
-                    return response.text();
-                }).then(text => {
-                    const targetElement = document.querySelector(targetElementSelector);
-                    if (targetElement) {
+                    const loading = document.getElementById("loading"); //240923
+                    const fallback = document.getElementById("fallback"); //240923
+                    const targetElement = document.querySelector(targetElementSelector); //240923
+
+                    loading.style.display = "block"; //240923
+                    fallback.style.display = "none"; //240923
+
+                    return fetch(pageTitle) //240923
+                    .then(response => { //240923
+                        if (!response.ok) {
+                            throw new Error('Network response was not OK.');
+                        }
+                        return response.text();
+                    }).then(text => {
+                        //const targetElement = document.querySelector(targetElementSelector);
+                        loading.style.display = "none"; //240923
+                    //if (targetElement) {
                         targetElement.innerHTML = text;
                         targetElement.scrollTop = 0;
-                    }
-                }).catch(error => {
-                    console.error('There has been a problem with the fetch operation:', error);
-                });
+                    })
+                    }).catch(error => {
+                        console.error('There has been a problem with the fetch operation:', error);
+                        loading.style.display = "none"; //240923
+                        fallback.style.display = "block"; //240923
+                    });
             }
 
             /*--load content on page--*/

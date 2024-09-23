@@ -26,14 +26,14 @@
             .catch(() => false);
     }
 
-    // 서버 상태를 체크하고 iframe 로드
+    // check the Django and road iframe
     checkServerStatus('https://test.pdbops.com:8000')
         .then(isOnline => {
             if (isOnline) {
                 showLoader();
                 iframe.src = "https://test.pdbops.com:8000/game-ko/";
             } else {
-                fallback.style.display = "block"; // 서버가 꺼져 있을 경우 메시지 표시
+                fallback.style.display = "block"; // message for Django (Off)
             }
         });
 </script>
