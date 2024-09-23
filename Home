@@ -137,7 +137,7 @@
 
 <footer>
   <p id="formlink">
-      <a href="https://forms.gle/1NiC53k2jivfyrcr8" target="_blank">🖱️데모(DEMO)🖱️</a>
+      <a href="#!Game_Ko" onclick="introFetch('Game_Ko')">🖱️데모(DEMO)🖱️</a>
   </p>
   <p>processdesignbase@gmail.com (125-51-00257)</p>
 </footer>
