@@ -1,1 +1,15 @@
 <iframe src="https://test.pdbops.com:8000/game-ko/"></iframe>
+<table>
+    <tr>
+        <th>데모(DEMO)테스트1.0</th>
+    </tr>
+    <tr>
+        <ul>
+            <li>Chrome, Edge, Firefox</li>
+            <li>Python 3.10.12</li>
+            <li>Django 5.1.1</li>
+            <li>WSL 2.2.4.0 (kernel 5.15.153.1-2)</li>
+            <li>XR:Unity(2022.3.47f1.LTS)-WebGL</li>
+        </ul>
+    </tr>
+</table>
