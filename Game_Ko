@@ -3,6 +3,8 @@
 <table id="gameFrame">
     <tr>
         <th>데모(DEMO)테스트1.0</th>
+    </tr>
+    <tr>
         <ul>
             <li>Chrome, Edge, Firefox</li>
             <li>Python 3.10.12</li>
