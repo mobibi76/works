@@ -1,1 +1,7 @@
 <iframe src="https://test.pdbops.com:8000/game-ko/"></iframe>
+<script>
+    /*--prevent contents from the mouse right click event--*/
+    document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+    });
+</script>
