@@ -90,6 +90,14 @@ html, body {
     text-decoration: none;
 }
 
+#gameFrame {
+    list-style-type: none;
+    font-family: 'freesentation4';
+    font-size: 1.1rem;
+    color: var(--font-color);
+    text-align: left;
+}
+
 a {
     color: var(--hyperlink-color);
     text-decoration: none;

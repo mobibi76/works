@@ -1,6 +1,6 @@
 <iframe src="https://test.pdbops.com:8000/game-ko/"></iframe>
 
-<table>
+<table id="gameFrame">
     <tr>
         <th>데모(DEMO)테스트1.0</th>
         <ul>
@@ -8,6 +8,7 @@
             <li>Python 3.10.12</li>
             <li>Django 5.1.1</li>
             <li>WSL 2.2.4.0 (kernel 5.15.153.1-2)</li>
+            <li>___T B D___</li>
             <li>XR:Unity(2022.3.47f1.LTS)-WebGL</li>
         </ul>
     </tr>
