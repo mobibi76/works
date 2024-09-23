@@ -90,7 +90,7 @@ html, body {
     text-decoration: none;
 }
 
-#gameFrame {
+#gameFrame li {
     list-style-type: none;
     font-family: 'freesentation4';
     font-size: 1.1rem;
