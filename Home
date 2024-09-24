@@ -42,7 +42,12 @@
     </tr>
     <tr>
         <td>2020~2022</td>
-        <td>
+        <td data-tooltip="As a project manager and CTO,
+        I have led various digital transformation projects utilizing
+        AI technologies, including on-device AI, voice recognition, and chatbots.
+        At the same time, during my Ph.D. studies,
+        I worked on advancing my smart farm (IoT-metaverse) solution
+        by incorporating nano-biosensor technology.">
             <ul>
                 <li>[현재] [자연과학] 식물대사 측정 나노바이오센서 연구 (박사 수료후 연구생)
                     <br>_{경희대학교 대학원}
