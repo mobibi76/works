@@ -90,6 +90,7 @@ html, body {
     background-color: var(--page-color);
     max-width: 700px;
     text-align: center;
+    z-index: 1; /*240924*/
 }
 
 #formlink {
