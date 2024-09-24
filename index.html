@@ -99,6 +99,58 @@
                 ]).then(() => {
                     adjustContainerHeight();
                     window.addEventListener('resize', adjustContainerHeight);
+
+                    /*--tooltip display for table content--*/ //from.here.240924
+                    // tooltip for table content (tr, td): mouse event for pc
+                    const tooltip = document.createElement('div');
+                    tooltip.id = 'tooltip';
+                    document.body.appendChild(tooltip);
+
+                    document.addEventListener('mouseover', function (e) {
+                        const target = e.target.closest('td[data-tooltip], tr[data-tooltip]');
+                        if (target) {
+                            const text = target.getAttribute('data-tooltip');
+                            tooltip.textContent = text;
+                            tooltip.style.display = 'block';
+                            tooltip.style.left = `${e.pageX + 10}px`;
+                            tooltip.style.top = `${e.pageY + 10}px`;
+                        }
+                    });
+
+                    document.addEventListener('mousemove', function (e) {
+                        tooltip.style.left = `${e.pageX + 10}px`;
+                        tooltip.style.top = `${e.pageY + 10}px`;
+                    });
+
+                    document.addEventListener('mouseout', function (e) {
+                        const target = e.target.closest('td[data-tooltip], tr[data-tooltip]');
+                        if (target) {
+                            tooltip.style.display = 'none';
+                        }
+                    });
+
+                    // tooltip for table content (tr, td): touch event for mobile
+                    document.addEventListener('touchstart', function (e) {
+                        const touch = e.touches[0];
+                        const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip]');
+                        if (target) {
+                            const text = target.getAttribute('data-tooltip');
+                            tooltip.textContent = text;
+                            tooltip.style.display = 'block';
+                            tooltip.style.left = `${touch.pageX + 10}px`;
+                            tooltip.style.top = `${touch.pageY + 10}px`;
+                        }
+                    });
+
+                    document.addEventListener('touchmove', function (e) {
+                        const touch = e.touches[0];
+                        tooltip.style.left = `${touch.pageX + 10}px`;
+                        tooltip.style.top = `${touch.pageY + 10}px`;
+                    });
+
+                    document.addEventListener('touchend', function () {
+                        tooltip.style.display = 'none';
+                    }); //till.here.240924
                 });
             });
 
