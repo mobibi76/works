@@ -15,6 +15,19 @@
     src: url('../font/Freesentation-4Regular.ttf') format('truetype');
 }
 
+/* new.here.240924*/
+.tooltip {
+    position: absolute;
+    background-color: var(--border-color);
+    color: var(--page-color);
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    display: none;
+    z-index: 1000;
+}
+/* new.here.240924*/
+
 html, body {
     margin: 0px;
     overflow: hidden;
