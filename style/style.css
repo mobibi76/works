@@ -1,3 +1,8 @@
+@font-face {
+    font-family:'freesentation4';
+    src: url('../font/Freesentation-4Regular.ttf') format('truetype');
+}
+
 :root {
     --background-color: whitesmoke;
     --font-color: black;
@@ -164,11 +169,6 @@ iframe {
     border-bottom: 0.1rem var(--border-color) dashed;
     width: 100%;
     height: 70%;
-}
-
-@font-face {
-    font-family:'freesentation4';
-    src: url('../font/Freesentation-4Regular.ttf') format('truetype');
 }
 
 @media(max-width: 600px) {
