@@ -220,7 +220,7 @@
 </table>
 
 <!--tooltip display-->
-<div id="tooltip" class="tooltip"></div>
+<div id="tooltip"></div>
 
 <footer>
   <p id="formlink">

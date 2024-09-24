@@ -10,30 +10,6 @@
     display: none;
 }
 
-@font-face {
-    font-family:'freesentation4';
-    src: url('../font/Freesentation-4Regular.ttf') format('truetype');
-}
-
-/* new.here.240924*/
-#tooltip {
-    position: absolute;
-    background-color: var(--border-color);
-    color: var(--page-color);
-    padding: 4px;
-    border-radius: 4px;
-    font-size: 1.1rem;
-    display: none;
-    z-index: 1000;
-}
-/* new.here.240924*/
-
-html, body {
-    margin: 0px;
-    overflow: hidden;
-    filter: grayscale(0%);
-}
-
 #flex {
     display: flex;
     flex-direction: column;
@@ -111,6 +87,25 @@ html, body {
     text-align: left;
 }
 
+/* new.here.240924*/
+#tooltip {
+    position: absolute;
+    background-color: var(--border-color);
+    color: var(--page-color);
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    display: none;
+    z-index: 1000;
+}
+/* new.here.240924*/
+
+html, body {
+    margin: 0px;
+    overflow: hidden;
+    filter: grayscale(0%);
+}
+
 a {
     color: var(--hyperlink-color);
     text-decoration: none;
@@ -178,4 +173,9 @@ iframe {
     table th {
         font-size: 1.2rem;
     }
+}
+
+@font-face {
+    font-family:'freesentation4';
+    src: url('../font/Freesentation-4Regular.ttf') format('truetype');
 }
