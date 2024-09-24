@@ -5,26 +5,13 @@
 <img src="./notice/notice_en.png" width="100%">
 
 <table>
-    <tr data-tooltip="Consultant's Foot-print">
+    <tr data-tooltip="Use the Translation Function on Your Browser
+    Consultant's Foot-print">
         <th colspan="2">컨설턴트 이력</th>
     </tr>
     <tr>
         <td>2023~현재</td>
-        <td data-tooltip="As a consultant and project manager,
-        [Currently] Developing a metaverse consulting tool (process design)
-        --- 'Mentoring for converged content and software'
-        [Currently] Offering consulting services in risk process design
-        Developing a distributed AI facial recognition and biometric management system (PM)
-        --- {Secure storage for AI facial recognition data}
-        Implementing AI facial recognition access control for public facilities (PM)
-        --- {Facial recognition-based access control}
-        Creating a metaverse for predictive maintenance and quality control in smart factories (PM)
-        --- {Real-time monitoring for manufacturing equipment}
-        --- {Metaverse workspace for quality inspections}
-        Demonstrating AR services in smart cities (PM)
-        --- {Resource management in residential areas}
-        Planning metaverse geospatial information services (PM)
-        --- {Metaverse geospatial data linked to digital twins}">
+        <td data-tooltip="소개 준비 중">
             <ul>
                 <li>[현재] 메타버스 컨설팅 도구(프로세스 디자인-분석) 기획-개발
                     <br>_"융합 콘텐츠-소프트웨어 멘토링"
@@ -51,14 +38,7 @@
     </tr>
     <tr>
         <td>2020~2022</td>
-        <td data-tooltip="As a project manager and CTO,
-        [Current] Research on plant metabolism measurement using nanobiosensors
-        --- {Postdoctoral Researcher, Kyung Hee University}
-        --- 'Smart Farm Technology Coaching'
-        Development of mobility monitoring and voice guidance systems (PM)
-        --- {Digital Transformation for Public Transportation Call Centers}
-        AI Research and Development for Traffic - Demonstration Program (PM)
-        --- {Neural Processing Unit for Mobility Service Devices}">
+        <td data-tooltip="소개 준비 중">
             <ul>
                 <li>[현재] [자연과학] 식물대사 측정 나노바이오센서 연구 (박사 수료후 연구생)
                     <br>_{경희대학교 대학원}
@@ -75,33 +55,7 @@
     </tr>
     <tr>
         <td>2017~2019</td>
-        <td data-tooltip="As a project manager and a startup's founder,
-        Gyounggi Research Institute, Policy Competition Excellence Award
-        NIPA, Canada AI Ecosystem Startup Training (MoU Signed)
-        Korea Creative Content Agency, Grand Prize in Hackathon
-        AI English Speaking Content Development (PM)
-        --- {AI Tutor for English}
-        Blockchain Smart Contract English Assessment System (PM)
-        --- {English Speaking Certification Solution}
-        Art Education Metaverse Self-Docent Program (PM)
-        --- {Metaverse Archive for Artworks}
-        Ministry of SMEs and Startups-NIPA, Global Startup Hackathon Excellence Award
-        Korea Creative Content Agency, 3D Makers Program Selection
-        [Currently] Risk Process Design Education Semantic Web (Startup)
-        --- {For Systemic Thinking}
-        --- 'Patent WO2018212398A1'
-        --- 'Commercialization Consulting'
-        Smart Pot Platform - Disaster Safety Community (Startup)
-        --- {Health Monitoring Platform}
-        --- 'Patent KR102010413B1'
-        Plant Growth Data Production Platform (Startup)
-        --- 'Patent KR101935008B1'
-        Plant Growth Data Visualization Mobility (Startup)
-        --- 'Patent KR20210123076A'
-        Spatial Information Licensing - IPO
-        Commercial Mobility FMS Development (PM)
-        --- {Vehicle Sharing Control System}
-        Startup Promotion Agency, Selected for Gyeonggi Province Startup Program">
+        <td data-tooltip="소개 준비 중">
             <ul>
                 <li>경기연구원, 정책 공모 우수상</li>
                 <li>NIPA, 스타트업 캐나다 AI 에코시스템 연수 (인큐베이션 MoU 체결)</li>
@@ -142,14 +96,7 @@
     </tr>
     <tr>
         <td>2014~2016</td>
-        <td data-tooltip="As a project manager and business planner,
-        I have designed user-friendly services such as
-        a digital docent solution for art galleries and museums,
-        a career role model explorer, and an indoor route guide for disaster response.
-        Additionally, I worked on designing a drone auto-flight system
-        for delivery services and an IoT solution for cafe kitchen maintenance.
-        In particular, I found the experience with the quality control and
-        assurance process, "CMMI," to be especially valuable.">
+        <td data-tooltip="소개 준비 중">
             <ul>
                 <li>공공시설물 재난안전 대피경로 안내 시스템 개발 (PM)</li>
                 <li>영국, 리스크관리기관(IRM) 전문가 인증</li>
@@ -174,14 +121,7 @@
     </tr>
     <tr>
         <td>2011~2013</td>
-        <td data-tooltip="As a project manager and risk management officer,
-        I have participated in air vehicle and avionics R&D projects,
-        including airplane surveillance technology
-        and the development of payloads for defense applications.
-        The majority of my projects during this time were focused on
-        defense and surveillance, utilizing satellite communication technology.
-        My experiences with projects in the UAE, Europe, and Japan
-        were particularly valuable.">
+        <td data-tooltip="소개 준비 중">
             <ul>
                 <li>일본, 재난지역 위성통신 단말기 개발 (PMO)
                     <br>_{쓰나미 재해지역용 위성통신모듈, 단말기}
@@ -211,8 +151,7 @@
     </tr>
     <tr>
         <td>2008~2010</td>
-        <td data-tooltip="As a product designer,
-        ">
+        <td data-tooltip="소개 준비 중">
             <ul>
                 <li>웰빙 라면 기획-개발 (PA)
                     <br>_{초임계 기술기반 유탕면}
@@ -228,7 +167,7 @@
     </tr>
     <tr>
         <td>2005~2007</td>
-        <td>
+        <td data-tooltip="소개 준비 중">
             <ul>
                 <li>영국, [경영과학] 게임전략의 사례와 실증 연구 (석사 수료)
                     <br>_{University of Worcester}
@@ -241,7 +180,7 @@
     </tr>
     <tr>
         <td>2002~2004</td>
-        <td>
+        <td data-tooltip="소개 준비 중">
             <ul>
                 <li>방송광고 AE (TV-CF, 라디오 광고 기획-제작)
                     <br>_{국내 기간통신사 서비스}
@@ -257,7 +196,7 @@
     </tr>
     <tr>
         <td>1999~2001</td>
-        <td>
+        <td data-tooltip="소개 준비 중">
             <ul>
                 <li>[인문사회] 일본지역학 전공 (학사 졸업)
                     <br>_{한신대학교}
@@ -271,7 +210,7 @@
     </tr>
     <tr>
         <td>1996~1998</td>
-        <td>
+        <td data-tooltip="소개 준비 중">
             <ul>
                 <li>일반 인문계 고등학교 졸업
                     <br>_{수원고등학교}
