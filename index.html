@@ -118,8 +118,10 @@
                     });
 
                     document.addEventListener('mousemove', function (e) {
-                        tooltip.style.left = `${e.pageX + 10}px`;
-                        tooltip.style.top = `${e.pageY + 10}px`;
+                        if (tooltip.style.display === 'block') {
+                            tooltip.style.left = `${e.pageX + 10}px`;
+                            tooltip.style.top = `${e.pageY + 10}px`;
+                        }
                     });
 
                     document.addEventListener('mouseout', function (e) {
