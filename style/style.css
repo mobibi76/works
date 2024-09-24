@@ -95,6 +95,7 @@
 /* new.here.240924*/
 #tooltip {
     position: absolute;
+    font-family: 'freesentation4';
     background-color: var(--border-color);
     color: var(--page-color);
     padding: 4px;
