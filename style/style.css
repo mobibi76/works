@@ -97,6 +97,7 @@
     font-size: 1.1rem;
     display: none;
     z-index: 1000;
+    white-space: pre-line;
 }
 /* new.here.240924*/
 
