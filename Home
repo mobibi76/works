@@ -5,8 +5,8 @@
 <img src="./notice/notice_en.png" width="100%">
 
 <table>
-    <tr>
-        <th colspan="2" data-tooltip="Consultant's Foot-print">컨설턴트 이력</th>
+    <tr data-tooltip="Consultant's Foot-print">
+        <th colspan="2">컨설턴트 이력</th>
     </tr>
     <tr>
         <td>2023~현재</td>
