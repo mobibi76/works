@@ -166,6 +166,12 @@ iframe {
     height: 70%;
 }
 
+
+@font-face {
+    font-family:'freesentation4';
+    src: url('../font/Freesentation-4Regular.ttf') format('truetype');
+}
+
 @media(max-width: 600px) {
     table {
         font-size: 0.6rem;
@@ -174,9 +180,4 @@ iframe {
     table th {
         font-size: 1.2rem;
     }
-}
-
-@font-face {
-    font-family:'freesentation4';
-    src: url('../font/Freesentation-4Regular.ttf') format('truetype');
 }
