@@ -179,4 +179,8 @@ iframe {
     table th {
         font-size: 1.2rem !important;
     }
+
+    #tooltip {
+        font-size: 0.6rem !important;
+    }
 }
