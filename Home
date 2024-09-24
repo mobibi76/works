@@ -10,12 +10,21 @@
     </tr>
     <tr>
         <td>2023~현재</td>
-        <td data-tooltip="As a project manager,
-        I have experience in requirement analysis and solution design
-        for AI facial recognition systems for banking, including physical security,
-        as well as metaverse solutions for smart factories and smart cities.
-        Currently, my soft skills in process design for risk agility
-        are being applied to address your challenges.">
+        <td data-tooltip="As a consultant and project manager,
+        - [Currently] Developing a metaverse consulting tool (process design)
+            _"Mentoring for converged content and software"
+        - [Currently] Offering consulting services in risk process design
+        - Developing a distributed AI facial recognition and biometric management system (PM)
+            _{Secure storage for AI facial recognition data}
+        - Implementing AI facial recognition access control for public facilities (PM)
+            _{Facial recognition-based access control}
+        - Creating a metaverse for predictive maintenance and quality control in smart factories (PM)
+            _{Real-time monitoring for manufacturing equipment}
+            _{Metaverse workspace for quality inspections}
+        - Demonstrating AR services in smart cities (PM)
+            _{Resource management in residential areas}
+        - Planning metaverse geospatial information services (PM)
+            _{Metaverse geospatial data linked to digital twins}">
             <ul>
                 <li>[현재] 메타버스 컨설팅 도구(프로세스 디자인-분석) 기획-개발
                     <br>_"융합 콘텐츠-소프트웨어 멘토링"
@@ -64,7 +73,13 @@
     </tr>
     <tr>
         <td>2017~2019</td>
-        <td>
+        <td data-tooltip="As a project manager and president of a startup,
+        I have gained extensive experience in various programs, events, and challenges
+        across fields such as language arts education, agriculture, and mobility,
+        integrating AI, IoT, and the metaverse.
+        I hold patents in my areas of expertise,
+        including smart farms and converged social networks,
+        and have received multiple awards in startup competitions.">
             <ul>
                 <li>경기연구원, 정책 공모 우수상</li>
                 <li>NIPA, 스타트업 캐나다 AI 에코시스템 연수 (인큐베이션 MoU 체결)</li>
@@ -105,7 +120,14 @@
     </tr>
     <tr>
         <td>2014~2016</td>
-        <td>
+        <td data-tooltip="As a project manager and business planner,
+        I have designed user-friendly services such as
+        a digital docent solution for art galleries and museums,
+        a career role model explorer, and an indoor route guide for disaster response.
+        Additionally, I worked on designing a drone auto-flight system
+        for delivery services and an IoT solution for cafe kitchen maintenance.
+        In particular, I found the experience with the quality control and
+        assurance process, "CMMI," to be especially valuable.">
             <ul>
                 <li>공공시설물 재난안전 대피경로 안내 시스템 개발 (PM)</li>
                 <li>영국, 리스크관리기관(IRM) 전문가 인증</li>
@@ -130,7 +152,14 @@
     </tr>
     <tr>
         <td>2011~2013</td>
-        <td>
+        <td data-tooltip="As a project manager and risk management officer,
+        I have participated in air vehicle and avionics R&D projects,
+        including airplane surveillance technology
+        and the development of payloads for defense applications.
+        The majority of my projects during this time were focused on
+        defense and surveillance, utilizing satellite communication technology.
+        My experiences with projects in the UAE, Europe, and Japan
+        were particularly valuable.">
             <ul>
                 <li>일본, 재난지역 위성통신 단말기 개발 (PMO)
                     <br>_{쓰나미 재해지역용 위성통신모듈, 단말기}
@@ -160,7 +189,8 @@
     </tr>
     <tr>
         <td>2008~2010</td>
-        <td>
+        <td data-tooltip="As a product designer,
+        ">
             <ul>
                 <li>웰빙 라면 기획-개발 (PA)
                     <br>_{초임계 기술기반 유탕면}
