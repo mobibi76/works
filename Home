@@ -10,7 +10,12 @@
     </tr>
     <tr>
         <td>2023~현재</td>
-        <td>
+        <td data-tooltip="As a project manager,
+        <br>I have experience in requirement analysis and solution design
+        <br>for AI facial recognition systems for banking, including physical security,
+        <br>as well as metaverse solutions for smart factories and smart cities.
+        <br>Currently, my soft skills in process design for risk agility
+        <br>are being applied to address your challenges.">
             <ul>
                 <li>[현재] 메타버스 컨설팅 도구(프로세스 디자인-분석) 기획-개발
                     <br>_"융합 콘텐츠-소프트웨어 멘토링"
