@@ -94,7 +94,7 @@
     color: var(--page-color);
     padding: 4px;
     border-radius: 4px;
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     display: none;
     z-index: 1000;
     white-space: pre-line;
