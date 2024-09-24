@@ -16,7 +16,7 @@
 }
 
 /* new.here.240924*/
-.tooltip {
+.tooltip, #tooltip {
     position: absolute;
     background-color: var(--border-color);
     color: var(--page-color);
