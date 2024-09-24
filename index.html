@@ -124,7 +124,7 @@
 
                     document.addEventListener('mouseout', function (e) {
                         const target = e.target.closest('td[data-tooltip], tr[data-tooltip]');
-                        if (target) {
+                        if (!target) {
                             tooltip.style.display = 'none';
                         }
                     });

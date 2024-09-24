@@ -20,9 +20,9 @@
     position: absolute;
     background-color: var(--border-color);
     color: var(--page-color);
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 12px;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 1.1rem;
     display: none;
     z-index: 1000;
 }
