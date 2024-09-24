@@ -219,6 +219,9 @@
     </tr>
 </table>
 
+<!--tooltip display-->
+<div id="tooltip" class="tooltip"></div>
+
 <footer>
   <p id="formlink">
       <a href="#!Game_Ko" onclick="introFetch('Game_Ko')">🖱️데모(DEMO)🖱️</a>
