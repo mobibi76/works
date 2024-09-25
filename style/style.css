@@ -96,8 +96,8 @@
 #tooltip {
     position: absolute;
     font-family: 'freesentation4';
-    background-color: var(--border-color);
-    color: var(--page-color);
+    background-color: var(--hyperlink-color);
+    color: var(--background-color);
     padding: 4px;
     border-radius: 4px;
     font-size: 1rem;
