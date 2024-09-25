@@ -176,11 +176,11 @@ iframe {
 }
 
 @media (max-width: 600px) {
-    table {
+    table, #gameFrame {
         font-size: 0.6rem !important;
     }
 
-    table th {
+    table th, #gameFrame {
         font-size: 1.2rem !important;
     }
 
