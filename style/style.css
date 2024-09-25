@@ -92,7 +92,7 @@
     text-align: left;
 }
 
-/* new.here.240924*/
+/* new.here.240925*/
 #tooltip {
     position: absolute;
     font-family: 'freesentation4';
@@ -105,7 +105,11 @@
     z-index: 1000;
     white-space: pre-line;
 }
-/* new.here.240924*/
+
+#year {
+    vertical-align: text-top;
+}
+/* new.here.240925*/
 
 html, body {
     margin: 0px;
