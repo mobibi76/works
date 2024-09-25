@@ -141,7 +141,6 @@ table {
     font-size: 1.1rem;
     color: var(--font-color);
     text-align: left;
-    vertical-align: text-top;
     width: 100%;
 }
 
