@@ -1,5 +1,5 @@
 <ul>
-    <li><a href="#!Solution" onclick="introFetch('Home')">커버(Cover)</a></li>
-    <li><a href="#!Service_Ko" onclick="introFetch('Home_Ko')">한글</a></li>
-    <li><a href="#!Service_En" onclick="introFetch('Home_En')">English</a></li>
+    <li><a href="#!Cover" onclick="introFetch('Cover')">커버(Cover)</a></li>
+    <li><a href="#!Workshop" onclick="introFetch('Workshop')">워크숍(Workshop)</a></li>
+    <li><a href="#!People" onclick="introFetch('People')">피플(People)</a></li>
 </ul>

@@ -95,7 +95,7 @@
                 // DOMContentLoaded control and adjust Heithts
                 Promise.all([
                     fetchPageContent('Menu', '#nav'),
-                    fetchPageContent('Home', '#container')
+                    fetchPageContent('Cover', '#container')
                 ]).then(() => {
                     adjustContainerHeight();
                     window.addEventListener('resize', adjustContainerHeight);
