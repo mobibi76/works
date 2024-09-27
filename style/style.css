@@ -106,6 +106,12 @@
     white-space: pre-line;
 }
 
+#tooltip img {
+    max-width: 25%;
+    font-display: block;
+    margin: 0 auto;
+}
+
 #year {
     vertical-align: text-top;
 }
