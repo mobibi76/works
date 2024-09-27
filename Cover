@@ -1,13 +1,9 @@
-<img data-tooltip="pdbops.com
-                Process Design-based Operations
-                The demo is currently being prepared.
-                (Beta testing is scheduled for 2025)
-                We are currently offering consulting services.
-                The demo link below (Consulting Game 1.0) is under development and testing.
-                If you're interested in our consulting services,
-                please refer to the service introduction available in workshop.
-                You can apply via the 'Application Form' link on the page.
-                We appreciate your interest!"
+<img data-tooltip="pdbops.com {Process Design-Based Operations}
+                ✓The demo is in development and beta testing is set for 2025.
+                ✓We are currently offering consulting services.
+                ✓For more details,
+                --visit the workshop page and apply through the 'APPLY' link.
+                Thank you for your interest!"
     src="./notice/notice.png" width="100%">
 <video id="pdbopsVideo" width="100%" autoplay muted loop>
   <source src="./notice/pdbops72.mp4" type="video/mp4">
