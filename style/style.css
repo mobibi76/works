@@ -96,8 +96,8 @@
     color: var(--font-color)
 }
 .tooltip-text {
-    background-color: var(--page-color);
-    color: var(--font-color);
+    background-color: var(--hyperlink-color);
+    color: var(--background-color);
 }
 #year {
     vertical-align: text-top;
