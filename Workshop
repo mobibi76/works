@@ -1,12 +1,14 @@
-<img data-tooltip="✓We design processes to help clients achieve their goals.
+<img data-tooltip="[제공: Service]
+                ✓We design processes to help clients achieve their goals.
                 ✓Our expertise in process design builds agile workflows and communication networks
                 to minimize risks, connecting your knowledge and skills
-                to develop a clear strategy for your objectives.
-                ✓pdbops.com {Process Design-Based Operations}"
+                to develop a clear strategy for your objectives."
     src="./img/articleHead.png" width="100%">
-<img src="./img/interaction.png" width="100%">
-<img src="./img/process.png" width="100%">
-<img data-tooltip="✓Process Design-Based Operations (pdbops.com)
+<img data-tooltip="[소통: Interaction]"
+    src="./img/interaction.png" width="100%">
+<img data-tooltip="[방법: Skills]"
+    src="./img/process.png" width="100%">
+<img data-tooltip="[가치: Value]
                 ✓We tackle challenges with process design expertise,
                 using a System Dynamics approach to model risks, improve communication,
                 and enhance agile processes.
@@ -14,8 +16,10 @@
                 ✓Process design and analysis tools are in development
                 --(Beta testing in 2025)."
     src="./img/value.png" width="100%">
-<img src="./img/techConcept.png" width="100%">
-<img src="./img/toolConcept.png" width="100%">
+<img data-tooltip="[기술: Tech.-Concept]"
+    src="./img/techConcept.png" width="100%">
+<img data-tooltip="[데모: User-Interface]" 
+    src="./img/toolConcept.png" width="100%">
 <img data-tooltip="✓Process Design-Based Consulting Services
                 --Storytelling
                 --Setting Up Processes
@@ -25,7 +29,8 @@
                 --Building Team Networks (for Agile Risk Management)
                 --Running Simulations"
     src="./img/programme.png" width="100%">
-<img src="./img/history.png" width="100%">
+<img data-tooltip="[경험: Footprint]"
+    src="./img/history.png" width="100%">
 <img data-tooltip="✓Consultant
                 --PM and PMO for Government (Tech) Support Programs
                 --Master’s Degree in Corporate Risk Management
