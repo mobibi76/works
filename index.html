@@ -2,21 +2,17 @@
 <html lang="ko">
     <head>
         <title>프로세스 디자인 기반 운영 | 리스크 애자일 프로세스와 팀 네트워크 디자인</title>
-
         <!--meta: SEO, mobile ops. and encoding-->
         <meta name="description"
             content="고객의 목표와 도메인에 대한 체계역학 구조 기반 리스크 애자일 프로세스와 팀 네트워크 디자인">
         <meta name="viewport" content="width=device-width" initial-scale="1.0">
         <meta charset="utf-8">
-
         <link rel="stylesheet" href="./style/style.css">
-
         <!--use: jQuery Google CDN-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" async></script>
         <!--use: fetch.js-->
         <script src="./source/fetch.js"></script>
     </head>
-
     <body>
         <header>
             <h1><a href="./index.html">process design-based ops.</a></h1>
@@ -28,7 +24,6 @@
             <main id="container"></main>
             <canvas id="aniCanvas"></canvas>
         </article>
-
         <script>
             /*--fetch.js control--*/
             // function: define introFetch function
@@ -48,7 +43,6 @@
                     console.error('There has been a problem with the fetch operation:', error);
                 });
             }
-
             // function: load pages through fetch.js with ERROR handle
             function fetchPageContent(pageTitle, targetElementSelector) {
                 return fetch(pageTitle).then(response => {
@@ -66,7 +60,6 @@
                     console.error('There has been a problem with the fetch operation:', error);
                 });
             }
-
             /*--load content on page--*/
                     // function: calculate header-flex to fix scroll issue on container
                     function adjustContainerHeight() {
@@ -75,22 +68,18 @@
                         headers.forEach(header => {
                             headerHeight += header.getBoundingClientRect().height;
                         });
-
                         const windowHeight = window.innerHeight;
                         const flexHeight = windowHeight - headerHeight;
                         document.querySelector('#flex').style.height = `${flexHeight}px`;
-
                         const navElement = document.querySelector('#nav');
                         if (navElement) {
                             navElement.style.height = 'auto';
                             const navHeight = navElement.scrollHeight;
                             navElement.style.height = `${navHeight}px`;
                         }
-
                         const containerHeight = flexHeight - navElement.offsetHeight;
                         document.querySelector('#container').style.height = `${containerHeight}px`;
                     }
-
             document.addEventListener("DOMContentLoaded", function() {
                 // DOMContentLoaded control and adjust Heithts
                 Promise.all([
@@ -99,19 +88,16 @@
                 ]).then(() => {
                     adjustContainerHeight();
                     window.addEventListener('resize', adjustContainerHeight);
-
                     /*--tooltip display for table content--*/ //from.here.on.240927.updated
                     // tooltip for table content (tr, td, img): mouse event for pc
                     const tooltip = document.createElement('div');
                     tooltip.id = 'tooltip';
                     document.body.appendChild(tooltip);
-
                     document.addEventListener('mouseover', function (e) {
                         const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
                         if (target) {
                             const text = target.getAttribute('data-tooltip') || '';
                             tooltip.textContent = text;
-
                             // add tooltip class
                             tooltip.classList.remove('tooltip-text', 'tooltip-image');
                             if (target.tagName.toLowerCase() === 'img') {
@@ -119,27 +105,23 @@
                             } else {
                                 tooltip.classList.add('tooltip-text');
                             }
-
                             tooltip.style.display = 'block';
                             tooltip.style.left = `${e.pageX + 10}px`;
                             tooltip.style.top = `${e.pageY + 10}px`;
                         }
                     });
-
                     document.addEventListener('mousemove', function (e) {
                         if (tooltip.style.display === 'block') {
                             tooltip.style.left = `${e.pageX + 10}px`;
                             tooltip.style.top = `${e.pageY + 10}px`;
                         }
                     });
-
                     document.addEventListener('mouseout', function (e) {
                         const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
                         if (!target) {
                             tooltip.style.display = 'none';
                         }
                     });
-
                     // tooltip for content (tr, td, img): touch event for mobile
                     document.addEventListener('touchstart', function (e) {
                         const touch = e.touches[0];
@@ -147,7 +129,6 @@
                         if (target) {
                             const text = target.getAttribute('data-tooltip') || '';
                             tooltip.textContent = text;
-
                             // add tooltip class
                             tooltip.classList.remove('tooltip-text', 'tooltip-image');
                             if (target.tagName.toLowerCase() === 'img') {
@@ -155,34 +136,28 @@
                             } else {
                                 tooltip.classList.add('tooltip-text');
                             }                            
-
                             tooltip.style.display = 'block';
                             tooltip.style.left = `${touch.pageX + 10}px`;
                             tooltip.style.top = `${touch.pageY + 10}px`;
                         }
                     });
-
                     document.addEventListener('touchmove', function (e) {
                         const touch = e.touches[0];
                         tooltip.style.left = `${touch.pageX + 10}px`;
                         tooltip.style.top = `${touch.pageY + 10}px`;
                     });
-
                     document.addEventListener('touchend', function () {
                         tooltip.style.display = 'none';
                     }); //till.here.on.240927.updated
                 });
             });
-
             /*--prevent contents from the mouse right click event--*/
             document.addEventListener('contextmenu', function(event) {
                 event.preventDefault();
             });
-
             /*--push forward to autoplay the video identified--*/
             window.onload = function() {
-                var video = document.getElementById("pdbopsVideo");
-                
+                var video = document.getElementById("pdbopsVideo");     
                 // fix.canvas.animation from the conflict video.play
                 if (video) {
                     video.play().then(function() {
@@ -198,18 +173,15 @@
                     startCanvasAnimation();
                 }
             };
-
             /*--Canvas Animation--*/
             // start animation
             function startCanvasAnimation() {
                 var canvas = document.getElementById("aniCanvas");
                 if (canvas) {
                     var obj = canvas.getContext('2d');
-
                     // resize canvas
                     canvas.width = window.innerWidth;
                     canvas.height = window.innerHeight;
-
                     // set-up object
                     var objAction = [];
                     for (var i = 0; i <100; i++) {
@@ -220,20 +192,17 @@
                             velocity: Math.random() * 5 + 2
                         });
                     }
-
                     // draw object
                     function drawObject() {
                         obj.clearRect(0, 0, canvas.width, canvas.height);
                         obj.strokeStyle = 'rgba(175, 195, 225, 0.5)';
                         obj.lineWidth = 1;
-
                         for (var i = 0; i < objAction.length; i++) {
                             var action = objAction[i];
                             obj.beginPath();
                             obj.moveTo(action.x, action.y);
                             obj.lineTo(action.x, action.y + action.length);
                             obj.stroke();
-
                             // object movement
                             action.y += action.velocity;
                             if (action.y > canvas.height) {
@@ -243,7 +212,6 @@
                         requestAnimationFrame(drawObject);
                     }
                     drawObject();
-
                     // resize canvas again
                     window.addEventListener('resize', function() {
                         canvas.width = window.innerWidth;

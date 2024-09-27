@@ -10,17 +10,14 @@
     --hyperlink-color: firebrick;
     --page-color: white;
 }
-
 ::-webkit-scrollbar {
     display: none;
 }
-
 #flex {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 #nav {
     display: flex;
     flex-direction: row;
@@ -30,29 +27,24 @@
     border-bottom: 0.1rem var(--border-color) dashed;
     width: 100%;
 }
-
 #nav ul {
     list-style-type: none;
     margin: 0px;
     padding: 0px;
 }
-
 #nav li {
     display: inline-block;
     margin-right: 40px;
 }
-
 #nav li:last-child {
     margin-right: 0px;
 }
-
 #nav a {
     font-family:'freesentation4';
     font-size: 1.4rem;
     color: var(--hyperlink-color);
     text-decoration: none;
 }
-
 #aniCanvas {
     position: absolute;
     top: 0;
@@ -62,7 +54,6 @@
     z-index: -1;
     pointer-events: none;
 }
-
 #container {
     display: flex;
     flex-direction: column;
@@ -72,18 +63,15 @@
     max-width: 700px;
     text-align: center;
 }
-
 #formlink {
     margin: 5px;
 }
-
 #formlink a {
     font-family:'freesentation4';
     font-size: 1.8rem;
     color: var(--hyperlink-color);
     text-decoration: none;
 }
-
 #gameFrame li {
     list-style-type: none;
     font-family: 'freesentation4';
@@ -91,7 +79,6 @@
     color: var(--font-color);
     text-align: left;
 }
-
 /* update.here.on.240927*/
 #tooltip {
     position: absolute;
@@ -103,33 +90,27 @@
     z-index: 1000;
     white-space: pre-line;
 }
-
 .tooltip-image {
     background-color: var(--border-color);
     color: var(--page-color)
 }
-
 .tooltip-text {
     background-color: var(--hyperlink-color);
     color: var(--background-color);
 }
-
 #year {
     vertical-align: text-top;
 }
 /* update.here.on.240927*/
-
 html, body {
     margin: 0px;
     overflow: hidden;
     filter: grayscale(0%);
 }
-
 a {
     color: var(--hyperlink-color);
     text-decoration: none;
 }
-
 h1 {
     margin: 0px;
     font-family:'freesentation4';
@@ -138,7 +119,6 @@ h1 {
     text-align: center;
     background-color: var(--background-color);
 }
-
 h2 {
     margin: 0px;
     font-family:'freesentation4';
@@ -147,19 +127,17 @@ h2 {
     text-align: center;
     background-color: var(--background-color);
 }
-
 table {
     font-family: 'freesentation4';
     font-size: 1.1rem;
     color: var(--font-color);
     text-align: left;
     width: 100%;
+    margin-top: 80px;
 }
-
 table th {
     font-size: 1.4rem;
 }
-
 footer {
     position: sticky;
     bottom: 0px;
@@ -171,27 +149,22 @@ footer {
     border-top: 0.1rem var(--border-color) dashed;
     margin-top: auto;
 }
-
 footer p {
     margin: 0px;
 }
-
 iframe {
     border: none;
     border-bottom: 0.1rem var(--border-color) dashed;
     width: 100%;
     height: 70%;
 }
-
 @media (max-width: 600px) {
     table, #gameFrame li {
         font-size: 0.6rem !important;
     }
-
     table th, #gameFrame {
         font-size: 1.2rem !important;
     }
-
     #tooltip {
         font-size: 0.6rem !important;
     }

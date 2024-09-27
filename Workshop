@@ -1,16 +1,63 @@
-<img src="./img/articleHead_ko.png" width="100%">
-<img src="./img/interaction_ko.png" width="100%">
-<img src="./img/process_ko.png" width="100%">
-<img src="./img/value_ko.png" width="100%">
+<img data-tooltip="We design every step of the process
+                to help clients achieve their goals.
+                With expertise in process design,
+                we support building agile processes and communication networks
+                to minimize risks. Throughout this journey,
+                we connect your knowledge and skills to develop and execute
+                a clear strategy toward your objectives.
+                pdbops.com
+                Process Design-based Operations"
+    src="./img/articleHead.png" width="100%">
+<img src="./img/interaction.png" width="100%">
+<img src="./img/process.png" width="100%">
+<img data-tooltip="Process Design-Based Operations
+                pdbops.com
+                We design your challenges with process design expertise.
+                By employing a System Dynamics approach,
+                we model problem structures to:
+                --Explore risks,
+                --Improve communication networks,
+                --and Enhance the quality of agile processes.
+                As a result, risks are mitigated,
+                and operational costs are reduced.
+                To deliver even better services,
+                we are preparing process design and analysis tools.
+                (Beta testing planned for 2025)"
+    src="./img/value.png" width="100%">
 <img src="./img/techConcept.png" width="100%">
 <img src="./img/toolConcept.png" width="100%">
-<img src="./img/programme_ko.png" width="100%">
+<img data-tooltip="Process Design-Based Consulting Services
+                Storytelling
+                Setting Up Processes
+                Organizing Requirements
+                Allocating Resources
+                Exploring Risks
+                Building Team Networks
+                --(for Agile Risk Management)
+                Running Simulations"
+    src="./img/programme.png" width="100%">
 <img src="./img/history.png" width="100%">
-<img src="./img/consultant_ko.png" width="100%">
-<img src="./img/serviceApply_ko.png" width="100%">
+<img data-tooltip="Consultant
+                Project Manager and PMO for Government (Tech) Support Programs
+                Master’s Degree in Corporate Risk Management
+                Certified Risk Management Expert
+                Patent Holder in Process Design Technology"
+    src="./img/consultant.png" width="100%">
+<img data-tooltip="Consulting Service Scope:
+                --End-to-end support for government (tech) funding projects
+	            ----(from planning to completion)
+                --Tech commercialization and business strategy
+                --Risk-agile communication training based on process design
+                Expert referrals available for:
+                --Building information security management systems
+                --System design guidance for service development
+                ✓From the below “Apply” link
+                If you fill out the application form,
+                we can schedule a coffee chat."
+    src="./img/serviceApply.png" width="100%">
 <footer>
     <p id="formlink">
-        <a href="https://forms.gle/1NiC53k2jivfyrcr8" target="_blank">🖱️신청폼🖱️</a>
+        <a href="https://forms.gle/1NiC53k2jivfyrcr8" target="_blank">🖱️신청폼(APPLY)🖱️</a>
     </p>
     <p>processdesignbase@gmail.com (125-51-00257)</p>
 </footer>
