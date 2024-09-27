@@ -107,8 +107,8 @@
 }
 
 #tooltip img {
-    display: block;
-    margin: 0 auto;
+    display: none;
+    z-index: 1000;
 }
 
 #year {
