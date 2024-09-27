@@ -100,7 +100,7 @@
                     adjustContainerHeight();
                     window.addEventListener('resize', adjustContainerHeight);
 
-                    /*--tooltip display for table content--*/ //from.here.240924
+                    /*--tooltip display for table content--*/ //from.here.on.240924
                     // tooltip for table content (tr, td): mouse event for pc
                     const tooltip = document.createElement('div');
                     tooltip.id = 'tooltip';
@@ -152,7 +152,64 @@
 
                     document.addEventListener('touchend', function () {
                         tooltip.style.display = 'none';
-                    }); //till.here.240924
+                    }); //till.here.on.240924
+
+
+                    /*--tooltip display for images--*/ //from.here.on.240927
+                    // tooltip for images: mouse event for pc
+                    const imageTooltip = document.createElement('div');
+                    imageTooltip.id = 'imageTooltip';
+                    document.body.appendChild(imageTooltip);
+
+                    document.addEventListener('mouseover', function(e) {
+                        const imgTarget = e.target.closest('img[data-tooltip-image]');
+                        if (imgTarget) {
+                            const imageUrl = imgTarget.getAttribute('data-tooltip-image');
+                            imageTooltip.style.backgroundImage = `url(${imageUrl})`;
+                            imageTooltip.style.display = 'block';
+                            imageTooltip.style.left = `${e.pageX + 10}px`;
+                            imageTooltip.style.top = `${e.pageY + 10}px`;
+                        }
+                    });
+
+                    document.addEventListener('mousemove', function(e) {
+                        if (imageTooltip.style.display === 'block') {
+                            imageTooltip.style.left = `${e.pageX + 10}px`;
+                            imageTooltip.style.top = `${e.pageY + 10}px`;
+                        }
+                    });
+
+                    document.addEventListener('mouseout', function(e) {
+                        const imgTarget = e.target.closest('img[data-tooltip-image]');
+                        if (!imgTarget) {
+                            imageTooltip.style.display = 'none';
+                        }
+                    });
+
+                    // tooltip for images: touch event for mobile
+                    document.addEventListener('touchstart', function (e) {
+                        const touch = e.touches[0];
+                        const imgTarget = document.elementFromPoint(touch.clientX, touch.clientY).closest('img[data-tooltip-image]');
+                        if (imgTarget) {
+                            const imageUrl = imgTarget.getAttribute('data-tooltip-image');
+                            imageTooltip.style.backgroundImage = `url(${imageUrl})`;
+                            imageTooltip.style.display = 'block';
+                            imageTooltip.style.left = `${touch.pageX + 10}px`;
+                            imageTooltip.style.top = `${touch.pageY + 10}px`;
+                        }
+                    });
+
+                    document.addEventListener('touchmove', function (e) {
+                        const touch = e.touches[0];
+                        if (imageTooltip.style.display === 'block') {
+                            imageTooltip.style.left = `${touch.pageX + 10}px`;
+                            imageTooltip.style.top = `${touch.pageY + 10}px`;
+                        }
+                    });
+
+                    document.addEventListener('touchend', function () {
+                        imageTooltip.style.display = 'none';
+                    }); //from.here.on.240927
                 });
             });
 
