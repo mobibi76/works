@@ -109,8 +109,17 @@
                     document.addEventListener('mouseover', function (e) {
                         const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
                         if (target) {
-                            const text = target.getAttribute('data-tooltip');
+                            const text = target.getAttribute('data-tooltip') || '';
                             tooltip.textContent = text;
+
+                            // add tooltip class
+                            tooltip.classList.remove('tooltip-text', 'tooltip-image');
+                            if (target.tagName.toLowerCase() === 'img') {
+                                tooltip.classList.add('tooltip-image');
+                            } else {
+                                tooltip.classList.add('tooltip-text');
+                            }
+
                             tooltip.style.display = 'block';
                             tooltip.style.left = `${e.pageX + 10}px`;
                             tooltip.style.top = `${e.pageY + 10}px`;
@@ -136,8 +145,17 @@
                         const touch = e.touches[0];
                         const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
                         if (target) {
-                            const text = target.getAttribute('data-tooltip');
+                            const text = target.getAttribute('data-tooltip') || '';
                             tooltip.textContent = text;
+
+                            // add tooltip class
+                            tooltip.classList.remove('tooltip-text', 'tooltip-image');
+                            if (target.tagName.toLowerCase() === 'img') {
+                                tooltip.classList.add('tooltip-image');
+                            } else {
+                                tooltip.classList.add('tooltip-text');
+                            }                            
+
                             tooltip.style.display = 'block';
                             tooltip.style.left = `${touch.pageX + 10}px`;
                             tooltip.style.top = `${touch.pageY + 10}px`;
