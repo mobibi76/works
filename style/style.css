@@ -83,8 +83,8 @@
 #tooltip {
     position: absolute;
     font-family: 'freesentation4';
-    padding: 4px;
-    border-radius: 4px;
+    padding: 8px;
+    border-radius: 8px;
     font-size: 1rem;
     display: none;
     z-index: 1000;
