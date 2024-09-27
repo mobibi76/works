@@ -1,23 +1,24 @@
-<img data-tooltip="[제공: Service]
+<img data-tooltip="[하는 일: Service]
                 ✓We design processes to help clients achieve their goals.
                 ✓Our expertise in process design builds agile workflows and communication networks
                 to minimize risks, connecting your knowledge and skills
                 to develop a clear strategy for your objectives."
     src="./img/articleHead.png" width="100%">
-<img data-tooltip="[소통: Interaction]"
+<img data-tooltip="[전문지식: Interaction]"
     src="./img/interaction.png" width="100%">
-<img data-tooltip="[방법: Skills]"
+<img data-tooltip="[기술: Skills]
+                [특허: WO2018212398A1]"
     src="./img/process.png" width="100%">
 <img data-tooltip="✓We tackle challenges with process design expertise,
-                using a System Dynamics approach to model risks, improve communication,
-                and enhance agile processes.
-                This mitigates risks and reduces costs.
+                using a System Dynamics approach
+                to model risks, improve communication, and enhance agile processes.
+                ✓This mitigates risks and reduces costs.
                 ✓Process design and analysis tools are in development
-                --(Beta testing in 2025)."
+                --Beta testing in 2025"
     src="./img/value.png" width="100%">
-<img data-tooltip="[기술: Tech.-Concept]"
+<img data-tooltip="[워크플로: Tech.-Concept]"
     src="./img/techConcept.png" width="100%">
-<img data-tooltip="[데모: User-Interface]" 
+<img data-tooltip="[데모: User Interface]" 
     src="./img/toolConcept.png" width="100%">
 <img data-tooltip="✓Process Design-Based Consulting Services
                 --Storytelling
@@ -28,7 +29,7 @@
                 --Building Team Networks (for Agile Risk Management)
                 --Running Simulations"
     src="./img/programme.png" width="100%">
-<img data-tooltip="[경험: Footprint]"
+<img data-tooltip="[경험: Experiences]"
     src="./img/history.png" width="100%">
 <img data-tooltip="✓Consultant
                 --PM and PMO for Government (Tech) Support Programs
@@ -44,7 +45,7 @@
                 --Building information security management systems
                 --System design guidance for service development
                 ✓From the below “Apply” link
-                If you fill out the application form, we can schedule a coffee chat."
+                --If you fill out the application form, we can schedule a coffee chat."
     src="./img/serviceApply.png" width="100%">
 <footer>
     <p id="formlink">
