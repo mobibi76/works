@@ -92,8 +92,8 @@
     white-space: pre-line;
 }
 .tooltip-image {
-    background-color: var(--background-color);
-    color: var(--hyperlink-color)
+    background-color: var(--page-color);
+    color: var(--font-color)
 }
 .tooltip-text {
     background-color: var(--page-color);
