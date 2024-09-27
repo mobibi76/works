@@ -85,14 +85,15 @@
     font-family: 'freesentation4';
     padding: 8px;
     border-radius: 8px;
+    border: 0.1rem var(--border-color) dashed;
     font-size: 1rem;
     display: none;
     z-index: 1000;
     white-space: pre-line;
 }
 .tooltip-image {
-    background-color: var(--border-color);
-    color: var(--page-color)
+    background-color: var(--page-color);
+    color: var(--font-color)
 }
 .tooltip-text {
     background-color: var(--hyperlink-color);
