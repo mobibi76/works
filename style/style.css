@@ -106,15 +106,6 @@
     white-space: pre-line;
 }
 
-#tooltip img {
-    width: 100px;
-    height: auto;
-    display: none;
-    z-index: 1000;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
 #year {
     vertical-align: text-top;
 }
