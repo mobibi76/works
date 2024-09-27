@@ -108,7 +108,7 @@
 
 #tooltip img {
     max-width: 25%;
-    font-display: block;
+    display: block;
     margin: 0 auto;
 }
 
