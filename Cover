@@ -12,7 +12,6 @@
 <video id="pdbopsVideo" width="100%" autoplay muted loop>
   <source src="./notice/pdbops72.mp4" type="video/mp4">
 </video>
-<img src="./notice/notice_en.png" width="100%">
 
 <table>
     <tr data-tooltip="For users of other languages,
