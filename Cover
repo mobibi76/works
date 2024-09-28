@@ -12,7 +12,7 @@
 <div id="tooltip"></div>
 <table>
     <tr>
-        <th colspan="2">다운로드</th>
+        <th colspan="2">자료 다운로드</th>
     </tr>
     <tr>
         <td id="year">2024년</td>
