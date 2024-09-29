@@ -289,6 +289,9 @@
 </table>
 <!--tooltip display-->
 <div id="tooltip"></div>
+<img src="./private_img/VRAR_pf.png" width="100%">
+<img src="./private_img/Global_pf.png" width="100%">
+<img src="./private_img/Community_pf.png" width="100%">
 <footer>
     <p id="formlink">
         <a href="https://forms.gle/1NiC53k2jivfyrcr8" target="_blank">🖱️신청폼(APPLY)🖱️</a>
