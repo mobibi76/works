@@ -29,14 +29,36 @@
                 --Building Team Networks (for Agile Risk Management)
                 --Running Simulations"
     src="./img/programme.png" width="100%">
-<img data-tooltip="[서비스 경험: Experiences]"
-    src="./img/history.png" width="100%">
 <img data-tooltip="✓Consultant
                 --PM and PMO for Government (Tech) Support Programs
                 --Master’s Degree in Corporate Risk Management
                 --Certified Risk Management Expert
                 --Patent Holder in Process Design Technology"
     src="./img/consultant.png" width="100%">
+<img data-tooltip="[서비스 경험: Experiences]"
+    src="./img/history.png" width="100%">
+<table>
+    <tr>
+        <th colspan="2">자료 다운로드</th>
+    </tr>
+    <tr>
+        <td id="year">2024년</td>
+        <td>
+            <ul>
+                <li>
+                  <a href="https://drive.google.com/file/d/1wBbPKijAd6oQN0uLlmkBSgzt0tP0R5RO/view?usp=sharing" target="_blank">
+                  교육(워크숍)프로그램 소개_1.0 (program intro.)
+                  </a>
+                </li>
+                <li>
+                  <a href="https://drive.google.com/file/d/17TTAPkbFGiQ5rH3SVgkVOYdBARC-PVbu/view?usp=sharing" target="_blank">
+                  표준비밀유지협약 [2024] (NDA)
+                  </a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
 <img data-tooltip="✓Consulting Service Scope:
                 --End-to-end support for government (tech) funding projects
                 --Tech commercialization and business strategy
