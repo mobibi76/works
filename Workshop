@@ -6,6 +6,15 @@
     src="./img/articleHead.png" width="100%">
 <img data-tooltip="[전문 지식: Interaction]"
     src="./img/interaction.png" width="100%">
+<img data-tooltip="✓Process Design-Based Consulting Services
+                --Storytelling
+                --Setting Up Processes
+                --Organizing Requirements
+                --Allocating Resources
+                --Exploring Risks
+                --Building Team Networks (for Agile Risk Management)
+                --Running Simulations"
+    src="./img/programme.png" width="100%">
 <img data-tooltip="[기술: Skills]
                 [등록 특허: WO2018212398A1]"
     src="./img/process.png" width="100%">
@@ -20,15 +29,6 @@
     src="./img/techConcept.png" width="100%">
 <img data-tooltip="[툴 데모: User Interface]" 
     src="./img/toolConcept.png" width="100%">
-<img data-tooltip="✓Process Design-Based Consulting Services
-                --Storytelling
-                --Setting Up Processes
-                --Organizing Requirements
-                --Allocating Resources
-                --Exploring Risks
-                --Building Team Networks (for Agile Risk Management)
-                --Running Simulations"
-    src="./img/programme.png" width="100%">
 <img data-tooltip="✓Consultant
                 --PM and PMO for Government (Tech) Support Programs
                 --Master’s Degree in Corporate Risk Management
