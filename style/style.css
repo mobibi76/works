@@ -68,7 +68,7 @@
 }
 #formlink a {
     font-family:'freesentation4';
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: var(--hyperlink-color);
     text-decoration: none;
 }
@@ -112,18 +112,9 @@ a {
     color: var(--hyperlink-color);
     text-decoration: none;
 }
-h1 {
-    margin: 0px;
-    font-family:'freesentation4';
-    font-size: 1.3rem;
-    color: var(--font-color);
-    text-align: center;
-    background-color: var(--background-color);
-}
 h2 {
     margin: 0px;
     font-family:'freesentation4';
-    font-size: 1.6rem;
     color: var(--font-color);
     text-align: center;
     background-color: var(--background-color);
@@ -164,9 +155,6 @@ iframe {
     height: 70%;
 }
 @media (max-width: 500px) {
-    h1 {
-        font-size: 1.1rem !important;
-    }
     h2 {
         font-size: 1.3rem !important;
     }
