@@ -223,49 +223,6 @@
                     console.error("canvas is not loading");
                 }
             }
-            /*--Canvas Cloud Animation--*/
-            /*function drawClouds(canvas, context, cloudArray) {
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                cloudArray.forEach(cloud => {
-                    context.beginPath();
-                    context.arc(cloud.x, cloud.y, cloud.size, 0, Math.PI * 2);
-                    context.fillStyle = 'rgba(255, 255, 255, 0.8)';
-                    context.fill();
-                    cloud.x += cloud.speed;
-                    if (cloud.x - cloud.size > canvas.width) {
-                        cloud.x = -cloud.size;
-                    }
-                });
-            }
-            function animateClouds(canvasId, numClouds) {
-                const canvas = document.getElementById(canvasId);
-                const context = canvas.getContext('2d');
-                canvas.width = canvas.parentElement.clientWidth;
-                canvas.height = canvas.parentElement.clientHeight;
-                const cloudArray = [];
-                for (let i = 0; i < numClouds; i++) {
-                    cloudArray.push({
-                        x: Math.random() * canvas.width,
-                        y: Math.random() * canvas.height / 2, // half from the top, cloud display
-                        size: Math.random() * 20 + 30,
-                        speed: Math.random() * 2 + 0.5
-                    });
-                }
-                function animate() {
-                    drawClouds(canvas, context, cloudArray);
-                    requestAnimationFrame(animate);
-                }
-                animate();
-                window.addEventListener('resize', () => {
-                    canvas.width = canvas.parentElement.clientWidth;
-                    canvas.height = canvas.parentElement.clientHeight;
-                });
-            }
-            // add cloud animation on the Header and Nav
-            document.addEventListener("DOMContentLoaded", function() {
-                animateClouds('headerCanvas', 5); // 5 cloud in the Header
-                animateClouds('navCanvas', 7);    // 7 cloud in the Nav
-            });*/
         </script>
     </body>
 </html>
