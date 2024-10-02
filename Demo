@@ -1,5 +1,5 @@
-<iframe id="gameFrame" src="https://test.pdbops.com:8000/game-ko/"></iframe>
-<table id="demoTable">
+<iframe src="https://test.pdbops.com:8000/game-ko/"></iframe>
+<table id="gameFrame">
     <tr>
         <th>데모(DEMO)테스트1.0</th>
     </tr>
