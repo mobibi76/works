@@ -71,7 +71,7 @@
     src="./img/serviceApply.png" width="100%">
 <footer>
     <p id="formlink">
-        <a href="https://forms.gle/1NiC53k2jivfyrcr8" target="_blank">🖱️신청폼(APPLY)🖱️</a>
+        <a href="#!Form" onclick="introFetch('Form')">🖱️신청폼(APPLY)🖱️</a>
     </p>
     <p>processdesignbase@gmail.com (125-51-00257)</p>
 </footer>

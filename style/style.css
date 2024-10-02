@@ -85,6 +85,10 @@
     color: var(--font-color);
     text-align: left;
 }
+#formFrame {
+    border: none;
+    width: 100%;
+}
 /* update.here.on.240927*/
 #tooltip {
     position: absolute;
