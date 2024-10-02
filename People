@@ -294,7 +294,7 @@
 <img src="./private_img/Community_pf.png" width="100%">
 <footer>
     <p id="formlink">
-        <a href="https://forms.gle/1NiC53k2jivfyrcr8" target="_blank">🖱️블로그(BLOG)🖱️</a>
+        <a href="#!Blog" onclick="introFetch('Blog')">🖱️블로그(BLOG)🖱️</a>
     </p>
     <p>processdesignbase@gmail.com (125-51-00257)</p>
 </footer>
