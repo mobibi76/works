@@ -95,15 +95,15 @@
                     }
             /*--popup 2024.10.04 added--*/
                     function openPopup() {
-                        const dontShowAgain = localStorage.getItem('dontShowPopup');
-                        if (!dontShowAgain) {
+                        const donotShowAgain = localStorage.getItem('donotShowPopup');
+                        if (!donotShowAgain) {
                             document.getElementById('popup').style.display = 'flex';
                         }
                     }
                     document.getElementById('close-popup').addEventListener('click', function() {
-                        const dontShowAgainCheckbox = document.getElementById('dont-show-again');
-                        if (dontShowAgainCheckbox.checked) {
-                            localStorage.setItem('dontShowPopup', 'true');
+                        const donotShowAgainCheckbox = document.getElementById('donot-show-again');
+                        if (donotShowAgainCheckbox.checked) {
+                            localStorage.setItem('donotShowPopup', 'true');
                         }
                         document.getElementById('popup').style.display = 'none';
                     });
