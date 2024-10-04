@@ -79,7 +79,7 @@
     color: var(--font-color);
     text-align: left;
 }
-/* update.here.on.240927*/
+/* update.here.on.241004*/
 #tooltip {
     position: absolute;
     font-family: 'freesentation4';
@@ -91,6 +91,9 @@
     z-index: 1000;
     white-space: pre-line;
 }
+#year {
+    vertical-align: text-top;
+}
 .tooltip-image {
     background-color: var(--page-color);
     color: var(--font-color)
@@ -99,10 +102,25 @@
     background-color: var(--hyperlink-color);
     color: var(--background-color);
 }
-#year {
-    vertical-align: text-top;
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--border-color);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
-/* update.here.on.240927*/
+.popup-content {
+    background: var(--page-color);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+/* update.here.on.241004*/
 html, body {
     margin: 0px;
     overflow: hidden;
