@@ -92,7 +92,6 @@
                         startCanvasAnimation();
                     }).catch(function(error) {
                         console.log("video is not playing:", error);
-                    }).finally(function() {
                         startCanvasAnimation();
                     });
                 } else {
@@ -299,7 +298,7 @@
                         }
                         requestAnimationFrame(drawObject);
                     }
-                    drawObject();
+                    requestAnimationFrame(drawObject);
                     window.addEventListener('resize', function() {
                         canvas.width = window.innerWidth;
                         canvas.height = window.innerHeight;
