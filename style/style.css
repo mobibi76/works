@@ -113,6 +113,8 @@
     z-index: 1000;
 }
 .popup-content {
+    font-family: 'freesentation4';
+    font-size: 1rem;
     background: var(--page-color);
     padding: 10px;
     border-radius: 8px;
