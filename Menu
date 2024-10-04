@@ -1,8 +1,3 @@
-<!--<ul>
-    <li><a href="#!Cover" onclick="introFetch('Cover')">커버(Cover)</a></li>
-    <li><a href="#!Workshop" onclick="introFetch('Workshop')">워크숍(Workshop)</a></li>
-    <li><a href="#!People" onclick="introFetch('People')">피플(People)</a></li>
-</ul>-->
 <ul>
     <li><a href="#!Cover" class="inter-link">커버(Cover)</a></li>
     <li><a href="#!Workshop" class="inter-link">워크숍(Workshop)</a></li>
