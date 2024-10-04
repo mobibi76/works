@@ -91,7 +91,7 @@
                         }
                     };
 
-                    // click event to all inter-link(Class)
+                    // inter-link class (CSP)
                     bindInterLinkEvents();
     
                     // popup
@@ -145,9 +145,6 @@
                     if (targetElement) {
                         targetElement.innerHTML = text;
                         targetElement.scrollTop = 0;
-
-                        //bind new loded links
-                        bindInterLinkEvents();
                     }
                 }).catch(error => {
                     console.error('There has been a problem with the fetch operation:', error);
@@ -240,7 +237,7 @@
                 }
             }
 
-            /*--tooltip display for table (tr, td, img) content--*/
+            /*--tooltip display for table (tr, td, img)--*/
             function tooltipEventHandler () {
                 const tooltip = document.createElement('div');
                 tooltip.id = 'tooltip';
@@ -252,7 +249,6 @@
                     if (target) {
                         const text = target.getAttribute('data-tooltip') || '';
                         tooltip.textContent = text;
-                        // add tooltip class
                         tooltip.classList.remove('tooltip-text', 'tooltip-image');
 
                         if (target.tagName.toLowerCase() === 'img') {
@@ -260,7 +256,6 @@
                         } else {
                             tooltip.classList.add('tooltip-text');
                         }
-
                         tooltip.style.display = 'block';
                         tooltip.style.left = `${e.pageX + 10}px`;
                         tooltip.style.top = `${e.pageY + 10}px`;
@@ -287,7 +282,6 @@
                     if (target) {
                         const text = target.getAttribute('data-tooltip') || '';
                         tooltip.textContent = text;
-                        // add tooltip class
                         tooltip.classList.remove('tooltip-text', 'tooltip-image');
 
                         if (target.tagName.toLowerCase() === 'img') {
@@ -295,19 +289,16 @@
                         } else {
                             tooltip.classList.add('tooltip-text');
                         }                            
-
                         tooltip.style.display = 'block';
                         tooltip.style.left = `${touch.pageX + 10}px`;
                         tooltip.style.top = `${touch.pageY + 10}px`;
                     }
                 });
-
                 document.addEventListener('touchmove', function (e) {
                     const touch = e.touches[0];
                     tooltip.style.left = `${touch.pageX + 10}px`;
                     tooltip.style.top = `${touch.pageY + 10}px`;
                 });
-
                 document.addEventListener('touchend', function () {
                     tooltip.style.display = 'none';
                 });
