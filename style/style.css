@@ -105,9 +105,9 @@
 .popup-overlay {
     display: none;
     position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    top: 15%;
+    width: auto;
+    height: auto;
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -119,7 +119,7 @@
     padding: 10px;
     border-radius: 8px;
     text-align: center;
-    max-width: 400px;
+    max-width: 500px;
 }
 .popup-content img {
     max-width: 100%;
