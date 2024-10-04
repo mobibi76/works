@@ -162,6 +162,9 @@
                     });
                 });
 
+                // popup
+                openPopup();
+
                     /*--tooltip display for table content--*/
                     // tooltip for table content (tr, td, img): mouse event for pc
                     const tooltip = document.createElement('div');
@@ -236,13 +239,6 @@
                         tooltip.style.display = 'none';
                     });
                 });
-                // popup
-                openPopup();
-            });
-
-            /*--prevent contents from the mouse right click event--*/
-            document.addEventListener('contextmenu', function(event) {
-                event.preventDefault();
             });
 
             /*--push forward to autoplay the video identified--*/
@@ -316,6 +312,11 @@
                     console.error("canvas is not loading");
                 }
             }
+
+            /*--prevent contents from the mouse right click event--*/
+            document.addEventListener('contextmenu', function(event) {
+                event.preventDefault();
+            });
         </script>
     </body>
 </html>
