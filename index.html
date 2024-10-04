@@ -62,6 +62,96 @@
         </div>
 
         <script nonce="abc123">
+            /*--DOM Content Loaded--*/
+            document.addEventListener("DOMContentLoaded", function() {
+                // DOMContentLoaded control and adjust Heithts
+                Promise.all([
+                    fetchPageContent('Menu', '#nav'),
+                    fetchPageContent('Cover', '#container')
+                ]).then(() => {
+                    adjustContainerHeight();
+                    window.addEventListener('resize', adjustContainerHeight);
+
+                // click event to all inter-link(Class)
+                bindInterLinkEvents();
+  
+                // popup
+                openPopup();
+
+                /*--tooltip display for table content--*/
+                // tooltip for table content (tr, td, img): mouse event for pc
+                const tooltip = document.createElement('div');
+                tooltip.id = 'tooltip';
+                document.body.appendChild(tooltip);
+                document.addEventListener('mouseover', function (e) {
+                    const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
+
+                    if (target) {
+                        const text = target.getAttribute('data-tooltip') || '';
+                        tooltip.textContent = text;
+                        // add tooltip class
+                        tooltip.classList.remove('tooltip-text', 'tooltip-image');
+
+                        if (target.tagName.toLowerCase() === 'img') {
+                            tooltip.classList.add('tooltip-image');
+                        } else {
+                            tooltip.classList.add('tooltip-text');
+                        }
+
+                        tooltip.style.display = 'block';
+                        tooltip.style.left = `${e.pageX + 10}px`;
+                        tooltip.style.top = `${e.pageY + 10}px`;
+                    }
+                });
+                document.addEventListener('mousemove', function (e) {
+                    if (tooltip.style.display === 'block') {
+                        tooltip.style.left = `${e.pageX + 10}px`;
+                        tooltip.style.top = `${e.pageY + 10}px`;
+                    }
+                });
+                document.addEventListener('mouseout', function (e) {
+                    const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
+
+                    if (!target) {
+                        tooltip.style.display = 'none';
+                    }
+                });
+
+                // tooltip for content (tr, td, img): touch event for mobile
+                document.addEventListener('touchstart', function (e) {
+                    const touch = e.touches[0];
+                    const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
+
+                    if (target) {
+                        const text = target.getAttribute('data-tooltip') || '';
+                        tooltip.textContent = text;
+                        // add tooltip class
+                        tooltip.classList.remove('tooltip-text', 'tooltip-image');
+
+                        if (target.tagName.toLowerCase() === 'img') {
+                            tooltip.classList.add('tooltip-image');
+                        } else {
+                            tooltip.classList.add('tooltip-text');
+                        }                            
+
+                        tooltip.style.display = 'block';
+                        tooltip.style.left = `${touch.pageX + 10}px`;
+                        tooltip.style.top = `${touch.pageY + 10}px`;
+                    }
+                });
+
+                document.addEventListener('touchmove', function (e) {
+                    const touch = e.touches[0];
+                    tooltip.style.left = `${touch.pageX + 10}px`;
+                    tooltip.style.top = `${touch.pageY + 10}px`;
+                });
+
+                document.addEventListener('touchend', function () {
+                    tooltip.style.display = 'none';
+                });
+            });
+        });
+
             /*--click event to all inter-link(Class)--*/
             function bindInterLinkEvents() {
                 const interLinks = document.querySelectorAll('.inter-link');
@@ -154,96 +244,6 @@
                     }
                     document.getElementById('popup').style.display = 'none';
                 });
-
-            /*--DOM Content Loaded--*/
-            document.addEventListener("DOMContentLoaded", function() {
-                // DOMContentLoaded control and adjust Heithts
-                Promise.all([
-                    fetchPageContent('Menu', '#nav'),
-                    fetchPageContent('Cover', '#container')
-                ]).then(() => {
-                    adjustContainerHeight();
-                    window.addEventListener('resize', adjustContainerHeight);
-
-                // click event to all inter-link(Class)
-                bindInterLinkEvents();
-  
-                // popup
-                openPopup();
-
-                /*--tooltip display for table content--*/
-                // tooltip for table content (tr, td, img): mouse event for pc
-                const tooltip = document.createElement('div');
-                tooltip.id = 'tooltip';
-                document.body.appendChild(tooltip);
-                document.addEventListener('mouseover', function (e) {
-                    const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
-
-                    if (target) {
-                        const text = target.getAttribute('data-tooltip') || '';
-                        tooltip.textContent = text;
-                        // add tooltip class
-                        tooltip.classList.remove('tooltip-text', 'tooltip-image');
-
-                        if (target.tagName.toLowerCase() === 'img') {
-                            tooltip.classList.add('tooltip-image');
-                        } else {
-                            tooltip.classList.add('tooltip-text');
-                        }
-
-                        tooltip.style.display = 'block';
-                        tooltip.style.left = `${e.pageX + 10}px`;
-                        tooltip.style.top = `${e.pageY + 10}px`;
-                    }
-                });
-                document.addEventListener('mousemove', function (e) {
-                    if (tooltip.style.display === 'block') {
-                        tooltip.style.left = `${e.pageX + 10}px`;
-                        tooltip.style.top = `${e.pageY + 10}px`;
-                    }
-                });
-                document.addEventListener('mouseout', function (e) {
-                    const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
-
-                    if (!target) {
-                        tooltip.style.display = 'none';
-                    }
-                });
-
-                // tooltip for content (tr, td, img): touch event for mobile
-                document.addEventListener('touchstart', function (e) {
-                    const touch = e.touches[0];
-                    const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
-
-                    if (target) {
-                        const text = target.getAttribute('data-tooltip') || '';
-                        tooltip.textContent = text;
-                        // add tooltip class
-                        tooltip.classList.remove('tooltip-text', 'tooltip-image');
-
-                        if (target.tagName.toLowerCase() === 'img') {
-                            tooltip.classList.add('tooltip-image');
-                        } else {
-                            tooltip.classList.add('tooltip-text');
-                        }                            
-
-                        tooltip.style.display = 'block';
-                        tooltip.style.left = `${touch.pageX + 10}px`;
-                        tooltip.style.top = `${touch.pageY + 10}px`;
-                    }
-                });
-
-                document.addEventListener('touchmove', function (e) {
-                    const touch = e.touches[0];
-                    tooltip.style.left = `${touch.pageX + 10}px`;
-                    tooltip.style.top = `${touch.pageY + 10}px`;
-                });
-
-                document.addEventListener('touchend', function () {
-                    tooltip.style.display = 'none';
-                });
-            });
-        });
 
             /*--push forward to autoplay the video identified--*/
             window.onload = function() {
