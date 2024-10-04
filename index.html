@@ -84,12 +84,12 @@
                 var video = document.getElementById("pdbopsVideo");     
                 // fix.canvas.animation from the conflict video.play
                 if (video) {
+                    video.loading = "lazy";
                     video.play().then(function() {
                         console.log("video is playing");
                         startCanvasAnimation();
                     }).catch(function(error) {
                         console.log("video is not playing:", error);
-                    }).finally(function() {
                         startCanvasAnimation();
                     });
                 } else {
