@@ -2,17 +2,38 @@
 <html lang="ko">
     <head>
         <title>리스크 애자일 프로세스 및 팀 네트워크 디자인 | Process Design and People Define Based Ops. </title>
+
         <!--meta: SEO, mobile ops. and encoding-->
         <meta name="description"
             content="시스템 다이내믹스 활용 리스크 애자일 프로세스 및 스킬 정의 기반 팀 네트워크 디자인">
         <meta name="viewport" content="width=device-width" initial-scale="1.0">
         <meta charset="utf-8">
+
+        <!--content security policy (CSP)-->
+        <meta http-equiv="Content-Security-Policy" 
+            content="default-src 'self'; 
+                     script-src 'self' https://ajax.googleapis.com; 
+                     style-src 'self' 'unsafe-inline'; 
+                     img-src 'self'; 
+                     font-src 'self'; 
+                     frame-ancestors 'none'; 
+                     base-uri 'self';">
+
+        <!--referrer policy-->
+        <meta name="referrer" content="no-referrer">
+
+        <!--use: jQuery google CDN with SRI-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" 
+                integrity="sha384-FC8zC8FzQ4riAjbncNTklk5kkTfI4Bxx16+Jdmo6AK/GqF4RjVBZfGdnT4b85O2p" 
+                crossorigin="anonymous" async></script>
+
+        <!--style.css-->
         <link rel="stylesheet" href="./style/style.css">
-        <!--use: jQuery Google CDN-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" async></script>
+
         <!--use: fetch.js-->
         <script src="./source/fetch.js"></script>
     </head>
+
     <body>
         <header>
             <!--<h2><a href="./index.html">process design-based ops.</a></h2>-->
@@ -24,6 +45,7 @@
             <main id="container"></main>
             <canvas id="aniCanvas"></canvas>
         </article>
+
         <!--popup 2024.10.04 added-->
         <div id="popup" class="popup-overlay">
             <div class="popup-content">
@@ -36,8 +58,9 @@
                 </label>
                 <button id="close-popup">확인</button>
             </div>
-        <!--popup 2024.10.04 added-->
         </div>
+        <!--popup 2024.10.04 added-->
+
         <script>
             /*--fetch.js control--*/
             // function: define introFetch function
@@ -57,6 +80,7 @@
                     console.error('There has been a problem with the fetch operation:', error);
                 });
             }
+
             // function: load pages through fetch.js with ERROR handle
             function fetchPageContent(pageTitle, targetElementSelector) {
                 return fetch(pageTitle).then(response => {
@@ -74,42 +98,50 @@
                     console.error('There has been a problem with the fetch operation:', error);
                 });
             }
+
             /*--load content on page--*/
                     // function: calculate header-flex to fix scroll issue on container
-                    function adjustContainerHeight() {
+                    function adjustContainerHeight() {                
                         const headers = document.querySelectorAll('header h1, header h2');
-                        let headerHeight = 0;
+                        let headerHeight = 0;                    
                         headers.forEach(header => {
                             headerHeight += header.getBoundingClientRect().height;
-                        });
+                        });                    
                         const windowHeight = window.innerHeight;
                         const flexHeight = windowHeight - headerHeight;
                         document.querySelector('#flex').style.height = `${flexHeight}px`;
                         const navElement = document.querySelector('#nav');
+                    
                         if (navElement) {
                             navElement.style.height = 'auto';
                             const navHeight = navElement.scrollHeight;
                             navElement.style.height = `${navHeight}px`;
-                        }
+                        }                    
                         const containerHeight = flexHeight - navElement.offsetHeight;
                         document.querySelector('#container').style.height = `${containerHeight}px`;
                     }
+
             /*--popup 2024.10.04 added--*/
                     function openPopup() {
                         const donotShowAgain = localStorage.getItem('donotShowPopup');
+
                         if (!donotShowAgain) {
                             document.getElementById('popup').style.display = 'flex';
                         }
                     }
+
                     document.getElementById('close-popup').addEventListener('click', function() {
                         const donotShowAgainCheckbox = document.getElementById('donot-show-again');
+
                         if (donotShowAgainCheckbox.checked) {
                             localStorage.setItem('donotShowPopup', 'true');
                         }
                         document.getElementById('popup').style.display = 'none';
                     });
             /*--popup 2024.10.04 added--*/
+
             document.addEventListener("DOMContentLoaded", function() {
+
                 // DOMContentLoaded control and adjust Heithts
                 Promise.all([
                     fetchPageContent('Menu', '#nav'),
@@ -117,6 +149,7 @@
                 ]).then(() => {
                     adjustContainerHeight();
                     window.addEventListener('resize', adjustContainerHeight);
+
                     /*--tooltip display for table content--*/ //from.here.on.240927.updated
                     // tooltip for table content (tr, td, img): mouse event for pc
                     const tooltip = document.createElement('div');
@@ -124,57 +157,70 @@
                     document.body.appendChild(tooltip);
                     document.addEventListener('mouseover', function (e) {
                         const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
+
                         if (target) {
                             const text = target.getAttribute('data-tooltip') || '';
                             tooltip.textContent = text;
                             // add tooltip class
                             tooltip.classList.remove('tooltip-text', 'tooltip-image');
+
                             if (target.tagName.toLowerCase() === 'img') {
                                 tooltip.classList.add('tooltip-image');
                             } else {
                                 tooltip.classList.add('tooltip-text');
                             }
+
                             tooltip.style.display = 'block';
                             tooltip.style.left = `${e.pageX + 10}px`;
                             tooltip.style.top = `${e.pageY + 10}px`;
                         }
                     });
+
                     document.addEventListener('mousemove', function (e) {
                         if (tooltip.style.display === 'block') {
                             tooltip.style.left = `${e.pageX + 10}px`;
                             tooltip.style.top = `${e.pageY + 10}px`;
                         }
                     });
+
                     document.addEventListener('mouseout', function (e) {
                         const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
+
                         if (!target) {
                             tooltip.style.display = 'none';
                         }
                     });
+
                     // tooltip for content (tr, td, img): touch event for mobile
                     document.addEventListener('touchstart', function (e) {
                         const touch = e.touches[0];
                         const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
+
                         if (target) {
                             const text = target.getAttribute('data-tooltip') || '';
                             tooltip.textContent = text;
+
                             // add tooltip class
                             tooltip.classList.remove('tooltip-text', 'tooltip-image');
+
                             if (target.tagName.toLowerCase() === 'img') {
                                 tooltip.classList.add('tooltip-image');
                             } else {
                                 tooltip.classList.add('tooltip-text');
                             }                            
+
                             tooltip.style.display = 'block';
                             tooltip.style.left = `${touch.pageX + 10}px`;
                             tooltip.style.top = `${touch.pageY + 10}px`;
                         }
                     });
+
                     document.addEventListener('touchmove', function (e) {
                         const touch = e.touches[0];
                         tooltip.style.left = `${touch.pageX + 10}px`;
                         tooltip.style.top = `${touch.pageY + 10}px`;
                     });
+
                     document.addEventListener('touchend', function () {
                         tooltip.style.display = 'none';
                     }); //till.here.on.240927.updated
@@ -183,6 +229,7 @@
                 openPopup();
             /*--popup 2024.10.04 added--*/
             });
+
             /*--prevent contents from the mouse right click event--*/
             document.addEventListener('contextmenu', function(event) {
                 event.preventDefault();
@@ -190,6 +237,7 @@
             /*--push forward to autoplay the video identified--*/
             window.onload = function() {
                 var video = document.getElementById("pdbopsVideo");     
+
                 // fix.canvas.animation from the conflict video.play
                 if (video) {
                     video.play().then(function() {
@@ -205,10 +253,12 @@
                     startCanvasAnimation();
                 }
             };
+
             /*--Canvas Animation--*/
             // start animation
             function startCanvasAnimation() {
                 var canvas = document.getElementById("aniCanvas");
+
                 if (canvas) {
                     var obj = canvas.getContext('2d');
                     // resize canvas
@@ -216,6 +266,7 @@
                     canvas.height = window.innerHeight;
                     // set-up object
                     var objAction = [];
+
                     for (var i = 0; i <100; i++) {
                         objAction.push ({
                             x: Math.random() * canvas.width,
@@ -229,6 +280,7 @@
                         obj.clearRect(0, 0, canvas.width, canvas.height);
                         obj.strokeStyle = 'rgba(175, 195, 225, 0.5)';
                         obj.lineWidth = 1;
+
                         for (var i = 0; i < objAction.length; i++) {
                             var action = objAction[i];
                             obj.beginPath();
@@ -237,6 +289,7 @@
                             obj.stroke();
                             // object movement
                             action.y += action.velocity;
+
                             if (action.y > canvas.height) {
                                 action.y = -action.length;
                             }
