@@ -47,7 +47,7 @@
             <canvas id="aniCanvas"></canvas>
         </article>
 
-        <!--popup 2024.10.04 added-->
+        <!--popup-->
         <div id="popup" class="popup-overlay">
             <div class="popup-content">
                 <a href="https://blog.naver.com/totoriverce" target="_blank">
@@ -60,11 +60,9 @@
                 <button id="close-popup">확인</button>
             </div>
         </div>
-        <!--popup 2024.10.04 added-->
 
         <script nonce="abc123">
             /*--fetch.js control--*/
-
             // function: define introFetch function
             function introFetch(pageTitle) {
                 fetch(pageTitle).then(response => {
@@ -101,8 +99,7 @@
                 });
             }
 
-            /*--load content on page--*/
-
+                    /*--load content on page--*/
                     // function: calculate header-flex to fix scroll issue on container
                     function adjustContainerHeight() {                
                         const headers = document.querySelectorAll('header h1, header h2');
@@ -124,7 +121,7 @@
                         document.querySelector('#container').style.height = `${containerHeight}px`;
                     }
 
-            /*--popup 2024.10.04 added--*/
+                    /*--popup--*/
                     function openPopup() {
                         const donotShowAgain = localStorage.getItem('donotShowPopup');
 
@@ -141,10 +138,9 @@
                         }
                         document.getElementById('popup').style.display = 'none';
                     });
-            /*--popup 2024.10.04 added--*/
 
+            /*--DOM Content Loaded--*/
             document.addEventListener("DOMContentLoaded", function() {
-
                 // DOMContentLoaded control and adjust Heithts
                 Promise.all([
                     fetchPageContent('Menu', '#nav'),
@@ -153,26 +149,20 @@
                     adjustContainerHeight();
                     window.addEventListener('resize', adjustContainerHeight);
 
-                /*--attach click event to all inter-link ID 2024.10.05 added--*/
+                /*--click event to all inter-link(Class)--*/
                 const interLinks = document.querySelectorAll('.inter-link');
                 interLinks.forEach(link => {
                     link.addEventListener('click', function(event) {
-
                         // prevent default anchor behavior
                         event.preventDefault();
-
                         // get the page title
                         const pageTitle = this.getAttribute('href').substring(2);
-
                         // fetch the content
                         introFetch(pageTitle);
                     });
                 });
-                /*--attach click event to all inter-link ID 2024.10.05 added--*/
 
                     /*--tooltip display for table content--*/
-                    
-                    //from.here.on.2024.09.27.updated
                     // tooltip for table content (tr, td, img): mouse event for pc
                     const tooltip = document.createElement('div');
                     tooltip.id = 'tooltip';
@@ -183,8 +173,7 @@
                         if (target) {
                             const text = target.getAttribute('data-tooltip') || '';
                             tooltip.textContent = text;
- 
-                            // add tooltip class
+                             // add tooltip class
                             tooltip.classList.remove('tooltip-text', 'tooltip-image');
 
                             if (target.tagName.toLowerCase() === 'img') {
@@ -213,7 +202,6 @@
                             tooltip.style.display = 'none';
                         }
                     });
-
                     // tooltip for content (tr, td, img): touch event for mobile
                     document.addEventListener('touchstart', function (e) {
                         const touch = e.touches[0];
@@ -222,7 +210,6 @@
                         if (target) {
                             const text = target.getAttribute('data-tooltip') || '';
                             tooltip.textContent = text;
-
                             // add tooltip class
                             tooltip.classList.remove('tooltip-text', 'tooltip-image');
 
@@ -247,13 +234,9 @@
                     document.addEventListener('touchend', function () {
                         tooltip.style.display = 'none';
                     });
-                    //till.here.on.2024.09.27.updated
                 });
-
-                /*--popup 2024.10.04 added--*/
+                // popup
                 openPopup();
-                /*--popup 2024.10.04 added--*/
-
             });
 
             /*--prevent contents from the mouse right click event--*/
@@ -264,7 +247,6 @@
             /*--push forward to autoplay the video identified--*/
             window.onload = function() {
                 var video = document.getElementById("pdbopsVideo");     
-
                 // fix.canvas.animation from the conflict video.play
                 if (video) {
                     video.play().then(function() {
@@ -282,18 +264,15 @@
             };
 
             /*--Canvas Animation--*/
-
             // start animation
             function startCanvasAnimation() {
                 var canvas = document.getElementById("aniCanvas");
 
                 if (canvas) {
                     var obj = canvas.getContext('2d');
-
                     // resize canvas
                     canvas.width = window.innerWidth;
                     canvas.height = window.innerHeight;
-
                     // set-up object
                     var objAction = [];
 
@@ -305,7 +284,6 @@
                             velocity: Math.random() * 5 + 2
                         });
                     }
-
                     // draw object
                     function drawObject() {
                         obj.clearRect(0, 0, canvas.width, canvas.height);
@@ -328,7 +306,6 @@
                         requestAnimationFrame(drawObject);
                     }
                     drawObject();
-
                     // resize canvas again
                     window.addEventListener('resize', function() {
                         canvas.width = window.innerWidth;
