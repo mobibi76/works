@@ -62,6 +62,21 @@
         </div>
 
         <script nonce="abc123">
+            /*--click event to all inter-link(Class)--*/
+            function bindInterLinkEvents() {
+                const interLinks = document.querySelectorAll('.inter-link');
+                interLinks.forEach(link => {
+                    link.addEventListener('click', function(event) {
+                        // prevent default anchor behavior
+                        event.preventDefault();
+                        // get the page title
+                        const pageTitle = this.getAttribute('href').substring(2);
+                        // fetch the content
+                        introFetch(pageTitle);
+                    });
+                });
+            }
+
             /*--fetch.js control--*/
             // function: define introFetch function
             function introFetch(pageTitle) {
@@ -101,45 +116,44 @@
                 });
             }
 
-                    /*--load content on page--*/
-                    // function: calculate header-flex to fix scroll issue on container
-                    function adjustContainerHeight() {                
-                        const headers = document.querySelectorAll('header h1, header h2');
-                        let headerHeight = 0;                    
-                        headers.forEach(header => {
-                            headerHeight += header.getBoundingClientRect().height;
-                        });                    
-                        const windowHeight = window.innerHeight;
-                        const flexHeight = windowHeight - headerHeight;
-                        document.querySelector('#flex').style.height = `${flexHeight}px`;
-                        const navElement = document.querySelector('#nav');
+            /*--load content on page--*/
+            // function: calculate header-flex to fix scroll issue on container
+            function adjustContainerHeight() {                
+                const headers = document.querySelectorAll('header h1, header h2');
+                let headerHeight = 0;                    
+                headers.forEach(header => {
+                    headerHeight += header.getBoundingClientRect().height;
+                });                    
+                const windowHeight = window.innerHeight;
+                const flexHeight = windowHeight - headerHeight;
+                document.querySelector('#flex').style.height = `${flexHeight}px`;
+                const navElement = document.querySelector('#nav');
                     
-                        if (navElement) {
-                            navElement.style.height = 'auto';
-                            const navHeight = navElement.scrollHeight;
-                            navElement.style.height = `${navHeight}px`;
-                        }                    
-                        const containerHeight = flexHeight - navElement.offsetHeight;
-                        document.querySelector('#container').style.height = `${containerHeight}px`;
+                if (navElement) {
+                    navElement.style.height = 'auto';
+                    const navHeight = navElement.scrollHeight;
+                    navElement.style.height = `${navHeight}px`;
+                }                    
+                const containerHeight = flexHeight - navElement.offsetHeight;
+                document.querySelector('#container').style.height = `${containerHeight}px`;
+            }
+
+            /*--popup--*/
+            function openPopup() {
+                const donotShowAgain = localStorage.getItem('donotShowPopup');
+
+                if (!donotShowAgain) {
+                    document.getElementById('popup').style.display = 'flex';
+                }
+            }
+                document.getElementById('close-popup').addEventListener('click', function() {
+                    const donotShowAgainCheckbox = document.getElementById('donot-show-again');
+
+                    if (donotShowAgainCheckbox.checked) {
+                        localStorage.setItem('donotShowPopup', 'true');
                     }
-
-                    /*--popup--*/
-                    function openPopup() {
-                        const donotShowAgain = localStorage.getItem('donotShowPopup');
-
-                        if (!donotShowAgain) {
-                            document.getElementById('popup').style.display = 'flex';
-                        }
-                    }
-
-                    document.getElementById('close-popup').addEventListener('click', function() {
-                        const donotShowAgainCheckbox = document.getElementById('donot-show-again');
-
-                        if (donotShowAgainCheckbox.checked) {
-                            localStorage.setItem('donotShowPopup', 'true');
-                        }
-                        document.getElementById('popup').style.display = 'none';
-                    });
+                    document.getElementById('popup').style.display = 'none';
+                });
 
             /*--DOM Content Loaded--*/
             document.addEventListener("DOMContentLoaded", function() {
@@ -151,99 +165,85 @@
                     adjustContainerHeight();
                     window.addEventListener('resize', adjustContainerHeight);
 
-                /*--click event to all inter-link(Class)--*/
-                function bindInterLinkEvents() {
-                    const interLinks = document.querySelectorAll('.inter-link');
-                    interLinks.forEach(link => {
-                        link.addEventListener('click', function(event) {
-                            // prevent default anchor behavior
-                            event.preventDefault();
-                            // get the page title
-                            const pageTitle = this.getAttribute('href').substring(2);
-                            // fetch the content
-                            introFetch(pageTitle);
-                        });
-                    });
-                }
-
+                // click event to all inter-link(Class)
+                bindInterLinkEvents();
+  
                 // popup
                 openPopup();
 
-                    /*--tooltip display for table content--*/
-                    // tooltip for table content (tr, td, img): mouse event for pc
-                    const tooltip = document.createElement('div');
-                    tooltip.id = 'tooltip';
-                    document.body.appendChild(tooltip);
-                    document.addEventListener('mouseover', function (e) {
-                        const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
+                /*--tooltip display for table content--*/
+                // tooltip for table content (tr, td, img): mouse event for pc
+                const tooltip = document.createElement('div');
+                tooltip.id = 'tooltip';
+                document.body.appendChild(tooltip);
+                document.addEventListener('mouseover', function (e) {
+                    const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
 
-                        if (target) {
-                            const text = target.getAttribute('data-tooltip') || '';
-                            tooltip.textContent = text;
-                             // add tooltip class
-                            tooltip.classList.remove('tooltip-text', 'tooltip-image');
+                    if (target) {
+                        const text = target.getAttribute('data-tooltip') || '';
+                        tooltip.textContent = text;
+                        // add tooltip class
+                        tooltip.classList.remove('tooltip-text', 'tooltip-image');
 
-                            if (target.tagName.toLowerCase() === 'img') {
-                                tooltip.classList.add('tooltip-image');
-                            } else {
-                                tooltip.classList.add('tooltip-text');
-                            }
-
-                            tooltip.style.display = 'block';
-                            tooltip.style.left = `${e.pageX + 10}px`;
-                            tooltip.style.top = `${e.pageY + 10}px`;
+                        if (target.tagName.toLowerCase() === 'img') {
+                            tooltip.classList.add('tooltip-image');
+                        } else {
+                            tooltip.classList.add('tooltip-text');
                         }
-                    });
 
-                    document.addEventListener('mousemove', function (e) {
-                        if (tooltip.style.display === 'block') {
-                            tooltip.style.left = `${e.pageX + 10}px`;
-                            tooltip.style.top = `${e.pageY + 10}px`;
-                        }
-                    });
+                        tooltip.style.display = 'block';
+                        tooltip.style.left = `${e.pageX + 10}px`;
+                        tooltip.style.top = `${e.pageY + 10}px`;
+                    }
+                });
+                document.addEventListener('mousemove', function (e) {
+                    if (tooltip.style.display === 'block') {
+                        tooltip.style.left = `${e.pageX + 10}px`;
+                        tooltip.style.top = `${e.pageY + 10}px`;
+                    }
+                });
+                document.addEventListener('mouseout', function (e) {
+                    const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
 
-                    document.addEventListener('mouseout', function (e) {
-                        const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
+                    if (!target) {
+                        tooltip.style.display = 'none';
+                    }
+                });
 
-                        if (!target) {
-                            tooltip.style.display = 'none';
-                        }
-                    });
+                // tooltip for content (tr, td, img): touch event for mobile
+                document.addEventListener('touchstart', function (e) {
+                    const touch = e.touches[0];
+                    const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
 
-                    // tooltip for content (tr, td, img): touch event for mobile
-                    document.addEventListener('touchstart', function (e) {
-                        const touch = e.touches[0];
-                        const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
+                    if (target) {
+                        const text = target.getAttribute('data-tooltip') || '';
+                        tooltip.textContent = text;
+                        // add tooltip class
+                        tooltip.classList.remove('tooltip-text', 'tooltip-image');
 
-                        if (target) {
-                            const text = target.getAttribute('data-tooltip') || '';
-                            tooltip.textContent = text;
-                            // add tooltip class
-                            tooltip.classList.remove('tooltip-text', 'tooltip-image');
+                        if (target.tagName.toLowerCase() === 'img') {
+                            tooltip.classList.add('tooltip-image');
+                        } else {
+                            tooltip.classList.add('tooltip-text');
+                        }                            
 
-                            if (target.tagName.toLowerCase() === 'img') {
-                                tooltip.classList.add('tooltip-image');
-                            } else {
-                                tooltip.classList.add('tooltip-text');
-                            }                            
-
-                            tooltip.style.display = 'block';
-                            tooltip.style.left = `${touch.pageX + 10}px`;
-                            tooltip.style.top = `${touch.pageY + 10}px`;
-                        }
-                    });
-
-                    document.addEventListener('touchmove', function (e) {
-                        const touch = e.touches[0];
+                        tooltip.style.display = 'block';
                         tooltip.style.left = `${touch.pageX + 10}px`;
                         tooltip.style.top = `${touch.pageY + 10}px`;
-                    });
+                    }
+                });
 
-                    document.addEventListener('touchend', function () {
-                        tooltip.style.display = 'none';
-                    });
+                document.addEventListener('touchmove', function (e) {
+                    const touch = e.touches[0];
+                    tooltip.style.left = `${touch.pageX + 10}px`;
+                    tooltip.style.top = `${touch.pageY + 10}px`;
+                });
+
+                document.addEventListener('touchend', function () {
+                    tooltip.style.display = 'none';
                 });
             });
+        });
 
             /*--push forward to autoplay the video identified--*/
             window.onload = function() {
