@@ -70,13 +70,10 @@
                 ]).then(() => {
                     adjustContainerHeight();
                     window.addEventListener('resize', adjustContainerHeight);
-
                     // popup
                     openPopup();
-
                     // tooltip
                     tooltipEventHandle();
-
                     // inter-link class (CSP)
                     bindInterLinkEvent();
                 });
@@ -92,6 +89,7 @@
                         startCanvasAnimation();
                     }).catch(function(error) {
                         console.log("video is not playing:", error);
+                    }).finally(function() {
                         startCanvasAnimation();
                     });
                 } else {
@@ -298,7 +296,7 @@
                         }
                         requestAnimationFrame(drawObject);
                     }
-                    requestAnimationFrame(drawObject);
+                    drawObject();
                     window.addEventListener('resize', function() {
                         canvas.width = window.innerWidth;
                         canvas.height = window.innerHeight;
