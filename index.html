@@ -72,38 +72,38 @@
                     adjustContainerHeight();
                     window.addEventListener('resize', adjustContainerHeight);
 
-                    /*--push forward to autoplay the video identified--*/
-                    window.onload = function() {
-                        var video = document.getElementById("pdbopsVideo");     
-                        // fix.canvas.animation from the conflict video.play
-                        if (video) {
-                            video.play().then(function() {
-                                console.log("video is playing");
-                                startCanvasAnimation();
-                            }).catch(function(error) {
-                                console.log("video is not playing:", error);
-                            }).finally(function() {
-                                startCanvasAnimation();
-                            });
-                        } else {
-                            console.warn("video is not loading");
-                            startCanvasAnimation();
-                        }
-                    };
-
-                    // inter-link class (CSP)
-                    bindInterLinkEvents();
-    
                     // popup
                     openPopup();
 
+                    // inter-link class (CSP)
+                    bindInterLinkEvent();
+
                     // tooltip
-                    tooltipEventHandler();
+                    tooltipEventHandle();
                 });
             });
 
+            /*--push forward to autoplay the video identified--*/
+            window.onload = function() {
+                var video = document.getElementById("pdbopsVideo");     
+                // fix.canvas.animation from the conflict video.play
+                if (video) {
+                    video.play().then(function() {
+                        console.log("video is playing");
+                        startCanvasAnimation();
+                    }).catch(function(error) {
+                        console.log("video is not playing:", error);
+                    }).finally(function() {
+                        startCanvasAnimation();
+                    });
+                } else {
+                    console.warn("video is not loading");
+                    startCanvasAnimation();
+                }
+            };            
+
             /*--click event to all inter-link class--*/
-            function bindInterLinkEvents() {
+            function bindInterLinkEvent() {
                 const interLinks = document.querySelectorAll('.inter-link');
                 interLinks.forEach(link => {
                     link.addEventListener('click', function(event) {
@@ -238,7 +238,7 @@
             }
 
             /*--tooltip display for table (tr, td, img)--*/
-            function tooltipEventHandler () {
+            function tooltipEventHandle() {
                 const tooltip = document.createElement('div');
                 tooltip.id = 'tooltip';
                 // mouse event for pc
