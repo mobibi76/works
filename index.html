@@ -9,10 +9,10 @@
         <meta name="viewport" content="width=device-width" initial-scale="1.0">
         <meta charset="utf-8">
 
-        <!--content security policy (CSP)-->
+        <!--content security policy (CSP) with nonce-->
         <meta http-equiv="Content-Security-Policy" 
             content="default-src 'self'; 
-                     script-src 'self' https://ajax.googleapis.com; 
+                     script-src 'self' https://ajax.googleapis.com 'nonce-abc123'; 
                      style-src 'self' 'unsafe-inline'; 
                      img-src 'self'; 
                      font-src 'self'; 
