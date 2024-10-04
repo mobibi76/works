@@ -93,6 +93,7 @@
                             startCanvasAnimation();
                         }).catch(function(error) {
                             console.log("video is not playing:", error);
+                        }).finally(function(){
                             startCanvasAnimation();
                         });
                     } else {
