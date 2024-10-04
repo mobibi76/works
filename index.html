@@ -145,6 +145,14 @@
 
             document.addEventListener("DOMContentLoaded", function() {
 
+                // DOMContentLoaded control and adjust Heithts
+                Promise.all([
+                    fetchPageContent('Menu', '#nav'),
+                    fetchPageContent('Cover', '#container')
+                ]).then(() => {
+                    adjustContainerHeight();
+                    window.addEventListener('resize', adjustContainerHeight);
+
                 /*--attach click event to all inter-link ID 2024.10.05 added--*/
                 const interLinks = document.querySelectorAll('.inter-link');
                 interLinks.forEach(link => {
@@ -161,14 +169,6 @@
                     });
                 });
                 /*--attach click event to all inter-link ID 2024.10.05 added--*/
-
-                // DOMContentLoaded control and adjust Heithts
-                Promise.all([
-                    fetchPageContent('Menu', '#nav'),
-                    fetchPageContent('Cover', '#container')
-                ]).then(() => {
-                    adjustContainerHeight();
-                    window.addEventListener('resize', adjustContainerHeight);
 
                     /*--tooltip display for table content--*/
                     
