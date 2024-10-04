@@ -93,6 +93,8 @@
                     if (targetElement) {
                         targetElement.innerHTML = text;
                         targetElement.scrollTop = 0;
+                        //bind new loded links
+                        bindInterLinkEvents();
                     }
                 }).catch(error => {
                     console.error('There has been a problem with the fetch operation:', error);
@@ -150,17 +152,19 @@
                     window.addEventListener('resize', adjustContainerHeight);
 
                 /*--click event to all inter-link(Class)--*/
-                const interLinks = document.querySelectorAll('.inter-link');
-                interLinks.forEach(link => {
-                    link.addEventListener('click', function(event) {
-                        // prevent default anchor behavior
-                        event.preventDefault();
-                        // get the page title
-                        const pageTitle = this.getAttribute('href').substring(2);
-                        // fetch the content
-                        introFetch(pageTitle);
+                function bindInterLinkEvents() {
+                    const interLinks = document.querySelectorAll('.inter-link');
+                    interLinks.forEach(link => {
+                        link.addEventListener('click', function(event) {
+                            // prevent default anchor behavior
+                            event.preventDefault();
+                            // get the page title
+                            const pageTitle = this.getAttribute('href').substring(2);
+                            // fetch the content
+                            introFetch(pageTitle);
+                        });
                     });
-                });
+                }
 
                 // popup
                 openPopup();
