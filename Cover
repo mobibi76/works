@@ -38,8 +38,11 @@
     </tr>
 </table>
 <footer>
-  <p id="formlink">
+  <!--<p id="formlink">
       <a href="#!Demo" onclick="introFetch('Demo')">🖱️데모(DEMO)🖱️</a>
+  </p>-->
+  <p id="formlink">
+      <a href="#!Demo" class="inter-link">🖱️데모(DEMO)🖱️</a>
   </p>
   <p>processdesignbase@gmail.com (125-51-00257)</p>
 </footer>

@@ -145,6 +145,23 @@
 
             document.addEventListener("DOMContentLoaded", function() {
 
+                /*--attach click event to all inter-link ID 2024.10.05 added--*/
+                const interLinks = document.querySelectorAll('.inter-link');
+                interLinks.forEach(link => {
+                    link.addEventListener('click', function(event) {
+
+                        // prevent default anchor behavior
+                        event.preventDefault();
+
+                        // get the page title
+                        const pageTitle = this.getAttribute('href').substring(2);
+
+                        // fetch the content
+                        introFetch(pageTitle);
+                    });
+                });
+                /*--attach click event to all inter-link ID 2024.10.05 added--*/
+
                 // DOMContentLoaded control and adjust Heithts
                 Promise.all([
                     fetchPageContent('Menu', '#nav'),
@@ -153,8 +170,9 @@
                     adjustContainerHeight();
                     window.addEventListener('resize', adjustContainerHeight);
 
-                    /*--tooltip display for table content--*/ //from.here.on.240927.updated
-
+                    /*--tooltip display for table content--*/
+                    
+                    //from.here.on.2024.09.27.updated
                     // tooltip for table content (tr, td, img): mouse event for pc
                     const tooltip = document.createElement('div');
                     tooltip.id = 'tooltip';
@@ -228,7 +246,8 @@
 
                     document.addEventListener('touchend', function () {
                         tooltip.style.display = 'none';
-                    }); //till.here.on.240927.updated
+                    });
+                    //till.here.on.2024.09.27.updated
                 });
 
                 /*--popup 2024.10.04 added--*/
