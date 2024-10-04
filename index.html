@@ -70,6 +70,8 @@
                 ]).then(() => {
                     adjustContainerHeight();
                     window.addEventListener('resize', adjustContainerHeight);
+                    // video
+                    videoPlay()
                     // popup
                     openPopup();
                     // tooltip
@@ -80,23 +82,25 @@
             });
 
             /*--push forward to autoplay the video identified--*/
-            window.onload = function() {
-                var video = document.getElementById("pdbopsVideo");     
-                // fix.canvas.animation from the conflict video.play
-                if (video) {
-                    video.loading = "lazy";
-                    video.play().then(function() {
-                        console.log("video is playing");
+            function videoPlay() {
+                window.onload = function() {
+                    var video = document.getElementById("pdbopsVideo");     
+                    // fix.canvas.animation from the conflict video.play
+                    if (video) {
+                        video.loading = "lazy";
+                        video.play().then(function() {
+                            console.log("video is playing");
+                            startCanvasAnimation();
+                        }).catch(function(error) {
+                            console.log("video is not playing:", error);
+                            startCanvasAnimation();
+                        });
+                    } else {
+                        console.warn("video is not loading");
                         startCanvasAnimation();
-                    }).catch(function(error) {
-                        console.log("video is not playing:", error);
-                        startCanvasAnimation();
-                    });
-                } else {
-                    console.warn("video is not loading");
-                    startCanvasAnimation();
-                }
-            };
+                    }
+                };
+            }
 
             /*--calculate header-flex to fix scroll issue on container--*/
             function adjustContainerHeight() {                
