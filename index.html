@@ -72,103 +72,50 @@
                     adjustContainerHeight();
                     window.addEventListener('resize', adjustContainerHeight);
 
-                // click event to all inter-link(Class)
-                bindInterLinkEvents();
-  
-                // popup
-                openPopup();
-
-                /*--tooltip display for table content--*/
-                // tooltip for table content (tr, td, img): mouse event for pc
-                const tooltip = document.createElement('div');
-                tooltip.id = 'tooltip';
-                document.body.appendChild(tooltip);
-                document.addEventListener('mouseover', function (e) {
-                    const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
-
-                    if (target) {
-                        const text = target.getAttribute('data-tooltip') || '';
-                        tooltip.textContent = text;
-                        // add tooltip class
-                        tooltip.classList.remove('tooltip-text', 'tooltip-image');
-
-                        if (target.tagName.toLowerCase() === 'img') {
-                            tooltip.classList.add('tooltip-image');
+                    /*--push forward to autoplay the video identified--*/
+                    window.onload = function() {
+                        var video = document.getElementById("pdbopsVideo");     
+                        // fix.canvas.animation from the conflict video.play
+                        if (video) {
+                            video.play().then(function() {
+                                console.log("video is playing");
+                                startCanvasAnimation();
+                            }).catch(function(error) {
+                                console.log("video is not playing:", error);
+                            }).finally(function() {
+                                startCanvasAnimation();
+                            });
                         } else {
-                            tooltip.classList.add('tooltip-text');
+                            console.warn("video is not loading");
+                            startCanvasAnimation();
                         }
+                    };
 
-                        tooltip.style.display = 'block';
-                        tooltip.style.left = `${e.pageX + 10}px`;
-                        tooltip.style.top = `${e.pageY + 10}px`;
-                    }
-                });
-                document.addEventListener('mousemove', function (e) {
-                    if (tooltip.style.display === 'block') {
-                        tooltip.style.left = `${e.pageX + 10}px`;
-                        tooltip.style.top = `${e.pageY + 10}px`;
-                    }
-                });
-                document.addEventListener('mouseout', function (e) {
-                    const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
+                    // click event to all inter-link(Class)
+                    bindInterLinkEvents();
+    
+                    // popup
+                    openPopup();
 
-                    if (!target) {
-                        tooltip.style.display = 'none';
-                    }
-                });
-
-                // tooltip for content (tr, td, img): touch event for mobile
-                document.addEventListener('touchstart', function (e) {
-                    const touch = e.touches[0];
-                    const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
-
-                    if (target) {
-                        const text = target.getAttribute('data-tooltip') || '';
-                        tooltip.textContent = text;
-                        // add tooltip class
-                        tooltip.classList.remove('tooltip-text', 'tooltip-image');
-
-                        if (target.tagName.toLowerCase() === 'img') {
-                            tooltip.classList.add('tooltip-image');
-                        } else {
-                            tooltip.classList.add('tooltip-text');
-                        }                            
-
-                        tooltip.style.display = 'block';
-                        tooltip.style.left = `${touch.pageX + 10}px`;
-                        tooltip.style.top = `${touch.pageY + 10}px`;
-                    }
-                });
-
-                document.addEventListener('touchmove', function (e) {
-                    const touch = e.touches[0];
-                    tooltip.style.left = `${touch.pageX + 10}px`;
-                    tooltip.style.top = `${touch.pageY + 10}px`;
-                });
-
-                document.addEventListener('touchend', function () {
-                    tooltip.style.display = 'none';
+                    // tooltip
+                    tooltipEventHandler();
                 });
             });
-        });
 
-            /*--click event to all inter-link(Class)--*/
+            /*--click event to all inter-link class--*/
             function bindInterLinkEvents() {
                 const interLinks = document.querySelectorAll('.inter-link');
                 interLinks.forEach(link => {
                     link.addEventListener('click', function(event) {
-                        // prevent default anchor behavior
                         event.preventDefault();
-                        // get the page title
                         const pageTitle = this.getAttribute('href').substring(2);
-                        // fetch the content
                         introFetch(pageTitle);
                     });
                 });
             }
 
             /*--fetch.js control--*/
-            // function: define introFetch function
+            // define introFetch function
             function introFetch(pageTitle) {
                 fetch(pageTitle).then(response => {
                     if (!response.ok) {
@@ -186,7 +133,7 @@
                 });
             }
 
-            // function: load pages through fetch.js with ERROR handle
+            // load pages through fetch.js with ERROR handle
             function fetchPageContent(pageTitle, targetElementSelector) {
                 return fetch(pageTitle).then(response => {
                     if (!response.ok) {
@@ -198,6 +145,7 @@
                     if (targetElement) {
                         targetElement.innerHTML = text;
                         targetElement.scrollTop = 0;
+
                         //bind new loded links
                         bindInterLinkEvents();
                     }
@@ -206,8 +154,7 @@
                 });
             }
 
-            /*--load content on page--*/
-            // function: calculate header-flex to fix scroll issue on container
+            /*--calculate header-flex to fix scroll issue on container--*/
             function adjustContainerHeight() {                
                 const headers = document.querySelectorAll('header h1, header h2');
                 let headerHeight = 0;                    
@@ -245,36 +192,14 @@
                     document.getElementById('popup').style.display = 'none';
                 });
 
-            /*--push forward to autoplay the video identified--*/
-            window.onload = function() {
-                var video = document.getElementById("pdbopsVideo");     
-                // fix.canvas.animation from the conflict video.play
-                if (video) {
-                    video.play().then(function() {
-                        console.log("video is playing");
-                        startCanvasAnimation();
-                    }).catch(function(error) {
-                        console.log("video is not playing:", error);
-                    }).finally(function() {
-                        startCanvasAnimation();
-                    });
-                } else {
-                    console.warn("video is not loading");
-                    startCanvasAnimation();
-                }
-            };
-
             /*--Canvas Animation--*/
-            // start animation
             function startCanvasAnimation() {
                 var canvas = document.getElementById("aniCanvas");
 
                 if (canvas) {
                     var obj = canvas.getContext('2d');
-                    // resize canvas
                     canvas.width = window.innerWidth;
                     canvas.height = window.innerHeight;
-                    // set-up object
                     var objAction = [];
 
                     for (var i = 0; i <100; i++) {
@@ -285,7 +210,7 @@
                             velocity: Math.random() * 5 + 2
                         });
                     }
-                    // draw object
+
                     function drawObject() {
                         obj.clearRect(0, 0, canvas.width, canvas.height);
                         obj.strokeStyle = 'rgba(175, 195, 225, 0.5)';
@@ -297,7 +222,6 @@
                             obj.moveTo(action.x, action.y);
                             obj.lineTo(action.x, action.y + action.length);
                             obj.stroke();
-                            // object movement
                             action.y += action.velocity;
 
                             if (action.y > canvas.height) {
@@ -307,7 +231,6 @@
                         requestAnimationFrame(drawObject);
                     }
                     drawObject();
-                    // resize canvas again
                     window.addEventListener('resize', function() {
                         canvas.width = window.innerWidth;
                         canvas.height = window.innerHeight;
@@ -317,10 +240,85 @@
                 }
             }
 
-            /*--prevent contents from the mouse right click event--*/
-            document.addEventListener('contextmenu', function(event) {
-                event.preventDefault();
-            });
+            /*--tooltip display for table (tr, td, img) content--*/
+            function tooltipEventHandler () {
+                const tooltip = document.createElement('div');
+                tooltip.id = 'tooltip';
+                // mouse event for pc
+                document.body.appendChild(tooltip);
+                document.addEventListener('mouseover', function (e) {
+                    const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
+
+                    if (target) {
+                        const text = target.getAttribute('data-tooltip') || '';
+                        tooltip.textContent = text;
+                        // add tooltip class
+                        tooltip.classList.remove('tooltip-text', 'tooltip-image');
+
+                        if (target.tagName.toLowerCase() === 'img') {
+                            tooltip.classList.add('tooltip-image');
+                        } else {
+                            tooltip.classList.add('tooltip-text');
+                        }
+
+                        tooltip.style.display = 'block';
+                        tooltip.style.left = `${e.pageX + 10}px`;
+                        tooltip.style.top = `${e.pageY + 10}px`;
+                    }
+                });
+                document.addEventListener('mousemove', function (e) {
+                    if (tooltip.style.display === 'block') {
+                        tooltip.style.left = `${e.pageX + 10}px`;
+                        tooltip.style.top = `${e.pageY + 10}px`;
+                    }
+                });
+                document.addEventListener('mouseout', function (e) {
+                    const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
+
+                    if (!target) {
+                        tooltip.style.display = 'none';
+                    }
+                });
+                // touch event for mobile
+                document.addEventListener('touchstart', function (e) {
+                    const touch = e.touches[0];
+                    const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
+
+                    if (target) {
+                        const text = target.getAttribute('data-tooltip') || '';
+                        tooltip.textContent = text;
+                        // add tooltip class
+                        tooltip.classList.remove('tooltip-text', 'tooltip-image');
+
+                        if (target.tagName.toLowerCase() === 'img') {
+                            tooltip.classList.add('tooltip-image');
+                        } else {
+                            tooltip.classList.add('tooltip-text');
+                        }                            
+
+                        tooltip.style.display = 'block';
+                        tooltip.style.left = `${touch.pageX + 10}px`;
+                        tooltip.style.top = `${touch.pageY + 10}px`;
+                    }
+                });
+
+                document.addEventListener('touchmove', function (e) {
+                    const touch = e.touches[0];
+                    tooltip.style.left = `${touch.pageX + 10}px`;
+                    tooltip.style.top = `${touch.pageY + 10}px`;
+                });
+
+                document.addEventListener('touchend', function () {
+                    tooltip.style.display = 'none';
+                });
+            }
+
+            /*--No Mouse Right Click--*/
+            function antiMouseRight () {           
+                document.addEventListener('contextmenu', function(event) {
+                    event.preventDefault();
+                });
+            }
         </script>
     </body>
 </html>
