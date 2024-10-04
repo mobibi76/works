@@ -3,7 +3,7 @@
     <head>
         <title>리스크 애자일 프로세스 및 팀 네트워크 디자인 | Process Design and People Define Based Ops. </title>
 
-        <!--meta: SEO, mobile ops. and encoding-->
+        <!--SEO, mobile ops. and encoding-->
         <meta name="description"
             content="시스템 다이내믹스 활용 리스크 애자일 프로세스 및 스킬 정의 기반 팀 네트워크 디자인">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,18 +12,18 @@
         <!--content security policy (CSP) with nonce-->
         <meta http-equiv="Content-Security-Policy" 
             content="default-src 'self'; 
-                     script-src 'self' https://ajax.googleapis.com 'nonce-abc123'; 
-                     style-src 'self' 'unsafe-inline'; 
-                     img-src 'self'; 
-                     font-src 'self'; 
-                     frame-ancestors 'none';
-                     base-uri 'self';
-                     connect-src 'self';">
+                    script-src 'self' https://ajax.googleapis.com 'nonce-abc123'; 
+                    style-src 'self' 'unsafe-inline'; 
+                    img-src 'self'; 
+                    font-src 'self'; 
+                    frame-ancestors 'none';
+                    base-uri 'self';
+                    connect-src 'self';">
 
         <!--referrer policy-->
         <meta name="referrer" content="no-referrer">
 
-        <!--use: jQuery google CDN with SRI-->
+        <!--jQuery google CDN with SRI-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs"
             crossorigin="anonymous" async></script>
@@ -31,13 +31,12 @@
         <!--style.css-->
         <link rel="stylesheet" href="./style/style.css">
 
-        <!--use: fetch.js-->
+        <!--fetch.js-->
         <script src="./source/fetch.js"></script>
     </head>
 
     <body>
         <header>
-            <!--<h2><a href="./index.html">process design-based ops.</a></h2>-->
             <h2>process design-based ops.</h2>
         </header>
 
@@ -64,7 +63,7 @@
         <script nonce="abc123">
             /*--DOM Content Loaded--*/
             document.addEventListener("DOMContentLoaded", function() {
-                // DOMContentLoaded control and adjust Heithts
+                // DOM Content Loaded control and adjust Heithts
                 Promise.all([
                     fetchPageContent('Menu', '#nav'),
                     fetchPageContent('Cover', '#container')
@@ -75,11 +74,11 @@
                     // popup
                     openPopup();
 
-                    // inter-link class (CSP)
-                    bindInterLinkEvent();
-
                     // tooltip
                     tooltipEventHandle();
+
+                    // inter-link class (CSP)
+                    bindInterLinkEvent();
                 });
             });
 
@@ -100,7 +99,28 @@
                     console.warn("video is not loading");
                     startCanvasAnimation();
                 }
-            };            
+            };
+
+            /*--calculate header-flex to fix scroll issue on container--*/
+            function adjustContainerHeight() {                
+                const headers = document.querySelectorAll('header h1, header h2');
+                let headerHeight = 0;                    
+                headers.forEach(header => {
+                    headerHeight += header.getBoundingClientRect().height;
+                });                    
+                const windowHeight = window.innerHeight;
+                const flexHeight = windowHeight - headerHeight;
+                document.querySelector('#flex').style.height = `${flexHeight}px`;
+                const navElement = document.querySelector('#nav');
+                    
+                if (navElement) {
+                    navElement.style.height = 'auto';
+                    const navHeight = navElement.scrollHeight;
+                    navElement.style.height = `${navHeight}px`;
+                }                    
+                const containerHeight = flexHeight - navElement.offsetHeight;
+                document.querySelector('#container').style.height = `${containerHeight}px`;
+            }
 
             /*--click event to all inter-link class--*/
             function bindInterLinkEvent() {
@@ -133,7 +153,7 @@
                 });
             }
 
-            // load pages through fetch.js with ERROR handle
+            // load pages through fetch.js with error handle
             function fetchPageContent(pageTitle, targetElementSelector) {
                 return fetch(pageTitle).then(response => {
                     if (!response.ok) {
@@ -149,27 +169,6 @@
                 }).catch(error => {
                     console.error('There has been a problem with the fetch operation:', error);
                 });
-            }
-
-            /*--calculate header-flex to fix scroll issue on container--*/
-            function adjustContainerHeight() {                
-                const headers = document.querySelectorAll('header h1, header h2');
-                let headerHeight = 0;                    
-                headers.forEach(header => {
-                    headerHeight += header.getBoundingClientRect().height;
-                });                    
-                const windowHeight = window.innerHeight;
-                const flexHeight = windowHeight - headerHeight;
-                document.querySelector('#flex').style.height = `${flexHeight}px`;
-                const navElement = document.querySelector('#nav');
-                    
-                if (navElement) {
-                    navElement.style.height = 'auto';
-                    const navHeight = navElement.scrollHeight;
-                    navElement.style.height = `${navHeight}px`;
-                }                    
-                const containerHeight = flexHeight - navElement.offsetHeight;
-                document.querySelector('#container').style.height = `${containerHeight}px`;
             }
 
             /*--popup--*/
@@ -188,54 +187,6 @@
                     }
                     document.getElementById('popup').style.display = 'none';
                 });
-
-            /*--Canvas Animation--*/
-            function startCanvasAnimation() {
-                var canvas = document.getElementById("aniCanvas");
-
-                if (canvas) {
-                    var obj = canvas.getContext('2d');
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
-                    var objAction = [];
-
-                    for (var i = 0; i <100; i++) {
-                        objAction.push ({
-                            x: Math.random() * canvas.width,
-                            y: Math.random() * canvas.height,
-                            length: Math.random() * 20 + 10,
-                            velocity: Math.random() * 5 + 2
-                        });
-                    }
-
-                    function drawObject() {
-                        obj.clearRect(0, 0, canvas.width, canvas.height);
-                        obj.strokeStyle = 'rgba(175, 195, 225, 0.5)';
-                        obj.lineWidth = 1;
-
-                        for (var i = 0; i < objAction.length; i++) {
-                            var action = objAction[i];
-                            obj.beginPath();
-                            obj.moveTo(action.x, action.y);
-                            obj.lineTo(action.x, action.y + action.length);
-                            obj.stroke();
-                            action.y += action.velocity;
-
-                            if (action.y > canvas.height) {
-                                action.y = -action.length;
-                            }
-                        }
-                        requestAnimationFrame(drawObject);
-                    }
-                    drawObject();
-                    window.addEventListener('resize', function() {
-                        canvas.width = window.innerWidth;
-                        canvas.height = window.innerHeight;
-                    });
-                } else {
-                    console.error("canvas is not loading");
-                }
-            }
 
             /*--tooltip display for table (tr, td, img)--*/
             function tooltipEventHandle() {
@@ -302,6 +253,54 @@
                 document.addEventListener('touchend', function () {
                     tooltip.style.display = 'none';
                 });
+            }
+
+            /*--canvas animation--*/
+            function startCanvasAnimation() {
+                var canvas = document.getElementById("aniCanvas");
+
+                if (canvas) {
+                    var obj = canvas.getContext('2d');
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                    var objAction = [];
+
+                    for (var i = 0; i <100; i++) {
+                        objAction.push ({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            length: Math.random() * 20 + 10,
+                            velocity: Math.random() * 5 + 2
+                        });
+                    }
+
+                    function drawObject() {
+                        obj.clearRect(0, 0, canvas.width, canvas.height);
+                        obj.strokeStyle = 'rgba(175, 195, 225, 0.5)';
+                        obj.lineWidth = 1;
+
+                        for (var i = 0; i < objAction.length; i++) {
+                            var action = objAction[i];
+                            obj.beginPath();
+                            obj.moveTo(action.x, action.y);
+                            obj.lineTo(action.x, action.y + action.length);
+                            obj.stroke();
+                            action.y += action.velocity;
+
+                            if (action.y > canvas.height) {
+                                action.y = -action.length;
+                            }
+                        }
+                        requestAnimationFrame(drawObject);
+                    }
+                    drawObject();
+                    window.addEventListener('resize', function() {
+                        canvas.width = window.innerWidth;
+                        canvas.height = window.innerHeight;
+                    });
+                } else {
+                    console.error("canvas is not loading");
+                }
             }
         </script>
     </body>
