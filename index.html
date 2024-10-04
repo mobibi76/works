@@ -11,14 +11,13 @@
 
         <!--content security policy (CSP) with nonce-->
         <meta http-equiv="Content-Security-Policy" 
-            content="default-src 'self'; 
+            content="default-src 'self' 'unsafe-inline'; 
                      script-src 'self' https://ajax.googleapis.com 'nonce-abc123'; 
                      style-src 'self' 'unsafe-inline'; 
                      img-src 'self'; 
                      font-src 'self'; 
                      frame-ancestors 'none';
-                     base-uri 'self';
-                     connect-src 'self' https://dev.pdbops.com/#!Workshop">
+                     base-uri 'self';">
 
         <!--referrer policy-->
         <meta name="referrer" content="no-referrer">
