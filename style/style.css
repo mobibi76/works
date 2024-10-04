@@ -124,6 +124,9 @@
 .popup-content img {
     max-width: 100%;
 }
+label {
+    margin-right: 20px;
+}
 /* update.here.on.241004*/
 html, body {
     margin: 0px;
