@@ -64,6 +64,7 @@
 
         <script nonce="abc123">
             /*--fetch.js control--*/
+
             // function: define introFetch function
             function introFetch(pageTitle) {
                 fetch(pageTitle).then(response => {
@@ -101,6 +102,7 @@
             }
 
             /*--load content on page--*/
+
                     // function: calculate header-flex to fix scroll issue on container
                     function adjustContainerHeight() {                
                         const headers = document.querySelectorAll('header h1, header h2');
@@ -152,6 +154,7 @@
                     window.addEventListener('resize', adjustContainerHeight);
 
                     /*--tooltip display for table content--*/ //from.here.on.240927.updated
+
                     // tooltip for table content (tr, td, img): mouse event for pc
                     const tooltip = document.createElement('div');
                     tooltip.id = 'tooltip';
@@ -162,6 +165,7 @@
                         if (target) {
                             const text = target.getAttribute('data-tooltip') || '';
                             tooltip.textContent = text;
+ 
                             // add tooltip class
                             tooltip.classList.remove('tooltip-text', 'tooltip-image');
 
@@ -226,15 +230,18 @@
                         tooltip.style.display = 'none';
                     }); //till.here.on.240927.updated
                 });
-            /*--popup 2024.10.04 added--*/
+
+                /*--popup 2024.10.04 added--*/
                 openPopup();
-            /*--popup 2024.10.04 added--*/
+                /*--popup 2024.10.04 added--*/
+
             });
 
             /*--prevent contents from the mouse right click event--*/
             document.addEventListener('contextmenu', function(event) {
                 event.preventDefault();
             });
+
             /*--push forward to autoplay the video identified--*/
             window.onload = function() {
                 var video = document.getElementById("pdbopsVideo");     
@@ -256,15 +263,18 @@
             };
 
             /*--Canvas Animation--*/
+
             // start animation
             function startCanvasAnimation() {
                 var canvas = document.getElementById("aniCanvas");
 
                 if (canvas) {
                     var obj = canvas.getContext('2d');
+
                     // resize canvas
                     canvas.width = window.innerWidth;
                     canvas.height = window.innerHeight;
+
                     // set-up object
                     var objAction = [];
 
@@ -276,6 +286,7 @@
                             velocity: Math.random() * 5 + 2
                         });
                     }
+
                     // draw object
                     function drawObject() {
                         obj.clearRect(0, 0, canvas.width, canvas.height);
@@ -298,6 +309,7 @@
                         requestAnimationFrame(drawObject);
                     }
                     drawObject();
+
                     // resize canvas again
                     window.addEventListener('resize', function() {
                         canvas.width = window.innerWidth;
