@@ -105,7 +105,7 @@
 .popup-overlay {
     display: none;
     position: fixed;
-    top: 15%;
+    top: 10%;
     width: auto;
     height: auto;
     justify-content: center;
