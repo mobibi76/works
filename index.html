@@ -147,6 +147,8 @@
                     if (containerElement) {
                         containerElement.innerHTML = text;
                         containerElement.scrollTop = 0;
+                        // add inter-link class (CSP)
+                        bindInterLinkEvent();
                     }
                 }).catch(error => {
                     console.error('There has been a problem with the fetch operation:', error);
@@ -165,6 +167,10 @@
                     if (targetElement) {
                         targetElement.innerHTML = text;
                         targetElement.scrollTop = 0;
+                        // add inter-link class (CSP)
+                        if (targetElementSelector === '#container') {
+                           bindInterLinkEvent();
+                        }
                     }
                 }).catch(error => {
                     console.error('There has been a problem with the fetch operation:', error);
