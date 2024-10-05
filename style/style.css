@@ -3,6 +3,10 @@
     src: url('../font/Freesentation-4Regular.ttf') format('truetype');
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 :root {
     --background-color: whitesmoke;
     --font-color: black;
@@ -10,98 +14,22 @@
     --hyperlink-color: firebrick;
     --page-color: white;
 }
-::-webkit-scrollbar {
-    display: none;
-}
-#flex {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-#nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--background-color);
-    border-bottom: 0.1rem var(--border-color) dashed;
-    width: 100%;
-}
-#nav ul {
-    list-style-type: none;
-    margin: 0px;
-    padding: 0px;
-}
-#nav li {
-    display: inline-block;
-    margin-right: 40px;
-}
-#nav li:last-child {
-    margin-right: 0px;
-}
-#nav a {
-    font-family:'freesentation4';
-    font-size: 1.4rem;
-    color: var(--hyperlink-color);
-    text-decoration: none;
-}
-#aniCanvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-}
-#container {
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    scrollbar-width: none;
-    background-color: var(--page-color);
-    max-width: 700px;
-    text-align: center;
-}
-#formlink {
-    margin: 5px;
-}
-#formlink a {
-    font-family:'freesentation4';
-    font-size: 1.6rem;
-    color: var(--hyperlink-color);
-    text-decoration: none;
-}
-#gameFrame li {
-    list-style-type: none;
+
+.popup-content {
     font-family: 'freesentation4';
-    font-size: 1.1rem;
-    color: var(--font-color);
-    text-align: left;
-}
-/* update.here.on.241004*/
-#tooltip {
-    position: absolute;
-    font-family: 'freesentation4';
-    padding: 8px;
-    border-radius: 8px;
-    border: 0.1rem var(--border-color) dashed;
     font-size: 1rem;
-    display: none;
-    z-index: 1000;
-    white-space: pre-line;
+    background: var(--page-color);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 500px;
+    border: 0.1rem var(--hyperlink-color) solid;
 }
-#year {
-    vertical-align: text-top;
+
+.popup-content img {
+    max-width: 100%;
 }
-.tooltip-image {
-    background-color: var(--page-color);
-    color: var(--font-color)
-}
-.tooltip-text {
-    background-color: var(--hyperlink-color);
-    color: var(--background-color);
-}
+
 .popup-overlay {
     display: none;
     position: fixed;
@@ -113,54 +41,115 @@
     align-items: center;
     z-index: 1000;
 }
-.popup-content {
-    font-family: 'freesentation4';
-    font-size: 1rem;
-    background: var(--page-color);
-    padding: 10px;
-    border-radius: 8px;
+
+.tooltip-image {
+    background-color: var(--page-color);
+    color: var(--font-color)
+}
+
+.tooltip-text {
+    background-color: var(--hyperlink-color);
+    color: var(--background-color);
+}
+
+#aniCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    scrollbar-width: none;
+    background-color: var(--page-color);
+    max-width: 700px;
     text-align: center;
-    max-width: 500px;
-    border: 0.1rem var(--hyperlink-color) solid;
 }
-.popup-content img {
-    max-width: 100%;
+
+#formlink {
+    margin: 5px;
 }
-label {
-    margin-right: 20px;
-}
-/* update.here.on.241004*/
-html, body {
-    margin: 0px;
-    overflow: hidden;
-    filter: grayscale(0%);
-}
-a {
+
+#formlink a {
+    font-family:'freesentation4';
+    font-size: 1.6rem;
     color: var(--hyperlink-color);
     text-decoration: none;
 }
-h2 {
-    margin: 0px;
-    font-family:'freesentation4';
-    color: var(--font-color);
-    text-align: center;
-    background-color: var(--background-color);
+
+#flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-table {
+
+#gameFrame li {
+    list-style-type: none;
     font-family: 'freesentation4';
     font-size: 1.1rem;
     color: var(--font-color);
     text-align: left;
+}
+
+#nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-color);
+    border-bottom: 0.1rem var(--border-color) dashed;
     width: 100%;
-    margin-top: 80px;
-    margin-bottom: 80px;
 }
-table th {
+
+#nav a {
+    font-family:'freesentation4';
     font-size: 1.4rem;
+    color: var(--hyperlink-color);
+    text-decoration: none;
 }
-video {
-    margin-bottom: 0px;
+
+#nav li {
+    display: inline-block;
+    margin-right: 40px;
 }
+
+#nav li:last-child {
+    margin-right: 0px;
+}
+
+#nav ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#tooltip {
+    position: absolute;
+    font-family: 'freesentation4';
+    padding: 8px;
+    border-radius: 8px;
+    border: 0.1rem var(--border-color) dashed;
+    font-size: 1rem;
+    display: none;
+    z-index: 1000;
+    white-space: pre-line;
+}
+
+#year {
+    vertical-align: text-top;
+}
+
+a {
+    color: var(--hyperlink-color);
+    text-decoration: none;
+}
+
 footer {
     position: sticky;
     bottom: 0px;
@@ -172,38 +161,85 @@ footer {
     border-top: 0.1rem var(--border-color) dashed;
     margin-top: auto;
 }
+
 footer p {
     margin: 0px;
 }
+
+h2 {
+    margin: 0px;
+    font-family:'freesentation4';
+    color: var(--font-color);
+    text-align: center;
+    background-color: var(--background-color);
+}
+
+html, body {
+    margin: 0px;
+    overflow: hidden;
+    filter: grayscale(0%);
+}
+
 iframe {
     border: none;
     border-bottom: 0.1rem var(--border-color) dashed;
     width: 100%;
     height: 70%;
 }
+
+label {
+    margin-right: 20px;
+}
+
+
+table {
+    font-family: 'freesentation4';
+    font-size: 1.1rem;
+    color: var(--font-color);
+    text-align: left;
+    width: 100%;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+table th {
+    font-size: 1.4rem;
+}
+
+video {
+    margin-bottom: 0px;
+}
+
 @media (max-width: 500px) {
-    h2 {
-        font-size: 1.3rem !important;
-    }
-    #nav li {
-        margin-right: 10px !important;
-    }
     #nav a {
         font-size: 1.1rem !important;
     }
-    table, #gameFrame li {
-        font-size: 0.7rem !important;
+
+    #nav li {
+        margin-right: 10px !important;
     }
-    table th, #gameFrame {
-        font-size: 1rem !important;
-    }
-    footer {
-        font-size: 1rem !important;
-    }
+
     #formlink a {
         font-size: 1.4rem !important;
     }
+
     #tooltip {
         font-size: 0.7rem !important;
+    }
+
+    footer {
+        font-size: 1rem !important;
+    }
+
+    h2 {
+        font-size: 1.3rem !important;
+    }
+
+    table, #gameFrame li {
+        font-size: 0.7rem !important;
+    }
+
+    table th, #gameFrame {
+        font-size: 1rem !important;
     }
 }
