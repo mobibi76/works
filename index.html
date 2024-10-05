@@ -222,25 +222,29 @@
                     document.getElementById('popup').style.display = 'none';
                 });
 
-        /*--F. push forward to autoplay the video identified--*/
+        /*--F. autoplay the video identified--*/
             function videoPlay() {
                 window.onload = function() {
                     var video = document.getElementById("pdbopsVideo");     
-                    if (video) { // fix.canvas.animation from the conflict video.play
+                    if (video) { // fix play video with canvas animation
                         video.loading = "lazy";
-                        video.play().then(function() {
-                            console.log("video is playing");
+                        video.onloadeddata = function() {
+                            video.play().then(function() {
+                                console.log("video is playing");
+                                startCanvasAnimation();
+                            }).catch(function(error) {
+                                console.log("video is not playing:", error);
+                            });
+                        };
+                        video.onerror = function() {          
+                            console.warn("video is not loading");
                             startCanvasAnimation();
-                        }).catch(function(error) {
-                            console.log("video is not playing:", error);
-                        }).finally(function(){
-                            startCanvasAnimation();
-                        });
+                        };
                     } else {
-                        console.warn("video is not loading");
+                        console.warn("video element is not loading");
                         startCanvasAnimation();
                     }
-                };
+                }
             }
 
         /*--G. canvas animation--*/
@@ -253,12 +257,12 @@
                     canvas.height = window.innerHeight;
                     var objAction = [];
 
-                    for (var i = 0; i <100; i++) {
+                    for (var i = 0; i <50; i++) {
                         objAction.push ({
                             x: Math.random() * canvas.width,
                             y: Math.random() * canvas.height,
                             length: Math.random() * 20 + 10,
-                            velocity: Math.random() * 5 + 2
+                            velocity: Math.random() * 2 + 1
                         });
                     }
 
