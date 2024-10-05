@@ -319,7 +319,11 @@
                     fetchPageContent('Cover', '#container')
                 ]).then(() => {
                     adjustContainerHeight();
-                    window.addEventListener('resize', adjustContainerHeight);
+                    resizeCanvasAnimation(document.getElementById("aniCanvas"));
+                    window.addEventListener('resize', function() {
+                        adjustContainerHeight();
+                        resizeCanvasAnimation(document.getElementById("aniCanvas"));
+                    });
                     // inter-link class for CSP
                     bindInterLinkEvent();
                     // tooltip
