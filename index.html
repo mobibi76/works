@@ -265,26 +265,25 @@
                         objAction.push ({
                             x: Math.random() * canvas.width,
                             y: Math.random() * canvas.height,
-                            length: Math.random() * 20 + 10,
-                            velocity: Math.random() * 2 + 1
+                            radius: Math.random() * 5 + 2,
+                            velocity: Math.random() * 1 + 1
                         });
                     }
 
                     function drawObject() {
                         obj.clearRect(0, 0, canvas.width, canvas.height);
-                        obj.strokeStyle = 'rgba(175, 195, 225, 0.5)';
-                        obj.lineWidth = 1;
+                        obj.fillStyle = 'rgba(175, 195, 225, 0.5)';
 
                         for (let i = 0; i < objAction.length; i++) {
                             const action = objAction[i];
                             obj.beginPath();
-                            obj.moveTo(action.x, action.y);
-                            obj.lineTo(action.x, action.y + action.length);
-                            obj.stroke();
+                            obj.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
+                            obj.fill();
                             action.y += action.velocity;
 
                             if (action.y > canvas.height) {
-                                action.y = -action.length;
+                                action.y = -action.radius;
+                                action.x = Math.random() * canvas.width;
                             }
                         }
                         animationFrameID = requestAnimationFrame(drawObject);
