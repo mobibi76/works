@@ -291,7 +291,7 @@
                             }
                         }
                         /*animationFrameID = requestAnimationFrame(drawObject);*/
-                        if (video && video.readyState >= 2) { // sync frame (video and animation)
+                        if (video && video.readyState >= 2) { // sync frame: video and animation
                             video.requestVideoFrameCallback(drawObject);
                         } else {
                             animationFrameID = requestAnimationFrame(drawObject);
@@ -310,7 +310,7 @@
                 } else {
                     console.error("Canvas Load Not Good");
                 }*/
-                    const resizeHandle = debounce(() => { // resize debounce
+                    const resizeHandle = debounce(() => { // resize event debounce
                         canvas.width = window.innerWidth;
                         canvas.height = window.innerHeight;
                     }, 200);
