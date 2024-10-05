@@ -10,12 +10,12 @@
         <meta charset="utf-8">
 
         <!--content security policy (CSP) with nonce-->
-        <meta http-equiv="Content-Security-Policy" 
-            content="default-src 'self'; 
-                    script-src 'self' https://ajax.googleapis.com 'nonce-abc123'; 
-                    style-src 'self' 'unsafe-inline'; 
-                    img-src 'self'; 
-                    font-src 'self'; 
+        <meta http-equiv="Content-Security-Policy"
+            content="default-src 'self';
+                    script-src 'self' https://ajax.googleapis.com 'nonce-abc123';
+                    style-src 'self' 'unsafe-inline';
+                    img-src 'self';
+                    font-src 'self';
                     frame-ancestors 'none';
                     base-uri 'self';
                     connect-src 'self';">
@@ -61,49 +61,61 @@
         </div>
 
         <script nonce="abc123">
-            /*--DOM Content Loaded--*/
-            document.addEventListener("DOMContentLoaded", function() {
-                // DOM Content Loaded control and adjust Heithts
-                Promise.all([
-                    fetchPageContent('Menu', '#nav'),
-                    fetchPageContent('Cover', '#container')
-                ]).then(() => {
-                    adjustContainerHeight();
-                    window.addEventListener('resize', adjustContainerHeight);
-                    // video
-                    videoPlay()
-                    // popup
-                    openPopup();
-                    // tooltip
-                    tooltipEventHandle();
-                    // inter-link class (CSP)
-                    bindInterLinkEvent();
-                });
-            });
-
-            /*--push forward to autoplay the video identified--*/
-            function videoPlay() {
-                window.onload = function() {
-                    var video = document.getElementById("pdbopsVideo");     
-                    // fix.canvas.animation from the conflict video.play
-                    if (video) {
-                        video.loading = "lazy";
-                        video.play().then(function() {
-                            console.log("video is playing");
-                            startCanvasAnimation();
-                        }).catch(function(error) {
-                            console.log("video is not playing:", error);
-                        }).finally(function(){
-                            startCanvasAnimation();
+        /*--A. click event to all inter-link class--*/
+            function bindInterLinkEvent() {
+                    const interLinks = document.querySelectorAll('.inter-link');
+                    interLinks.forEach(link => {
+                        link.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            const pageTitle = this.getAttribute('href').substring(2);
+                            introFetch(pageTitle);
                         });
-                    } else {
-                        console.warn("video is not loading");
-                        startCanvasAnimation();
+                    });
+                }
+
+        /*--B. fetch.js control--*/
+
+            // B1. define introFetch function
+            function introFetch(pageTitle) {
+                fetch(pageTitle).then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not OK.');
                     }
-                };
+                    return response.text();
+                }).then(text => {
+                    const containerElement = document.querySelector('#container');
+                    if (containerElement) {
+                        containerElement.innerHTML = text;
+                        containerElement.scrollTop = 0;
+                        bindInterLinkEvent(); // add inter-link class for CSP
+                    }
+                }).catch(error => {
+                    console.error('There has been a problem with the fetch operation:', error);
+                });
             }
 
-            /*--calculate header-flex to fix scroll issue on container--*/
+            // B2. load pages through fetch.js with error handle
+            function fetchPageContent(pageTitle, targetElementSelector) {
+                return fetch(pageTitle).then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not OK.');
+                    }
+                    return response.text();
+                }).then(text => {
+                    const targetElement = document.querySelector(targetElementSelector);
+                    if (targetElement) {
+                        targetElement.innerHTML = text;
+                        targetElement.scrollTop = 0;
+                        if (targetElementSelector === '#container') { // add inter-link class for CSP
+                           bindInterLinkEvent();
+                        }
+                    }
+                }).catch(error => {
+                    console.error('There has been a problem with the fetch operation:', error);
+                });
+            }
+
+        /*--C. calculate header-flex to fix scroll issue on container--*/
             function adjustContainerHeight() {                
                 const headers = document.querySelectorAll('header h1, header h2');
                 let headerHeight = 0;                    
@@ -124,83 +136,12 @@
                 document.querySelector('#container').style.height = `${containerHeight}px`;
             }
 
-            /*--click event to all inter-link class--*/
-            function bindInterLinkEvent() {
-                const interLinks = document.querySelectorAll('.inter-link');
-                interLinks.forEach(link => {
-                    link.addEventListener('click', function(event) {
-                        event.preventDefault();
-                        const pageTitle = this.getAttribute('href').substring(2);
-                        introFetch(pageTitle);
-                    });
-                });
-            }
-
-            /*--fetch.js control--*/
-            // define introFetch function
-            function introFetch(pageTitle) {
-                fetch(pageTitle).then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not OK.');
-                    }
-                    return response.text();
-                }).then(text => {
-                    const containerElement = document.querySelector('#container');
-                    if (containerElement) {
-                        containerElement.innerHTML = text;
-                        containerElement.scrollTop = 0;
-                        // add inter-link class (CSP)
-                        bindInterLinkEvent();
-                    }
-                }).catch(error => {
-                    console.error('There has been a problem with the fetch operation:', error);
-                });
-            }
-
-            // load pages through fetch.js with error handle
-            function fetchPageContent(pageTitle, targetElementSelector) {
-                return fetch(pageTitle).then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not OK.');
-                    }
-                    return response.text();
-                }).then(text => {
-                    const targetElement = document.querySelector(targetElementSelector);
-                    if (targetElement) {
-                        targetElement.innerHTML = text;
-                        targetElement.scrollTop = 0;
-                        // add inter-link class (CSP)
-                        if (targetElementSelector === '#container') {
-                           bindInterLinkEvent();
-                        }
-                    }
-                }).catch(error => {
-                    console.error('There has been a problem with the fetch operation:', error);
-                });
-            }
-
-            /*--popup--*/
-            function openPopup() {
-                const donotShowAgain = localStorage.getItem('donotShowPopup');
-
-                if (!donotShowAgain) {
-                    document.getElementById('popup').style.display = 'flex';
-                }
-            }
-                document.getElementById('close-popup').addEventListener('click', function() {
-                    const donotShowAgainCheckbox = document.getElementById('donot-show-again');
-
-                    if (donotShowAgainCheckbox.checked) {
-                        localStorage.setItem('donotShowPopup', 'true');
-                    }
-                    document.getElementById('popup').style.display = 'none';
-                });
-
-            /*--tooltip display for table (tr, td, img)--*/
+        /*--D. tooltip display for table(tr, td) and image--*/
             function tooltipEventHandle() {
                 const tooltip = document.createElement('div');
                 tooltip.id = 'tooltip';
-                // mouse event for pc
+
+                // D1. mouse event for pc
                 document.body.appendChild(tooltip);
                 document.addEventListener('mouseover', function (e) {
                     const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
@@ -233,7 +174,8 @@
                         tooltip.style.display = 'none';
                     }
                 });
-                // touch event for mobile
+
+                // D2. touch event for mobile
                 document.addEventListener('touchstart', function (e) {
                     const touch = e.touches[0];
                     const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
@@ -263,7 +205,45 @@
                 });
             }
 
-            /*--canvas animation--*/
+        /*--E. popup--*/
+            function openPopup() {
+                const donotShowAgain = localStorage.getItem('donotShowPopup');
+
+                if (!donotShowAgain) {
+                    document.getElementById('popup').style.display = 'flex';
+                }
+            }
+                document.getElementById('close-popup').addEventListener('click', function() {
+                    const donotShowAgainCheckbox = document.getElementById('donot-show-again');
+
+                    if (donotShowAgainCheckbox.checked) {
+                        localStorage.setItem('donotShowPopup', 'true');
+                    }
+                    document.getElementById('popup').style.display = 'none';
+                });
+
+        /*--F. push forward to autoplay the video identified--*/
+            function videoPlay() {
+                window.onload = function() {
+                    var video = document.getElementById("pdbopsVideo");     
+                    if (video) { // fix.canvas.animation from the conflict video.play
+                        video.loading = "lazy";
+                        video.play().then(function() {
+                            console.log("video is playing");
+                            startCanvasAnimation();
+                        }).catch(function(error) {
+                            console.log("video is not playing:", error);
+                        }).finally(function(){
+                            startCanvasAnimation();
+                        });
+                    } else {
+                        console.warn("video is not loading");
+                        startCanvasAnimation();
+                    }
+                };
+            }
+
+        /*--G. canvas animation--*/
             function startCanvasAnimation() {
                 var canvas = document.getElementById("aniCanvas");
 
@@ -310,6 +290,26 @@
                     console.error("canvas is not loading");
                 }
             }
+
+        /*--Main : DOM Content Loaded--*/
+            document.addEventListener("DOMContentLoaded", function() {
+                // DOM Content Loaded control and adjust Heithts
+                Promise.all([
+                    fetchPageContent('Menu', '#nav'),
+                    fetchPageContent('Cover', '#container')
+                ]).then(() => {
+                    adjustContainerHeight();
+                    window.addEventListener('resize', adjustContainerHeight);
+                    // inter-link class for CSP
+                    bindInterLinkEvent();
+                    // tooltip
+                    tooltipEventHandle();
+                    // popup
+                    openPopup();
+                    // video
+                    videoPlay()
+                });
+            });
         </script>
     </body>
 </html>
