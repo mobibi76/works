@@ -74,44 +74,48 @@
                 }
 
         /*--B. fetch.js control--*/
-
             // B1. define introFetch function
             function introFetch(pageTitle) {
                 fetch(pageTitle).then(response => {
+
                     if (!response.ok) {
-                        throw new Error('Network response was not OK.');
+                        throw new Error('Network Not Good');
                     }
                     return response.text();
                 }).then(text => {
                     const containerElement = document.querySelector('#container');
+
                     if (containerElement) {
                         containerElement.innerHTML = text;
                         containerElement.scrollTop = 0;
                         bindInterLinkEvent(); // add inter-link class for CSP
                     }
                 }).catch(error => {
-                    console.error('There has been a problem with the fetch operation:', error);
+                    console.error('Fetch Operation Not Good:', error);
                 });
             }
 
             // B2. load pages through fetch.js with error handle
             function fetchPageContent(pageTitle, targetElementSelector) {
                 return fetch(pageTitle).then(response => {
+
                     if (!response.ok) {
-                        throw new Error('Network response was not OK.');
+                        throw new Error('Network Not Good');
                     }
                     return response.text();
                 }).then(text => {
                     const targetElement = document.querySelector(targetElementSelector);
+
                     if (targetElement) {
                         targetElement.innerHTML = text;
                         targetElement.scrollTop = 0;
+
                         if (targetElementSelector === '#container') { // add inter-link class for CSP
                            bindInterLinkEvent();
                         }
                     }
                 }).catch(error => {
-                    console.error('There has been a problem with the fetch operation:', error);
+                    console.error('Fetch Operation Not Good:', error);
                 });
             }
 
@@ -162,6 +166,7 @@
                     }
                 });
                 document.addEventListener('mousemove', function (e) {
+
                     if (tooltip.style.display === 'block') {
                         tooltip.style.left = `${e.pageX + 10}px`;
                         tooltip.style.top = `${e.pageY + 10}px`;
@@ -225,23 +230,25 @@
         /*--F. autoplay the video identified--*/
             function videoPlay() {
                 window.onload = function() {
-                    var video = document.getElementById("pdbopsVideo");     
+                    var video = document.getElementById("pdbopsVideo");
+
                     if (video) { // fix play video with canvas animation
                         video.loading = "lazy";
                         video.onloadeddata = function() {
                             video.play().then(function() {
-                                console.log("video is playing");
+                                console.log("Video Play Good");
                                 startCanvasAnimation();
                             }).catch(function(error) {
-                                console.log("video is not playing:", error);
+                                console.log("Video Play Not Good:", error);
+                                startCanvasAnimation();                                
                             });
                         };
                         video.onerror = function() {          
-                            console.warn("video is not loading");
+                            console.warn("Video Load Not Good");
                             startCanvasAnimation();
                         };
                     } else {
-                        console.warn("video element is not loading");
+                        console.warn("Video Element Load Not Good");
                         startCanvasAnimation();
                     }
                 }
@@ -283,7 +290,7 @@
                                 action.y = -action.length;
                             }
                         }
-                        requestAnimationFrame(drawObject);
+                        animationFrameID = requestAnimationFrame(drawObject);
                     }
                     drawObject();
                     window.addEventListener('resize', function() {
@@ -295,7 +302,7 @@
                 }
             }
 
-        /*--Main : DOM Content Loaded--*/
+        /*--Main : page load--*/
             document.addEventListener("DOMContentLoaded", function() {
                 // DOM Content Loaded control and adjust heithts
                 Promise.all([
@@ -313,6 +320,11 @@
                     // video
                     videoPlay()
                 });
+            });
+
+        /*--Sub : canvas animation cancle at page unload--*/
+            window.addEventListener("beforeunload", function() {
+                cancelAnimationFrame(animationFrameID);
             });
         </script>
     </body>
