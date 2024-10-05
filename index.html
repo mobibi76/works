@@ -237,10 +237,11 @@
                         video.loading = "lazy";
                         video.play().then(function() {
                             console.log("Video Play Good");
+                            reduceCanvasAnimationSpeed(); // try_241005
                         }).catch(function(error) {
                             console.log("Video Play Not Good:", error);
                         }).finally(function() {
-                            startCanvasAnimation();                                
+                            startCanvasAnimation();
                         });
                     } else {
                         console.warn("Video Load Not Good");
@@ -252,6 +253,7 @@
         /*--G. canvas animation--*/
             let animationFrameID;
             let isAnimating = false;
+            let animationInterval;
 
             function startCanvasAnimation() {
                 const canvas = document.getElementById("aniCanvas");
@@ -292,7 +294,9 @@
 
                     if (!isAnimating) {
                         isAnimating = true;
-                        drawObject();
+                        animationInterval = setInterval(() => {
+                            animationFrameID = requestAnimationFrame(drawObject);
+                        }, 1000 / 30); // default 30fps
                         console.log("Canvas Animation Good");
                     }
                     window.addEventListener('resize', function() {
@@ -304,12 +308,33 @@
                 }
             }
 
-        /*--H. stop canvas animation--*/
+        /*--H. canvas animation--*/
+            // H1. stop canvas animation
             function stopCanvasAnimation() {
                 if (isAnimating) {
                     cancelAnimationFrame(animationFrameID);
                     isAnimating = false;
                     console.log("Canvas Animation Stopped");
+                }
+            }
+
+            // H2. reduce canvas animation speed
+            function reduceCanvasAnimationSpeed() {
+                if (isAnimating) {
+                    clearInterval(animationInterval);
+                    animationInterval = setInterval(() => {
+                        animationFrameID = requestAnimationFrame(drawObject);
+                    }, 1000 / 15) // reduce 15fps
+                }
+            }
+
+            // H3. restore canvas animation speed
+            function restoreCanvasAnimationSpeed() {
+                if (isAnimating) {
+                    clearInterval(animationInterval);
+                    animationInterval = setInterval(() => {
+                        animationFrameID = requestAnimationFrame(drawObject);
+                    }, 1000 / 30); // restore 30fps
                 }
             }
 
