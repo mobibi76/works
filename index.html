@@ -295,6 +295,8 @@
                         animationFrameID = requestAnimationFrame(drawObject);
                     }
                     drawObject();
+                    console.log("Canvas Animation Good");
+
                     window.addEventListener('resize', function() {
                         canvas.width = window.innerWidth;
                         canvas.height = window.innerHeight;
