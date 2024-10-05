@@ -262,8 +262,7 @@
 
                 if (canvas) {
                     var obj = canvas.getContext('2d');
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
+                    resizeCanvasAnimation(canvas);
                     var objAction = [];
 
                     for (var i = 0; i <50; i++) {
@@ -298,12 +297,18 @@
                     console.log("Canvas Animation Good");
 
                     window.addEventListener('resize', function() {
-                        canvas.width = window.innerWidth;
-                        canvas.height = window.innerHeight;
+                        resizeCanvasAnimation(canvas);
                     });
                 } else {
                     console.error("Canvas Load Not Good");
                 }
+            }
+
+        /*--H. canvas animation resize--*/
+            function resizeCanvasAnimation() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                console.log(`Canvas Resized: ${canvas.width} x ${canvas.height}`);
             }
 
         /*--Main : page load--*/
