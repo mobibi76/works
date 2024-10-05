@@ -234,24 +234,19 @@
 
                     if (video) { // fix play video with canvas animation
                         video.loading = "lazy";
-                        video.onloadeddata = function() {
-                            video.play().then(function() {
-                                console.log("Video Play Good");
-                                startCanvasAnimation();
-                            }).catch(function(error) {
-                                console.log("Video Play Not Good:", error);
-                                startCanvasAnimation();                                
-                            });
-                        };
-                        video.onerror = function() {          
-                            console.warn("Video Load Not Good");
+                        video.play().then(function() {
+                            console.log("Video Play Good");
                             startCanvasAnimation();
-                        };
+                        }).catch(function(error) {
+                            console.log("Video Play Not Good:", error);
+                        }).finally(function() {
+                            startCanvasAnimation();                                
+                        });
                     } else {
-                        console.warn("Video Element Load Not Good");
+                        console.warn("Video Load Not Good");
                         startCanvasAnimation();
                     }
-                }
+                };
             }
 
         /*--G. canvas animation--*/
@@ -261,7 +256,8 @@
                 var canvas = document.getElementById("aniCanvas");
 
                 if (canvas) {
-                    resizeCanvasAnimation(canvas);
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
                     var obj = canvas.getContext('2d');
                     var objAction = [];
 
@@ -291,23 +287,17 @@
                                 action.y = -action.length;
                             }
                         }
-                        animationFrameID = requestAnimationFrame(drawObject);
+                        requestAnimationFrame(drawObject);
                     }
                     drawObject();
                     console.log("Canvas Animation Good");
                     window.addEventListener('resize', function() {
-                        resizeCanvasAnimation(canvas);
+                        canvas.width = window.innerWidth;
+                        canvas.height = window.innerHeight;
                     });
                 } else {
                     console.error("Canvas Load Not Good");
                 }
-            }
-
-        /*--H. canvas animation resize--*/
-            function resizeCanvasAnimation(canvas) {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                console.log(`Canvas Resized: ${canvas.width} x ${canvas.height}`);
             }
 
         /*--Main : page load--*/
@@ -318,11 +308,7 @@
                     fetchPageContent('Cover', '#container')
                 ]).then(() => {
                     adjustContainerHeight();
-                    resizeCanvasAnimation(document.getElementById("aniCanvas"));
-                    window.addEventListener('resize', function() {
-                        adjustContainerHeight();
-                        resizeCanvasAnimation(document.getElementById("aniCanvas"));
-                    });
+                    window.addEventListener('resize', adjustContainerHeight);
                     // inter-link class for CSP
                     bindInterLinkEvent();
                     // tooltip
