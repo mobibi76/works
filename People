@@ -289,9 +289,9 @@
 </table>
 <!--tooltip display-->
 <div id="tooltip"></div>
-<img src="./private_img/VRAR_pf.png" width="100%">
-<img src="./private_img/Global_pf.png" width="100%">
-<img src="./private_img/Community_pf.png" width="100%">
+<img src="./private_img/VRAR_pf.png" width="90%">
+<img src="./private_img/Global_pf.png" width="90%">
+<img src="./private_img/Community_pf.png" width="90%">
 <footer>
     <p id="formlink">
         <a href="#!Blog" class="inter-link">🖱️블로그(BLOG)🖱️</a>
