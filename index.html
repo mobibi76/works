@@ -64,15 +64,15 @@
         <script nonce="abc123">
         /*--A. click event to all inter-link class--*/
             function bindInterLinkEvent() {
-                    const interLinks = document.querySelectorAll('.inter-link');
-                    interLinks.forEach(link => {
-                        link.addEventListener('click', function(event) {
-                            event.preventDefault();
-                            const pageTitle = this.getAttribute('href').substring(2);
-                            introFetch(pageTitle);
-                        });
+                const interLinks = document.querySelectorAll('.inter-link');
+                interLinks.forEach(link => {
+                    link.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        const pageTitle = this.getAttribute('href').substring(2);
+                        introFetch(pageTitle);
                     });
-                }
+                });
+            }
 
         /*--B. fetch.js control--*/
             // B1. define introFetch function
@@ -84,13 +84,14 @@
                     }
                     return response.text();
                 }).then(text => {
-                    const containerElement = document.querySelector('#container');
-
-                    if (containerElement) {
-                        containerElement.innerHTML = text;
-                        containerElement.scrollTop = 0;
-                        bindInterLinkEvent(); // add inter-link class for CSP
-                    }
+                    requestAnimationFrame(() => {
+                        const containerElement = document.querySelector('#container');
+                        if (containerElement) {
+                            containerElement.innerHTML = text;
+                            containerElement.scrollTop = 0;
+                            bindInterLinkEvent(); // add inter-link class for CSP
+                        }
+                    });
                 }).catch(error => {
                     console.error('Fetch Operation Not Good:', error);
                 });
@@ -105,16 +106,17 @@
                     }
                     return response.text();
                 }).then(text => {
-                    const targetElement = document.querySelector(targetElementSelector);
+                    requestAnimationFrame(() => {
+                        const targetElement = document.querySelector(targetElementSelector);
+                        if (targetElement) {
+                            targetElement.innerHTML = text;
+                            targetElement.scrollTop = 0;
 
-                    if (targetElement) {
-                        targetElement.innerHTML = text;
-                        targetElement.scrollTop = 0;
-
-                        if (targetElementSelector === '#container') { // add inter-link class for CSP
-                           bindInterLinkEvent();
+                            if (targetElementSelector === '#container') { // add inter-link class for CSP
+                                bindInterLinkEvent();
+                            }
                         }
-                    }
+                    });
                 }).catch(error => {
                     console.error('Fetch Operation Not Good:', error);
                 });
@@ -141,12 +143,19 @@
                 document.querySelector('#container').style.height = `${containerHeight}px`;
             }
 
-        /*--D. tooltip display for table(tr, td) and image--*/
+        /*--D. resize event with debounce--*/
+            let resizeTimeout;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(adjustContainerHeight, 100);
+            });
+
+        /*--E. tooltip display for table(tr, td) and image--*/
             function tooltipEventHandle() {
                 const tooltip = document.createElement('div');
                 tooltip.id = 'tooltip';
 
-                // D1. mouse event for pc
+                // E1. mouse event for pc
                 document.body.appendChild(tooltip);
                 document.addEventListener('mouseover', function (e) {
                     const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
@@ -167,7 +176,6 @@
                     }
                 });
                 document.addEventListener('mousemove', function (e) {
-
                     if (tooltip.style.display === 'block') {
                         tooltip.style.left = `${e.pageX + 10}px`;
                         tooltip.style.top = `${e.pageY + 10}px`;
@@ -181,7 +189,7 @@
                     }
                 });
 
-                // D2. touch event for mobile
+                // E2. touch event for mobile
                 document.addEventListener('touchstart', function (e) {
                     const touch = e.touches[0];
                     const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
@@ -211,7 +219,7 @@
                 });
             }
 
-        /*--E. popup--*/
+        /*--F. popup--*/
             function openPopup() {
                 const donotShowAgain = localStorage.getItem('donotShowPopup');
 
@@ -219,16 +227,16 @@
                     document.getElementById('popup').style.display = 'flex';
                 }
             }
-                document.getElementById('close-popup').addEventListener('click', function() {
-                    const donotShowAgainCheckbox = document.getElementById('donot-show-again');
+            document.getElementById('close-popup').addEventListener('click', function() {
+                const donotShowAgainCheckbox = document.getElementById('donot-show-again');
 
-                    if (donotShowAgainCheckbox.checked) {
-                        localStorage.setItem('donotShowPopup', 'true');
-                    }
-                    document.getElementById('popup').style.display = 'none';
-                });
+                if (donotShowAgainCheckbox.checked) {
+                    localStorage.setItem('donotShowPopup', 'true');
+                }
+                document.getElementById('popup').style.display = 'none';
+            });
 
-        /*--F. autoplay the video identified--*/
+        /*--G. autoplay the video identified--*/
             function videoPlay() {
                 window.onload = function() {
                     const video = document.getElementById("pdbopsVideo");
@@ -249,10 +257,11 @@
                 };
             }
 
-        /*--G. canvas animation--*/
+        /*--H. canvas animation--*/
             let animationFrameID;
             let isAnimating = false;
             let objAction = [];
+            const FPS_LIMIT = 30; // Set FPS limit for animation
 
             function startCanvasAnimation() {
                 const canvas = document.getElementById("aniCanvas");
@@ -263,8 +272,8 @@
                     const obj = canvas.getContext('2d');
 
                     if (objAction.length === 0) {
-                        for (let i = 0; i <30; i++) {
-                            objAction.push ({
+                        for (let i = 0; i < 30; i++) {
+                            objAction.push({
                                 x: Math.random() * canvas.width,
                                 y: Math.random() * canvas.height,
                                 radius: Math.random() * 5 + 2,
@@ -272,6 +281,7 @@
                             });
                         }
                     }
+
                     let resizeTimeout; // throttled resize event
                     window.addEventListener('resize', function () {
                         clearTimeout(resizeTimeout);
@@ -281,22 +291,29 @@
                         }, 100);
                     });
 
-                    function drawObject() {
-                        obj.clearRect(0, 0, canvas.width, canvas.height);
-                        obj.fillStyle = 'rgba(175, 205, 235, 0.3)';
+                    let lastFrameTime = 0;
 
-                        for (let i = 0; i < objAction.length; i++) {
-                            const action = objAction[i];
-                            obj.beginPath();
-                            obj.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
-                            obj.fill();
-                            action.y += action.velocity;
+                    function drawObject(timestamp) {
+                        if (!lastFrameTime || timestamp - lastFrameTime >= 1000 / FPS_LIMIT) {
+                            obj.clearRect(0, 0, canvas.width, canvas.height);
+                            obj.fillStyle = 'rgba(175, 205, 235, 0.3)';
 
-                            if (action.y > canvas.height) {
-                                action.y = -action.radius;
-                                action.x = Math.random() * canvas.width;
+                            for (let i = 0; i < objAction.length; i++) {
+                                const action = objAction[i];
+                                obj.beginPath();
+                                obj.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
+                                obj.fill();
+                                action.y += action.velocity;
+
+                                if (action.y > canvas.height) {
+                                    action.y = -action.radius;
+                                    action.x = Math.random() * canvas.width;
+                                }
                             }
+
+                            lastFrameTime = timestamp;
                         }
+
                         animationFrameID = requestAnimationFrame(drawObject);
                     }
 
@@ -310,7 +327,7 @@
                 }
             }
 
-        /*--H. stop canvas animation--*/
+        /*--I. stop canvas animation--*/
             function stopCanvasAnimation() {
                 if (isAnimating) {
                     cancelAnimationFrame(animationFrameID);
@@ -321,13 +338,12 @@
 
         /*--Main : page load--*/
             document.addEventListener("DOMContentLoaded", function() {
-                // DOM Content Loaded control and adjust heithts
+                // DOM Content Loaded control and adjust heights
                 Promise.all([
                     fetchPageContent('Menu', '#nav'),
                     fetchPageContent('Cover', '#container')
                 ]).then(() => {
                     adjustContainerHeight();
-                    window.addEventListener('resize', adjustContainerHeight);
                     // inter-link class for CSP
                     bindInterLinkEvent();
                     // tooltip
@@ -339,7 +355,7 @@
                 });
             });
 
-        /*--Sub : canvas animation cancle at page unload--*/
+        /*--Sub : canvas animation cancel at page unload--*/
             window.addEventListener("beforeunload", stopCanvasAnimation);
         </script>
     </body>
