@@ -241,17 +241,41 @@
                 window.onload = function() {
                     const video = document.getElementById("pdbopsVideo");
 
-                    if (video) { // fix play video with canvas animation
+                    if (video) {
                         video.loading = "lazy";
-                        video.play().then(function() {
-                            console.log("Video Play Good");
-                        }).catch(function(error) {
-                            console.log("Video Play Not Good:", error);
-                        }).finally(function() {
-                            startCanvasAnimation();                                
+                        video.preload = "auto";                        
+                        video.addEventListener('canplaythrough', function() {
+                            console.log("Video Load and Play Ready");
+                            video.play().then(function() {
+                                console.log("Video Play Good");
+                            }).catch(function(error) {
+                                console.log("Video Play Not Good:", error);
+                            }).finally(function() {
+                                startCanvasAnimation();
+                            });
+                        });
+
+                        video.addEventListener('loadeddata', function() {
+                            console.log("Video Data Load but Buffer");
+                        });
+
+                        const loadTimeout = setTimeout(function() {
+                            if (!video.readyState >= 4) {
+                                console.log("Video Take Long, Start Animation");
+                                startCanvasAnimation();
+                            }
+                        }, 5000);
+
+                        video.addEventListener('play', function() {
+                            clearTimeout(loadTimeout);
+                        });
+
+                        video.addEventListener('error', function() {
+                            console.error("Video Load Error, Start Animation");
+                            startCanvasAnimation();
                         });
                     } else {
-                        console.warn("Video Load Not Good");
+                        console.warn("Video Element No, Start Animation");
                         startCanvasAnimation();
                     }
                 };
