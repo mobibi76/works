@@ -146,8 +146,8 @@
                 const tooltip = document.createElement('div');
                 tooltip.id = 'tooltip';
                 document.body.appendChild(tooltip);
-
                 let currentTooltipTarget = null;
+                let tooltipPosition = { left: 0, top: 0 };
 
                 // D1. mouse event for pc
                 document.addEventListener('click', function (e) {
@@ -169,9 +169,11 @@
                                 tooltip.classList.add('tooltip-text');
                             }
                             tooltip.style.display = 'block';
-                            tooltip.style.left = `${e.pageX + 10}px`;
-                            tooltip.style.top = `${e.pageY + 10}px`;
-                            currentTooltipTarget = target;
+                            tooltip.style.position = 'fixed';
+                            tooltipPosition = { left: e.clientX + 10, top: e.clientY + 10 };
+                            tooltip.style.left = `${tooltipPosition.left}px`;
+                            tooltip.style.top = `${tooltipPosition.top}px`;
+                            currentTooltipTarget = target; 
                         }
                     } else {
                         tooltip.style.display = 'none';
@@ -200,8 +202,11 @@
                                 tooltip.classList.add('tooltip-text');
                             }
                             tooltip.style.display = 'block';
-                            tooltip.style.left = `${touch.pageX + 10}px`;
-                            tooltip.style.top = `${touch.pageY + 10}px`;
+                            tooltip.style.position = 'fixed';
+                            tooltipPosition = { left: touch.clientX + 10, top: touch.clientY + 10 };
+                            tooltip.style.left = `${tooltipPosition.left}px`;
+                            tooltip.style.top = `${tooltipPosition.top}px`;
+
                             currentTooltipTarget = target;
                         }
                     } else {
@@ -210,7 +215,6 @@
                     }
                 });
             }
-
 
         /*--E. popup--*/
             function openPopup() {
