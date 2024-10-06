@@ -61,66 +61,66 @@
             </div>
         </div>
 
-    <script nonce="abc123">
+        <script nonce="abc123">
         /*--A. click event to all inter-link class--*/
             function bindInterLinkEvent() {
-                const interLinks = document.querySelectorAll('.inter-link');
-                interLinks.forEach(link => {
-                    link.addEventListener('click', function(event) {
-                        event.preventDefault();
-                        const pageTitle = this.getAttribute('href').substring(2);
-                        introFetch(pageTitle);
+                    const interLinks = document.querySelectorAll('.inter-link');
+                    interLinks.forEach(link => {
+                        link.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            const pageTitle = this.getAttribute('href').substring(2);
+                            introFetch(pageTitle);
+                        });
                     });
-                });
-            }
+                }
 
         /*--B. fetch.js control--*/
-            // B1. define introFetch
+            // B1. define introFetch function
             function introFetch(pageTitle) {
                 fetch(pageTitle).then(response => {
+
                     if (!response.ok) {
-                        throw new Error('Network Failure');
+                        throw new Error('Network Not Good');
                     }
                     return response.text();
                 }).then(text => {
-                    requestAnimationFrame(() => {
-                        const containerElement = document.querySelector('#container');
-                        if (containerElement) {
-                            containerElement.innerHTML = text;
-                            containerElement.scrollTop = 0;
-                            bindInterLinkEvent();
-                        }
-                    });
+                    const containerElement = document.querySelector('#container');
+
+                    if (containerElement) {
+                        containerElement.innerHTML = text;
+                        containerElement.scrollTop = 0;
+                        bindInterLinkEvent(); // add inter-link class for CSP
+                    }
                 }).catch(error => {
-                    console.error('Fetch Operation Failure:', error);
+                    console.error('Fetch Operation Not Good:', error);
                 });
             }
 
             // B2. load pages through fetch.js with error handle
             function fetchPageContent(pageTitle, targetElementSelector) {
                 return fetch(pageTitle).then(response => {
+
                     if (!response.ok) {
-                        throw new Error('Network Failure');
+                        throw new Error('Network Not Good');
                     }
                     return response.text();
                 }).then(text => {
-                    requestAnimationFrame(() => {
-                        const targetElement = document.querySelector(targetElementSelector);
-                        if (targetElement) {
-                            targetElement.innerHTML = text;
-                            targetElement.scrollTop = 0;
+                    const targetElement = document.querySelector(targetElementSelector);
 
-                            if (targetElementSelector === '#container') {
-                                bindInterLinkEvent();
-                            }
+                    if (targetElement) {
+                        targetElement.innerHTML = text;
+                        targetElement.scrollTop = 0;
+
+                        if (targetElementSelector === '#container') { // add inter-link class for CSP
+                           bindInterLinkEvent();
                         }
-                    });
+                    }
                 }).catch(error => {
-                    console.error('Fetch Operation Failure:', error);
+                    console.error('Fetch Operation Not Good:', error);
                 });
             }
 
-        /*--C. calculate height to fix scroll issue on container--*/
+        /*--C. calculate header-flex to fix scroll issue on container--*/
             function adjustContainerHeight() {                
                 const headers = document.querySelectorAll('header h1, header h2');
                 let headerHeight = 0;                    
@@ -141,19 +141,12 @@
                 document.querySelector('#container').style.height = `${containerHeight}px`;
             }
 
-        /*--D. resize event with debounce--*/
-            let resizeTimeout;
-            window.addEventListener('resize', function () {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(adjustContainerHeight, 100);
-            });
-
-        /*--E. tooltip display for table(tr, td) and image--*/
+        /*--D. tooltip display for table(tr, td) and image--*/
             function tooltipEventHandle() {
                 const tooltip = document.createElement('div');
                 tooltip.id = 'tooltip';
 
-                // E1. mouse event for pc
+                // D1. mouse event for pc
                 document.body.appendChild(tooltip);
                 document.addEventListener('mouseover', function (e) {
                     const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
@@ -174,6 +167,7 @@
                     }
                 });
                 document.addEventListener('mousemove', function (e) {
+
                     if (tooltip.style.display === 'block') {
                         tooltip.style.left = `${e.pageX + 10}px`;
                         tooltip.style.top = `${e.pageY + 10}px`;
@@ -187,7 +181,7 @@
                     }
                 });
 
-                // E2. touch event for mobile
+                // D2. touch event for mobile
                 document.addEventListener('touchstart', function (e) {
                     const touch = e.touches[0];
                     const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
@@ -217,7 +211,7 @@
                 });
             }
 
-        /*--F. popup--*/
+        /*--E. popup--*/
             function openPopup() {
                 const donotShowAgain = localStorage.getItem('donotShowPopup');
 
@@ -225,135 +219,116 @@
                     document.getElementById('popup').style.display = 'flex';
                 }
             }
-            document.getElementById('close-popup').addEventListener('click', function() {
-                const donotShowAgainCheckbox = document.getElementById('donot-show-again');
+                document.getElementById('close-popup').addEventListener('click', function() {
+                    const donotShowAgainCheckbox = document.getElementById('donot-show-again');
 
-                if (donotShowAgainCheckbox.checked) {
-                    localStorage.setItem('donotShowPopup', 'true');
-                }
-                document.getElementById('popup').style.display = 'none';
-            });
+                    if (donotShowAgainCheckbox.checked) {
+                        localStorage.setItem('donotShowPopup', 'true');
+                    }
+                    document.getElementById('popup').style.display = 'none';
+                });
 
-        /*--G. autoplay the video identified--*/
+        /*--F. autoplay the video identified--*/
             function videoPlay() {
-                const video = document.getElementById("pdbopsVideo");
+                window.onload = function() {
+                    const video = document.getElementById("pdbopsVideo");
 
-                if (video) {
-
-                    // G1. video display, start animation
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                video.preload = "auto";
-                                video.load();
-                                video.play().then(function() {
-                                    console.log("Video Play Success");
-                                }).catch(function(error) {
-                                    console.error("Video Play Failure:", error);
-                                }).finally(function() {
-                                    requestIdleCallback(startCanvasAnimation);
-                                });
-                                observer.disconnect();
-                            }
+                    if (video) { // fix play video with canvas animation
+                        video.loading = "lazy";
+                        video.play().then(function() {
+                            console.log("Video Play Good");
+                        }).catch(function(error) {
+                            console.log("Video Play Not Good:", error);
+                        }).finally(function() {
+                            startCanvasAnimation();                                
                         });
-                    });
-                    observer.observe(video);
-
-                    // G2. video razy, start animation
-                    const loadTimeout = setTimeout(function() {
-                        if (video.readyState < 3) {
-                            console.warn("Video Load Delay, Start Animation");
-                            requestIdleCallback(startCanvasAnimation);
-                        }
-                    }, 3000);
-
-                    video.addEventListener('error', function() {
-                        console.error("Video Load Error, Start Animation");
-                        requestIdleCallback(startCanvasAnimation);
-                    });
-                } else {
-                    console.warn("No Video Element, Start Animation");
-                    requestIdleCallback(startCanvasAnimation);
-                }
+                    } else {
+                        console.warn("Video Load Not Good");
+                        startCanvasAnimation();
+                    }
+                };
             }
 
-        /*--H. canvas animation--*/
+        /*--G. canvas animation--*/
             let animationFrameID;
             let isAnimating = false;
-            let objAction = [];
-            const FPS_LIMIT = 30;
 
             function startCanvasAnimation() {
                 const canvas = document.getElementById("aniCanvas");
 
-                if (canvas && !isAnimating) {
+                if (canvas) {
                     canvas.width = window.innerWidth;
                     canvas.height = window.innerHeight;
-                    const ctx = canvas.getContext('2d');
+                    const obj = canvas.getContext('2d');
+                    const objAction = [];
 
-                    if (objAction.length === 0) {
-                        for (let i = 0; i < 30; i++) {
-                            objAction.push({
-                                x: Math.random() * canvas.width,
-                                y: Math.random() * canvas.height,
-                                radius: Math.random() * 5 + 2,
-                                velocity: Math.random() * 1 + 1
-                            });
-                        }
+                    for (let i = 0; i <30; i++) {
+                        objAction.push ({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            radius: Math.random() * 5 + 2,
+                            velocity: Math.random() * 1 + 1
+                        });
                     }
 
-                    let lastFrameTime = 0;
+                    function drawObject() {
+                        obj.clearRect(0, 0, canvas.width, canvas.height);
+                        obj.fillStyle = 'rgba(175, 205, 235, 0.3)';
 
-                    function drawObject(timestamp) {
-                        if (!lastFrameTime || timestamp - lastFrameTime >= 1000 / FPS_LIMIT) {
-                            ctx.clearRect(0, 0, canvas.width, canvas.height);
-                            ctx.fillStyle = 'rgba(175, 205, 235, 0.3)';
+                        for (let i = 0; i < objAction.length; i++) {
+                            const action = objAction[i];
+                            obj.beginPath();
+                            obj.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
+                            obj.fill();
+                            action.y += action.velocity;
 
-                            objAction.forEach(action => {
-                                ctx.beginPath();
-                                ctx.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
-                                ctx.fill();
-                                action.y += action.velocity;
-
-                                if (action.y > canvas.height) {
-                                    action.y = -action.radius;
-                                    action.x = Math.random() * canvas.width;
-                                }
-                            });
-
-                            lastFrameTime = timestamp;
+                            if (action.y > canvas.height) {
+                                action.y = -action.radius;
+                                action.x = Math.random() * canvas.width;
+                            }
                         }
-
                         animationFrameID = requestAnimationFrame(drawObject);
                     }
 
-                    isAnimating = true;
-                    requestIdleCallback(() => drawObject(performance.now()));
-                    console.log("Canvas Animation Success");
+                    if (!isAnimating) {
+                        isAnimating = true;
+                        drawObject();
+                        console.log("Canvas Animation Good");
+                    }
+                    window.addEventListener('resize', function() {
+                        canvas.width = window.innerWidth;
+                        canvas.height = window.innerHeight;
+                    });
                 } else {
-                    console.error("Canvas Load Failure or isAnimating");
+                    console.error("Canvas Load Not Good");
                 }
             }
 
-        /*--I. stop canvas animation--*/
+        /*--H. stop canvas animation--*/
             function stopCanvasAnimation() {
                 if (isAnimating) {
                     cancelAnimationFrame(animationFrameID);
                     isAnimating = false;
-                    console.log("Canvas Animation Stop");
+                    console.log("Canvas Animation Stopped");
                 }
             }
 
-        /*--Main : page load (DOM)--*/
+        /*--Main : page load--*/
             document.addEventListener("DOMContentLoaded", function() {
+                // DOM Content Loaded control and adjust heithts
                 Promise.all([
                     fetchPageContent('Menu', '#nav'),
                     fetchPageContent('Cover', '#container')
                 ]).then(() => {
                     adjustContainerHeight();
+                    window.addEventListener('resize', adjustContainerHeight);
+                    // inter-link class for CSP
                     bindInterLinkEvent();
+                    // tooltip
                     tooltipEventHandle();
+                    // popup
                     openPopup();
+                    // video
                     videoPlay();
                 });
             });
