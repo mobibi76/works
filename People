@@ -289,9 +289,9 @@
     <tr>
         <td id="year">포트폴리오</td>
         <td>
-            <img src="./private_img/VRAR_pf.png" width="95%">
-            <img src="./private_img/Global_pf.png" width="95%">
-            <img src="./private_img/Community_pf.png" width="95%">
+            <img src="./private_img/VRAR_pf.png" width="100%">
+            <img src="./private_img/Global_pf.png" width="100%">
+            <img src="./private_img/Community_pf.png" width="100%">
         </td>
     </tr>
 </table>
