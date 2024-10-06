@@ -88,7 +88,7 @@
                         if (containerElement) {
                             containerElement.innerHTML = text;
                             containerElement.scrollTop = 0;
-                            bindInterLinkEvent(); // add inter-link class for CSP
+                            bindInterLinkEvent();
                         }
                     });
                 }).catch(error => {
@@ -110,7 +110,7 @@
                             targetElement.innerHTML = text;
                             targetElement.scrollTop = 0;
 
-                            if (targetElementSelector === '#container') { // add inter-link class for CSP
+                            if (targetElementSelector === '#container') {
                                 bindInterLinkEvent();
                             }
                         }
@@ -281,7 +281,7 @@
             let animationFrameID;
             let isAnimating = false;
             let objAction = [];
-            const FPS_LIMIT = 30; // Set FPS limit for animation
+            const FPS_LIMIT = 30;
 
             function startCanvasAnimation() {
                 const canvas = document.getElementById("aniCanvas");
