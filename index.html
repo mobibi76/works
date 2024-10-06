@@ -207,11 +207,10 @@
                         currentTooltipTarget = null;
                     }
                 });
-                document.addEventListener('mousedown', function (e) {
-                    if (e.button === 1) {
-                        tooltip.style.display = 'none';
-                        currentTooltipTarget = null;
-                    }
+
+                document.addEventListener('wheel', function () {
+                    tooltip.style.display = 'none';
+                    currentTooltipTarget = null;
                 });
             }
 
