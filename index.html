@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <script nonce="abc123">
+    <script nonce="abc123">
         /*--A. click event to all inter-link class--*/
             function bindInterLinkEvent() {
                 const interLinks = document.querySelectorAll('.inter-link');
@@ -75,10 +75,9 @@
             }
 
         /*--B. fetch.js control--*/
-            // B1. define introFetch function
+            // B1. define introFetch
             function introFetch(pageTitle) {
                 fetch(pageTitle).then(response => {
-
                     if (!response.ok) {
                         throw new Error('Network Not Good');
                     }
@@ -100,7 +99,6 @@
             // B2. load pages through fetch.js with error handle
             function fetchPageContent(pageTitle, targetElementSelector) {
                 return fetch(pageTitle).then(response => {
-
                     if (!response.ok) {
                         throw new Error('Network Not Good');
                     }
@@ -122,7 +120,7 @@
                 });
             }
 
-        /*--C. calculate header-flex to fix scroll issue on container--*/
+        /*--C. calculate height to fix scroll issue on container--*/
             function adjustContainerHeight() {                
                 const headers = document.querySelectorAll('header h1, header h2');
                 let headerHeight = 0;                    
@@ -238,47 +236,45 @@
 
         /*--G. autoplay the video identified--*/
             function videoPlay() {
-                window.onload = function() {
-                    const video = document.getElementById("pdbopsVideo");
+                const video = document.getElementById("pdbopsVideo");
 
-                    if (video) {
-                        video.loading = "lazy";
-                        video.preload = "auto";                        
-                        video.addEventListener('canplaythrough', function() {
-                            console.log("Video Load and Play Ready");
-                            video.play().then(function() {
-                                console.log("Video Play Good");
-                            }).catch(function(error) {
-                                console.log("Video Play Not Good:", error);
-                            }).finally(function() {
-                                startCanvasAnimation();
-                            });
-                        });
+                if (video) {
 
-                        video.addEventListener('loadeddata', function() {
-                            console.log("Video Data Load but Buffer");
-                        });
-
-                        const loadTimeout = setTimeout(function() {
-                            if (!video.readyState >= 4) {
-                                console.log("Video Take Long, Start Animation");
-                                startCanvasAnimation();
+                    // G1. video display, start animation
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                video.preload = "auto";
+                                video.load();
+                                video.play().then(function() {
+                                    console.log("Video Play Good");
+                                }).catch(function(error) {
+                                    console.error("Video Play Not Good:", error);
+                                }).finally(function() {
+                                    requestIdleCallback(startCanvasAnimation);
+                                });
+                                observer.disconnect();
                             }
-                        }, 5000);
-
-                        video.addEventListener('play', function() {
-                            clearTimeout(loadTimeout);
                         });
+                    });
+                    observer.observe(video);
 
-                        video.addEventListener('error', function() {
-                            console.error("Video Load Error, Start Animation");
-                            startCanvasAnimation();
-                        });
-                    } else {
-                        console.warn("Video Element No, Start Animation");
-                        startCanvasAnimation();
-                    }
-                };
+                    // G2. video razy, start animation
+                    const loadTimeout = setTimeout(function() {
+                        if (video.readyState < 3) {
+                            console.warn("Video Load Delayed, starting animation");
+                            requestIdleCallback(startCanvasAnimation);
+                        }
+                    }, 3000);
+
+                    video.addEventListener('error', function() {
+                        console.error("Video Load Error, Start Animation");
+                        requestIdleCallback(startCanvasAnimation);
+                    });
+                } else {
+                    console.warn("Video Element Not Found, Starting Animation");
+                    requestIdleCallback(startCanvasAnimation);
+                }
             }
 
         /*--H. canvas animation--*/
@@ -290,10 +286,10 @@
             function startCanvasAnimation() {
                 const canvas = document.getElementById("aniCanvas");
 
-                if (canvas) {
+                if (canvas && !isAnimating) {
                     canvas.width = window.innerWidth;
                     canvas.height = window.innerHeight;
-                    const obj = canvas.getContext('2d');
+                    const ctx = canvas.getContext('2d');
 
                     if (objAction.length === 0) {
                         for (let i = 0; i < 30; i++) {
@@ -306,34 +302,24 @@
                         }
                     }
 
-                    let resizeTimeout; // throttled resize event
-                    window.addEventListener('resize', function () {
-                        clearTimeout(resizeTimeout);
-                        resizeTimeout = setTimeout(() => {
-                            canvas.width = window.innerWidth;
-                            canvas.height = window.innerHeight;
-                        }, 100);
-                    });
-
                     let lastFrameTime = 0;
 
                     function drawObject(timestamp) {
                         if (!lastFrameTime || timestamp - lastFrameTime >= 1000 / FPS_LIMIT) {
-                            obj.clearRect(0, 0, canvas.width, canvas.height);
-                            obj.fillStyle = 'rgba(175, 205, 235, 0.3)';
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            ctx.fillStyle = 'rgba(175, 205, 235, 0.3)';
 
-                            for (let i = 0; i < objAction.length; i++) {
-                                const action = objAction[i];
-                                obj.beginPath();
-                                obj.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
-                                obj.fill();
+                            objAction.forEach(action => {
+                                ctx.beginPath();
+                                ctx.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
+                                ctx.fill();
                                 action.y += action.velocity;
 
                                 if (action.y > canvas.height) {
                                     action.y = -action.radius;
                                     action.x = Math.random() * canvas.width;
                                 }
-                            }
+                            });
 
                             lastFrameTime = timestamp;
                         }
@@ -341,13 +327,11 @@
                         animationFrameID = requestAnimationFrame(drawObject);
                     }
 
-                    if (!isAnimating) {
-                        isAnimating = true;
-                        drawObject();
-                        console.log("Canvas Animation Good");
-                    }
+                    isAnimating = true;
+                    requestIdleCallback(() => drawObject(performance.now()));
+                    console.log("Canvas Animation Good");
                 } else {
-                    console.error("Canvas Load Not Good");
+                    console.error("Canvas Load Not Good or Already Animating");
                 }
             }
 
@@ -360,21 +344,16 @@
                 }
             }
 
-        /*--Main : page load--*/
+        /*--Main : page load (DOM)--*/
             document.addEventListener("DOMContentLoaded", function() {
-                // DOM Content Loaded control and adjust heights
                 Promise.all([
                     fetchPageContent('Menu', '#nav'),
                     fetchPageContent('Cover', '#container')
                 ]).then(() => {
                     adjustContainerHeight();
-                    // inter-link class for CSP
                     bindInterLinkEvent();
-                    // tooltip
                     tooltipEventHandle();
-                    // popup
                     openPopup();
-                    // video
                     videoPlay();
                 });
             });
