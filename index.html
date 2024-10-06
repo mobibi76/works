@@ -79,7 +79,7 @@
             function introFetch(pageTitle) {
                 fetch(pageTitle).then(response => {
                     if (!response.ok) {
-                        throw new Error('Network Not Good');
+                        throw new Error('Network Failure');
                     }
                     return response.text();
                 }).then(text => {
@@ -92,7 +92,7 @@
                         }
                     });
                 }).catch(error => {
-                    console.error('Fetch Operation Not Good:', error);
+                    console.error('Fetch Operation Failure:', error);
                 });
             }
 
@@ -100,7 +100,7 @@
             function fetchPageContent(pageTitle, targetElementSelector) {
                 return fetch(pageTitle).then(response => {
                     if (!response.ok) {
-                        throw new Error('Network Not Good');
+                        throw new Error('Network Failure');
                     }
                     return response.text();
                 }).then(text => {
@@ -116,7 +116,7 @@
                         }
                     });
                 }).catch(error => {
-                    console.error('Fetch Operation Not Good:', error);
+                    console.error('Fetch Operation Failure:', error);
                 });
             }
 
@@ -247,9 +247,9 @@
                                 video.preload = "auto";
                                 video.load();
                                 video.play().then(function() {
-                                    console.log("Video Play Good");
+                                    console.log("Video Play Success");
                                 }).catch(function(error) {
-                                    console.error("Video Play Not Good:", error);
+                                    console.error("Video Play Failure:", error);
                                 }).finally(function() {
                                     requestIdleCallback(startCanvasAnimation);
                                 });
@@ -262,7 +262,7 @@
                     // G2. video razy, start animation
                     const loadTimeout = setTimeout(function() {
                         if (video.readyState < 3) {
-                            console.warn("Video Load Delayed, starting animation");
+                            console.warn("Video Load Delay, Start Animation");
                             requestIdleCallback(startCanvasAnimation);
                         }
                     }, 3000);
@@ -272,7 +272,7 @@
                         requestIdleCallback(startCanvasAnimation);
                     });
                 } else {
-                    console.warn("Video Element Not Found, Starting Animation");
+                    console.warn("No Video Element, Start Animation");
                     requestIdleCallback(startCanvasAnimation);
                 }
             }
@@ -329,9 +329,9 @@
 
                     isAnimating = true;
                     requestIdleCallback(() => drawObject(performance.now()));
-                    console.log("Canvas Animation Good");
+                    console.log("Canvas Animation Success");
                 } else {
-                    console.error("Canvas Load Not Good or Already Animating");
+                    console.error("Canvas Load Failure or isAnimating");
                 }
             }
 
@@ -340,7 +340,7 @@
                 if (isAnimating) {
                     cancelAnimationFrame(animationFrameID);
                     isAnimating = false;
-                    console.log("Canvas Animation Stopped");
+                    console.log("Canvas Animation Stop");
                 }
             }
 
