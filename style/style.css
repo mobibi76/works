@@ -187,7 +187,7 @@ iframe {
     height: 70%;
 }
 
-iframe #pdbopsVideo {
+#pdbopsVideo {
     border: none;
     border-bottom: none;
     width: 100%;
