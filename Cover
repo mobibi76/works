@@ -5,9 +5,14 @@
                 --visit the workshop page and apply through the 'APPLY' link.
                 ✓Thank you for your interest!"
     src="./notice/notice.png" width="100%">
-<video id="pdbopsVideo" width="100%" autoplay muted loop>
+<!--<video id="pdbopsVideo" width="100%" autoplay muted loop>
   <source src="./notice/pdbops48.mp4" type="video/mp4">
-</video>
+</video>-->
+<iframe id="pdbopsVideo" width="100%" height="auto"
+  src="https://www.youtube.com/embed/Qw27fYczp5k?autoplay=1&loop=1&playlist=Qw27fYczp5k"
+  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+
 <!--tooltip display-->
 <div id="tooltip"></div>
 <table>
