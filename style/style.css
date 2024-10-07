@@ -187,6 +187,11 @@ iframe {
     height: 70%;
 }
 
+iframe #pdbopsVideo {
+    max-width: 100%;
+    height: auto;
+}
+
 label {
     margin-right: 20px;
 }
@@ -206,9 +211,9 @@ table th {
     font-size: 1.4rem;
 }
 
-video {
+/*video {
     margin-bottom: 0px;
-}
+}*/
 
 @media (max-width: 500px) {
     #nav a {

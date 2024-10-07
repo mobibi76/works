@@ -168,7 +168,7 @@
         });
 
 /*--F. autoplay the video identified--*/
-    function videoPlay() {
+    /*function videoPlay() {
         window.onload = function() {
             const video = document.getElementById("pdbopsVideo");
 
@@ -183,6 +183,18 @@
                 });
             } else {
                 console.warn("Video Load Not Good");
+                startCanvasAnimation();
+            }
+        };
+    }*/
+    function videoPlay() {
+        window.onload = function() {
+            const video = document.getElementById("pdbopsVideo");
+        
+            if (video) {
+                startCanvasAnimation();
+            } else {
+                console.warn("YouTube iframe Not Found");
                 startCanvasAnimation();
             }
         };
