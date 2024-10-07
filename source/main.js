@@ -16,7 +16,7 @@
         fetch(pageTitle).then(response => {
 
             if (!response.ok) {
-                throw new Error('Network Not Good');
+                throw new Error('Network Failure');
             }
             return response.text();
         }).then(text => {
@@ -28,7 +28,7 @@
                 bindInterLinkEvent(); // add inter-link class for CSP
             }
         }).catch(error => {
-            console.error('Fetch Operation Not Good:', error);
+            console.error('Fetch Operation Failure:', error);
         });
     }
 
@@ -37,7 +37,7 @@
         return fetch(pageTitle).then(response => {
 
             if (!response.ok) {
-                throw new Error('Network Not Good');
+                throw new Error('Network Failure');
             }
             return response.text();
         }).then(text => {
@@ -52,7 +52,7 @@
                 }
             }
         }).catch(error => {
-            console.error('Fetch Operation Not Good:', error);
+            console.error('Fetch Operation Failure:', error);
         });
     }
 
@@ -175,14 +175,14 @@
             if (video) { // fix play video with canvas animation
                 video.loading = "lazy";
                 video.play().then(function() {
-                    console.log("Video Play Good");
+                    console.log("Video Play Success");
                 }).catch(function(error) {
-                    console.log("Video Play Not Good:", error);
+                    console.log("Video Play Failure:", error);
                 }).finally(function() {
                     startCanvasAnimation();                                
                 });
             } else {
-                console.warn("Video Load Not Good");
+                console.warn("Video Load Failure");
                 startCanvasAnimation();
             }
         };
@@ -194,7 +194,7 @@
             if (video) {
                 startCanvasAnimation();
             } else {
-                console.warn("YouTube iframe Not Found");
+                console.warn("YouTube Load Failure");
                 startCanvasAnimation();
             }
         };
@@ -244,14 +244,14 @@
             if (!isAnimating) {
                 isAnimating = true;
                 drawObject();
-                console.log("Canvas Animation Good");
+                console.log("Canvas Animation Success");
             }
             window.addEventListener('resize', function() {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
             });
         } else {
-            console.error("Canvas Load Not Good");
+            console.error("Canvas Load Failure");
         }
     }
 
@@ -286,3 +286,4 @@
 
 /*--Sub : canvas animation cancle at page unload--*/
     window.addEventListener("beforeunload", stopCanvasAnimation);
+    window.addEventListener("load", startCanvasAnimation);
