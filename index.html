@@ -13,13 +13,14 @@
         <!--content security policy (CSP) with nonce-->
         <meta http-equiv="Content-Security-Policy"
             content="default-src 'self';
-                    script-src 'self' https://ajax.googleapis.com 'nonce-abc123';
+                    script-src 'self' https://ajax.googleapis.com https://www.googletagmanager.com 'nonce-abc123';
                     style-src 'self' 'unsafe-inline';
                     img-src 'self';
                     font-src 'self';
                     frame-ancestors 'none';
                     base-uri 'self';
                     frame-src 'self' https://test.pdbops.com:8000/game-ko/;
+                    connect-src 'self' https://www.google-analytics.com;
                 ">
 
         <!--referrer policy-->
@@ -28,11 +29,12 @@
         <!--jQuery google CDN with SRI-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs"
-            crossorigin="anonymous" async></script>
-        
-		<!-- google analytics tag (gtag.js) -->
+            crossorigin="anonymous" async>
+        </script>
+
+        <!--google analytics tag (gtag.js)-->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-24VQ8R21C5"></script>
-		<script>
+		<script nonce="abc123">
   			window.dataLayer = window.dataLayer || [];
   			function gtag(){dataLayer.push(arguments);}
   			gtag('js', new Date());
