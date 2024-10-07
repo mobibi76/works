@@ -129,6 +129,12 @@
     padding: 0px;
 }
 
+#pdbopsVideo {
+    border: none;
+    width: 100%;
+    height: auto;    
+}
+
 #tooltip {
     position: absolute;
     font-family: 'freesentation4';
@@ -185,13 +191,6 @@ iframe {
     border-bottom: 0.1rem var(--border-color) dashed;
     width: 100%;
     height: 70%;
-}
-
-#pdbopsVideo {
-    border: none;
-    border-bottom: none;
-    width: 100%;
-    height: auto;    
 }
 
 label {
