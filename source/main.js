@@ -1,14 +1,14 @@
-        /*--A. click event to all inter-link class--*/
-        function bindInterLinkEvent() {
-            const interLinks = document.querySelectorAll('.inter-link');
-            interLinks.forEach(link => {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const pageTitle = this.getAttribute('href').substring(2);
-                    introFetch(pageTitle);
-                });
+/*--A. click event to all inter-link class--*/
+    function bindInterLinkEvent() {
+        const interLinks = document.querySelectorAll('.inter-link');
+        interLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const pageTitle = this.getAttribute('href').substring(2);
+                introFetch(pageTitle);
             });
-        }
+        });
+    }
 
 /*--B. fetch.js control--*/
     // B1. define introFetch function
@@ -194,6 +194,7 @@
             if (video) {
                 const tag = document.createElement('script');
                 tag.src = "https://www.youtube.com/iframe_api";
+                tag.setAttribute('nonce', 'abc123');
                 const firstScriptTag = document.getElementsByTagName('script')[0];
                 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         
