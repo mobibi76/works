@@ -1,14 +1,14 @@
-/*--A. click event to all inter-link class--*/
-    function bindInterLinkEvent() {
-        const interLinks = document.querySelectorAll('.inter-link');
-        interLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                const pageTitle = this.getAttribute('href').substring(2);
-                introFetch(pageTitle);
+        /*--A. click event to all inter-link class--*/
+        function bindInterLinkEvent() {
+            const interLinks = document.querySelectorAll('.inter-link');
+            interLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const pageTitle = this.getAttribute('href').substring(2);
+                    introFetch(pageTitle);
+                });
             });
-        });
-    }
+        }
 
 /*--B. fetch.js control--*/
     // B1. define introFetch function
@@ -167,7 +167,7 @@
             document.getElementById('popup').style.display = 'none';
         });
 
-/*--F. autoplay the youtube video identified--*/
+/*--F. autoplay the video identified--*/
     /*function videoPlay() {
         window.onload = function() {
             const video = document.getElementById("pdbopsVideo");
@@ -190,27 +190,8 @@
     function videoPlay() {
         window.onload = function() {
             const video = document.getElementById("pdbopsVideo");
-            
+        
             if (video) {
-                const tag = document.createElement('script');
-                tag.src = "https://www.youtube.com/iframe_api";
-                tag.setAttribute('nonce', 'abc123');
-                const firstScriptTag = document.getElementsByTagName('script')[0];
-                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        
-                let player;
-                window.onYouTubeIframeAPIReady = function() {
-                    player = new YT.Player('pdbopsVideo', {
-                        events: {
-                            'onReady': onPlayerReady
-                        }
-                    });
-                };
-        
-                function onPlayerReady(event) {
-                    event.target.setPlaybackQuality('hd720');
-                    event.target.playVideo();
-                }
                 startCanvasAnimation();
             } else {
                 console.warn("YouTube Load Failure");
