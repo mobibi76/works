@@ -211,13 +211,17 @@
                 };
 
                 function onPlayerReady(event) {
-                    event.target.setPlaybackQuality('hd720');
                     event.target.playVideo();
+                    setTimeout(() => {
+                        event.target.setPlaybackQuality('hd720');
+                    }, 1000);
                 }
 
                 function onPlaybackQualityChange(event) {
                     if (event.data !== 'hd720') {
-                        event.target.setPlaybackQuality('hd720');
+                        setTimeout(() => {
+                            event.target.setPlaybackQuality('hd720');
+                        }, 500);
                     }
                 }
                 startCanvasAnimation();
