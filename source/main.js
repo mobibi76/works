@@ -167,7 +167,7 @@
             document.getElementById('popup').style.display = 'none';
         });
 
-/*--F. autoplay the video identified--*/
+/*--F. autoplay the youtube video identified--*/
     /*function videoPlay() {
         window.onload = function() {
             const video = document.getElementById("pdbopsVideo");
@@ -190,8 +190,26 @@
     function videoPlay() {
         window.onload = function() {
             const video = document.getElementById("pdbopsVideo");
-        
+            
             if (video) {
+                const tag = document.createElement('script');
+                tag.src = "https://www.youtube.com/iframe_api";
+                const firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        
+                let player;
+                window.onYouTubeIframeAPIReady = function() {
+                    player = new YT.Player('pdbopsVideo', {
+                        events: {
+                            'onReady': onPlayerReady
+                        }
+                    });
+                };
+        
+                function onPlayerReady(event) {
+                    event.target.setPlaybackQuality('hd720');
+                    event.target.playVideo();
+                }
                 startCanvasAnimation();
             } else {
                 console.warn("YouTube Load Failure");
