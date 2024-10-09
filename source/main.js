@@ -189,48 +189,40 @@
     }*/
 
 /*--F. autoplay the video identified--*/
-    function videoPlay() {
-        window.onload = function() {
-            const video = document.getElementById("pdbopsVideo");
+function videoPlay() {
+    const videoElement = document.getElementById("pdbopsVideo");
 
-            if (video) {
-                const tag = document.createElement('script');
-                tag.src = "https://www.youtube.com/iframe_api";
-                tag.setAttribute('nonce', 'abc123');
-                const firstScriptTag = document.getElementsByTagName('script')[0];
-                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    if (videoElement) {
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const tag = document.createElement('script');
+                    tag.src = "https://www.youtube.com/iframe_api";
+                    tag.setAttribute('nonce', 'abc123');
+                    const firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                    let player;
+                    window.onYouTubeIframeAPIReady = function() {
+                        player = new YT.Player('pdbopsVideo', {
+                            events: {
+                                'onReady': onPlayerReady
+                            }
+                        });
+                    };
 
-                let player;
-                window.onYouTubeIframeAPIReady = function() {
-                    player = new YT.Player('pdbopsVideo', {
-                        events: {
-                            'onReady': onPlayerReady,
-                            'onPlaybackQualityChange': onPlaybackQualityChange
-                        }
-                    });
-                };
-
-                function onPlayerReady(event) {
-                    event.target.playVideo();
-                    setTimeout(() => {
-                        event.target.setPlaybackQuality('hd720');
-                    }, 1000);
-                }
-
-                function onPlaybackQualityChange(event) {
-                    if (event.data !== 'hd720') {
-                        setTimeout(() => {
-                            event.target.setPlaybackQuality('hd720');
-                        }, 500);
+                    function onPlayerReady(event) {
+                        event.target.playVideo();
                     }
+                    observer.disconnect();
                 }
-                startCanvasAnimation();
-            } else {
-                console.warn("YouTube Load Failure");
-                startCanvasAnimation();
-            }
-        };
+            });
+        });
+        observer.observe(videoElement);
+    } else {
+        console.warn("YouTube Load Failure");
+        startCanvasAnimation();
     }
+}
 
 /*--G. canvas animation--*/
     let animationFrameID;
