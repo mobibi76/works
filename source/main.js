@@ -189,110 +189,92 @@
     }*/
 
 /*--F. autoplay the video identified--*/
-function videoPlay() {
-    const videoElement = document.getElementById("pdbopsVideo");
+    function videoPlay() {
+        const videoElement = document.getElementById("pdbopsVideo");
 
-    if (videoElement) {
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const tag = document.createElement('script');
-                    tag.src = "https://www.youtube.com/iframe_api";
-                    tag.setAttribute('nonce', 'abc123');
-                    const firstScriptTag = document.getElementsByTagName('script')[0];
-                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-                    let player;
-                    window.onYouTubeIframeAPIReady = function() {
-                        player = new YT.Player('pdbopsVideo', {
-                            events: {
-                                'onReady': onPlayerReady
-                            }
-                        });
-                    };
+        if (videoElement) {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const tag = document.createElement('script');
+                        tag.src = "https://www.youtube.com/iframe_api";
+                        tag.setAttribute('nonce', 'abc123');
+                        const firstScriptTag = document.getElementsByTagName('script')[0];
+                        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                        let player;
+                        window.onYouTubeIframeAPIReady = function() {
+                            player = new YT.Player('pdbopsVideo', {
+                                events: {
+                                    'onReady': onPlayerReady
+                                }
+                            });
+                        };
 
-                    function onPlayerReady(event) {
-                        event.target.playVideo();
+                        function onPlayerReady(event) {
+                            event.target.playVideo();
+                        }
+                        observer.disconnect();
                     }
-                    observer.disconnect();
-                }
+                });
             });
-        });
-        observer.observe(videoElement);
-    } else {
-        console.warn("YouTube Load Failure");
-        startCanvasAnimation();
+            observer.observe(videoElement);
+        } else {
+            console.warn("YouTube Load Failure");
+            startCanvasAnimation();
+        }
     }
-}
 
 /*--G. canvas animation--*/
-function startCanvasAnimation() {
-    const canvas = document.getElementById("aniCanvas");
+    let animationFrameID = null;
+    let isAnimating = false;
 
-    if (canvas) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const ctx = canvas.getContext('2d');
-        const objAction = [];
+    // G1. start canvas animation
+    function startCanvasAnimation() {
+        const canvas = document.getElementById("aniCanvas");
 
-        for (let i = 0; i < 30; i++) {
-            objAction.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 5 + 2,
-                velocity: Math.random() * 1 + 1
-            });
-        }
-
-        function drawObject() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'rgba(175, 205, 235, 0.3)';
-
-            for (let i = 0; i < objAction.length; i++) {
-                const action = objAction[i];
-                ctx.beginPath();
-                ctx.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
-                ctx.fill();
-                action.y += action.velocity;
-
-                if (action.y > canvas.height) {
-                    action.y = -action.radius;
-                    action.x = Math.random() * canvas.width;
-                }
-            }
-            animationFrameID = requestAnimationFrame(drawObject);
-        }
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !isAnimating) {
-                    isAnimating = true;
-                    drawObject();
-                    console.log("Canvas Animation Started");
-                } else if (!entry.isIntersecting && isAnimating) {
-                    stopCanvasAnimation();
-                    console.log("Canvas Animation Stopped");
-                }
-            });
-        });
-
-        observer.observe(canvas);
-        window.addEventListener('resize', function() {
+        if (canvas && !isAnimating) {
+            isAnimating = true;
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-        });
-    } else {
-        console.error("Canvas Load Failure");
-    }
-}
+            const ctx = canvas.getContext('2d');
+            const objAction = [];
 
-function stopCanvasAnimation() {
-    if (isAnimating) {
-        cancelAnimationFrame(animationFrameID);
-        isAnimating = false;
-    }
-}
+            for (let i = 0; i < 30; i++) {
+                objAction.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 5 + 2,
+                    velocity: Math.random() * 1 + 1
+                });
+            }
 
-/*--H. stop canvas animation--*/
+            function drawObject() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(175, 205, 235, 0.3)';
+
+                for (let i = 0; i < objAction.length; i++) {
+                    const action = objAction[i];
+                    ctx.beginPath();
+                    ctx.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
+                    ctx.fill();
+                    action.y += action.velocity;
+
+                    if (action.y > canvas.height) {
+                        action.y = -action.radius;
+                        action.x = Math.random() * canvas.width;
+                    }
+                }
+                animationFrameID = requestAnimationFrame(drawObject);
+            }
+            drawObject();
+            window.addEventListener('resize', function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+    }
+
+    // G2. stop canvas animation
     function stopCanvasAnimation() {
         if (isAnimating) {
             cancelAnimationFrame(animationFrameID);
