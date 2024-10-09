@@ -32,47 +32,49 @@
 
     // B2. load pages through fetch.js with error handling
     function fetchPageContent(pageTitle, targetElementSelector) {
-        // Adding server status check and timeout for fetch requests
-    function checkServerStatus() {
-        return fetch("/server-status", { method: "HEAD" })  // You can adjust the endpoint for checking server status
-            .then(response => {
-                if (!response.ok) throw new Error("Server is down");
-            });
-    }
 
-    function fetchWithTimeout(resource, options = {}) {
-        const { timeout = 5000 } = options; // Setting a 5-second timeout for the fetch
-        return new Promise((resolve, reject) => {
-            const timer = setTimeout(() => {
-                reject(new Error("Request timed out"));
-            }, timeout);
-
-            fetch(resource, options)
+        function checkServerStatus() {
+            return fetch("/server-status", { method: "HEAD" })
                 .then(response => {
-                    clearTimeout(timer);
-                    resolve(response);
-                })
-                .catch(reject);
-        });
-    }
+                    if (!response.ok) throw new Error("Server is down");
+                });
+        }
 
-    return checkServerStatus().then(() => fetchWithTimeout(pageTitle, { timeout: 5000 })).then(response => {
-            if (!response.ok) {
-                throw new Error('Network Failure');
-            }
-            return response.text();
-        }).then(text => {
-            const targetElement = document.querySelector(targetElementSelector);
-            if (targetElement) {
-                targetElement.innerHTML = text;
-                targetElement.scrollTop = 0;
-                if (targetElementSelector === '#container') {
-                    bindInterLinkEvent();
+        function fetchWithTimeout(resource, options = {}) {
+            const { timeout = 5000 } = options;
+            return new Promise((resolve, reject) => {
+                const timer = setTimeout(() => {
+                    reject(new Error("Request timed out"));
+                }, timeout);
+
+                fetch(resource, options)
+                    .then(response => {
+                        clearTimeout(timer);
+                        resolve(response);
+                    })
+                    .catch(reject);
+            });
+        }
+        return checkServerStatus().then(() => fetchWithTimeout(pageTitle, { timeout: 5000 })).then(response => {
+            
+                if (!response.ok) {
+                    throw new Error('Network Failure');
                 }
-            }
-        }).catch(error => {
-            console.error('Fetch Operation Failure:', error);
-        });
+                return response.text();
+            }).then(text => {
+                const targetElement = document.querySelector(targetElementSelector);
+                
+                if (targetElement) {
+                    targetElement.innerHTML = text;
+                    targetElement.scrollTop = 0;
+
+                    if (targetElementSelector === '#container') {
+                        bindInterLinkEvent();
+                    }
+                }
+            }).catch(error => {
+                console.error('Fetch Operation Failure:', error);
+            });
     }
 
 /*--C. calculate header-flex to fix scroll issue on container--*/
