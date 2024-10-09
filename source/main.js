@@ -225,59 +225,72 @@ function videoPlay() {
 }
 
 /*--G. canvas animation--*/
-    let animationFrameID;
-    let isAnimating = false;
+function startCanvasAnimation() {
+    const canvas = document.getElementById("aniCanvas");
 
-    function startCanvasAnimation() {
-        const canvas = document.getElementById("aniCanvas");
+    if (canvas) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const ctx = canvas.getContext('2d');
+        const objAction = [];
 
-        if (canvas) {
+        for (let i = 0; i < 30; i++) {
+            objAction.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 5 + 2,
+                velocity: Math.random() * 1 + 1
+            });
+        }
+
+        function drawObject() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(175, 205, 235, 0.3)';
+
+            for (let i = 0; i < objAction.length; i++) {
+                const action = objAction[i];
+                ctx.beginPath();
+                ctx.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
+                ctx.fill();
+                action.y += action.velocity;
+
+                if (action.y > canvas.height) {
+                    action.y = -action.radius;
+                    action.x = Math.random() * canvas.width;
+                }
+            }
+            animationFrameID = requestAnimationFrame(drawObject);
+        }
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !isAnimating) {
+                    isAnimating = true;
+                    drawObject();
+                    console.log("Canvas Animation Started");
+                } else if (!entry.isIntersecting && isAnimating) {
+                    stopCanvasAnimation();
+                    console.log("Canvas Animation Stopped");
+                }
+            });
+        });
+
+        observer.observe(canvas);
+        window.addEventListener('resize', function() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            const obj = canvas.getContext('2d');
-            const objAction = [];
-
-            for (let i = 0; i <30; i++) {
-                objAction.push ({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    radius: Math.random() * 5 + 2,
-                    velocity: Math.random() * 1 + 1
-                });
-            }
-
-            function drawObject() {
-                obj.clearRect(0, 0, canvas.width, canvas.height);
-                obj.fillStyle = 'rgba(175, 205, 235, 0.3)';
-
-                for (let i = 0; i < objAction.length; i++) {
-                    const action = objAction[i];
-                    obj.beginPath();
-                    obj.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
-                    obj.fill();
-                    action.y += action.velocity;
-
-                    if (action.y > canvas.height) {
-                        action.y = -action.radius;
-                        action.x = Math.random() * canvas.width;
-                    }
-                }
-                animationFrameID = requestAnimationFrame(drawObject);
-            }
-
-            if (!isAnimating) {
-                isAnimating = true;
-                drawObject();
-                console.log("Canvas Animation Success");
-            }
-            window.addEventListener('resize', function() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            });
-        } else {
-            console.error("Canvas Load Failure");
-        }
+        });
+    } else {
+        console.error("Canvas Load Failure");
     }
+}
+
+function stopCanvasAnimation() {
+    if (isAnimating) {
+        cancelAnimationFrame(animationFrameID);
+        isAnimating = false;
+    }
+}
 
 /*--H. stop canvas animation--*/
     function stopCanvasAnimation() {
