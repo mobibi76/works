@@ -172,24 +172,29 @@
 
 /*--G. canvas animation--*/
     let isAnimating = false;
-    let animationInterval = null;
-    const animationDelay = 100;
+    let animationFrameID = null;
+    const objAction = [];
 
     // G1. start canvas animation
     function startCanvasAnimation() {
         const canvas = document.getElementById("aniCanvas");
-
+    
         if (canvas && !isAnimating) {
             isAnimating = true;
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
             const ctx = canvas.getContext('2d');
-            const objAction = [];
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth * window.devicePixelRatio;
+                canvas.height = window.innerHeight * window.devicePixelRatio;
+                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
 
             for (let i = 0; i < 30; i++) {
                 objAction.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
+                    x: Math.random() * canvas.width / window.devicePixelRatio,
+                    y: Math.random() * canvas.height / window.devicePixelRatio,
                     radius: Math.random() * 5 + 2,
                     velocity: Math.random() * 1 + 1
                 });
@@ -203,26 +208,22 @@
                     ctx.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
                     ctx.fill();
                     action.y += action.velocity;
-
-                    if (action.y > canvas.height) {
+    
+                    if (action.y > canvas.height / window.devicePixelRatio) {
                         action.y = -action.radius;
-                        action.x = Math.random() * canvas.width;
+                        action.x = Math.random() * canvas.width / window.devicePixelRatio;
                     }
                 });
+                animationFrameID = requestAnimationFrame(drawObject);
             }
-
-            animationInterval = setInterval(drawObject, animationDelay);
-            window.addEventListener('resize', function () {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            });
+            animationFrameID = requestAnimationFrame(drawObject);
         }
     }
 
     // G2. stop canvas animation
     function stopCanvasAnimation() {
         if (isAnimating) {
-            clearInterval(animationInterval);
+            cancelAnimationFrame(animationFrameID);
             isAnimating = false;
         }
     }
