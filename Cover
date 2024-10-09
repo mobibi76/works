@@ -1,9 +1,7 @@
 <img data-tooltip="[안내: Notice]
-                ✓The demo is in development and beta testing is set for 2025.
-                ✓We are currently offering consulting services.
-                ✓For more details,
-                --visit the workshop page and apply through the 'APPLY' link.
-                ✓Thank you for your interest!"
+                ✓Ongoing corporate training workshops.
+                ✓Learn more about our process design workshops.
+                ✓Apply for the project through the link below."
     src="./notice/notice.png" width="100%">
 <!--<video id="pdbopsVideo" width="100%" autoplay muted loop>
   <source src="./notice/pdbops48.mp4" type="video/mp4">
