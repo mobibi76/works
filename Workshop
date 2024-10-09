@@ -1,39 +1,36 @@
-<img data-tooltip="[하는 일: Service]
-                ✓We design processes to help clients achieve their goals.
-                ✓Our expertise in process design builds agile workflows and communication networks
-                to minimize risks, connecting your knowledge and skills
-                to develop a clear strategy for your objectives."
+<img data-tooltip="[하는 일: What We Do]
+                ✓Process design for problem-solving.
+                ✓Connecting knowledge and technology.
+                ✓Risk management and agile processes."
     src="./img/articleHead.png" width="100%">
-<img data-tooltip="✓Process Design-Based Consulting Services
-                --Storytelling
-                --Setting Up Processes
-                --Organizing Requirements
-                --Allocating Resources
-                --Exploring Risks
-                --Building Team Networks (for Agile Risk Management)
-                --Running Simulations"
+<img data-tooltip="[Process Design Workshop Overview]
+                ✓Day-by-day process design steps.
+                ✓Agile risk management and communication."
     src="./img/programme.png" width="100%">
-<img data-tooltip="[전문 지식: Interaction]"
+<img data-tooltip="[소통: Interaction]
+                ✓Combining Process and Domain Knowledge.
+                ✓Building processes with agile communication.
+                ✓Risk exploration and storytelling in action."
     src="./img/interaction.png" width="100%">
-<img data-tooltip="[기술 활용: Analysis and Design]
-                [등록 특허: Patent WO2018212398A1]"
+<img data-tooltip="[기술: Analysis and Design]
+                [등록IP: Patent KR101791086B1/WO2018212398A1]
+                ✓From Start to Goal: Process Flow.
+                ✓Mapping the path to success.
+                ✓Step-by-step process towards the goal."
     src="./img/process.png" width="100%">
-<img data-tooltip="✓We tackle challenges with process design expertise,
-                using a System Dynamics approach
-                to model risks, improve communication, and enhance agile processes.
-                ✓This mitigates risks and reduces costs.
-                ✓Process design and analysis tools are in development
+<img data-tooltip="✓Designing solutions with process technology.
+                ✓System Dynamics for agile and risk reduction.
+                ✓Process design and analysis games coming soon.
                 --Beta testing in 2025"
     src="./img/value.png" width="100%">
-<img data-tooltip="[툴 데모: User Interface]" 
+<img data-tooltip="[툴 데모: DEMO concept]" 
     src="./img/toolConcept.png" width="100%">
-<img data-tooltip="[툴 워크플로: Tech-Concept]"
+<img data-tooltip="[툴 워크플로: DEMO workflow]"
     src="./img/techConcept.png" width="100%">
-<img data-tooltip="✓Consultant
-                --PM and PMO for Government (Tech) Support Programs
-                --Master’s Degree in Corporate Risk Management
-                --Certified Risk Management Expert
-                --Patent Holder in Process Design Technology"
+<img data-tooltip="[About Consultant]
+                ✓Expert in government and corporate risk management.
+                ✓Certified Risk Management Expert.
+                ✓Process design patent holder."
     src="./img/consultant.png" width="100%">
 <table>
     <tr>
@@ -64,15 +61,9 @@
 </table>
 <img data-tooltip="[서비스 경험: Experiences]"
     src="./img/history.png" width="100%">
-<img data-tooltip="✓Consulting Service Scope:
-                --End-to-end support for government (tech) funding projects
-                --Tech commercialization and business strategy
-                --Risk-agile communication training based on process design
-                ✓Expert referrals available for:
-                --Building information security management systems
-                --System design guidance for service development
-                ✓From the below “Apply” link
-                --If you fill out the application form, we can schedule a coffee chat."
+<img data-tooltip="[Consulting Service Scope]
+                ✓(Government Tech.)Project risk management from A to Z.
+                ✓Agile risk communication workshops."
     src="./img/serviceApply.png" width="100%">
 <footer>
     <p id="formlink">
