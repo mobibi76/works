@@ -228,8 +228,41 @@
         }
     }
 
+/*--H. cookie--*/
+    function generateSecureRandomValue() {
+        let array = new Uint8Array(16);
+        window.crypto.getRandomValues(array);
+        return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
+    }
+
+    function setCookie(name, value, days, domain, path) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; Domain=" + domain + "; Path=" + path + "; SameSite=None; Secure; HttpOnly";
+    }
+
 /*--Main : page load--*/
     document.addEventListener("DOMContentLoaded", function() {
+
+        setCookie("__Secure-3PSIDTS", generateSecureRandomValue(), ".youtube.com", "/");
+        setCookie("__Secure-3PSID", generateSecureRandomValue(), ".youtube.com", "/");
+        setCookie("__Secure-3PAPISID", generateSecureRandomValue(), ".youtube.com", "/");
+        setCookie("LOGIN_INFO", generateSecureRandomValue(), ".youtube.com", "/");
+        setCookie("__Secure-3PSIDCC", generateSecureRandomValue(), ".youtube.com", "/");
+        setCookie("__Host-3PLSID", generateSecureRandomValue(), "accounts.google.com", "/");
+        setCookie("__Secure-OSID", generateSecureRandomValue(), ".docs.google.com", "/");
+        setCookie("NID", generateSecureRandomValue(), ".google.com", "/");
+        setCookie("__Secure-3PSID", generateSecureRandomValue(), ".google.com", "/");
+        setCookie("__Secure-3PAPISID", generateSecureRandomValue(), ".google.com", "/");
+        setCookie("__Secure-3PSIDTS", generateSecureRandomValue(), ".google.com", "/");
+        setCookie("__Secure-3PSIDCC", generateSecureRandomValue(), ".google.com", "/");
+    
+        console.log("Cookies have been set for respective domains.");
+
         Promise.all([
             fetchPageContent('Menu', '#nav'),
             fetchPageContent('Cover', '#container')
