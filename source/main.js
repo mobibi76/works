@@ -273,21 +273,21 @@
             tooltipEventHandle();
             openPopup();
             videoPlay();
-            //startCanvasAnimation();
+            startCanvasAnimation();
         });
     });
 
 /*--Sub1 : canvas animation cancel at page unload--*/
-    //window.addEventListener("beforeunload", stopCanvasAnimation);
+    window.addEventListener("beforeunload", stopCanvasAnimation);
 
 /*--Sub2 : canvas animation cancel and play again on page activation--*/
-    /*document.addEventListener("visibilitychange", function() {
+    document.addEventListener("visibilitychange", function() {
         if (document.hidden) {
             stopCanvasAnimation();
         } else {
             startCanvasAnimation();
         }
-    });*/
+    });
 
 /*--extra: play the video identified--*/
     /*function videoPlay() {
