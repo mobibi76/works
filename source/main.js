@@ -241,6 +241,8 @@
             openPopup();
             videoPlay();
             startCanvasAnimation();
+            // 3rd party cookie setting
+            document.cookie = "sessionID=pdbops; SameSite=None; Secure";
         });
     });
 
