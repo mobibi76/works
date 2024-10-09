@@ -14,41 +14,36 @@
     // B1. define introFetch function
     function introFetch(pageTitle) {
         fetch(pageTitle).then(response => {
-
             if (!response.ok) {
                 throw new Error('Network Failure');
             }
             return response.text();
         }).then(text => {
             const containerElement = document.querySelector('#container');
-
             if (containerElement) {
                 containerElement.innerHTML = text;
                 containerElement.scrollTop = 0;
-                bindInterLinkEvent(); // add inter-link class for CSP
+                bindInterLinkEvent();
             }
         }).catch(error => {
             console.error('Fetch Operation Failure:', error);
         });
     }
 
-    // B2. load pages through fetch.js with error handle
+    // B2. load pages through fetch.js with error handling
     function fetchPageContent(pageTitle, targetElementSelector) {
         return fetch(pageTitle).then(response => {
-
             if (!response.ok) {
                 throw new Error('Network Failure');
             }
             return response.text();
         }).then(text => {
             const targetElement = document.querySelector(targetElementSelector);
-
             if (targetElement) {
                 targetElement.innerHTML = text;
                 targetElement.scrollTop = 0;
-
-                if (targetElementSelector === '#container') { // add inter-link class for CSP
-                   bindInterLinkEvent();
+                if (targetElementSelector === '#container') {
+                    bindInterLinkEvent();
                 }
             }
         }).catch(error => {
@@ -57,22 +52,20 @@
     }
 
 /*--C. calculate header-flex to fix scroll issue on container--*/
-    function adjustContainerHeight() {                
+    function adjustContainerHeight() {
         const headers = document.querySelectorAll('header h1, header h2');
-        let headerHeight = 0;                    
+        let headerHeight = 0;
         headers.forEach(header => {
             headerHeight += header.getBoundingClientRect().height;
-        });                    
+        });
         const windowHeight = window.innerHeight;
         const flexHeight = windowHeight - headerHeight;
         document.querySelector('#flex').style.height = `${flexHeight}px`;
         const navElement = document.querySelector('#nav');
-            
         if (navElement) {
-            navElement.style.height = 'auto';
             const navHeight = navElement.scrollHeight;
             navElement.style.height = `${navHeight}px`;
-        }                    
+        }
         const containerHeight = flexHeight - navElement.offsetHeight;
         document.querySelector('#container').style.height = `${containerHeight}px`;
     }
@@ -84,10 +77,9 @@
         document.body.appendChild(tooltip);
         let currentTooltipTarget = null;
 
-        // D1. mouse event for pc
+        // Mouse event for desktop
         document.addEventListener('click', function (e) {
             const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
-                
             if (target) {
                 if (currentTooltipTarget === target) {
                     tooltip.style.display = 'none';
@@ -96,12 +88,7 @@
                     const text = target.getAttribute('data-tooltip') || '';
                     tooltip.textContent = text;
                     tooltip.classList.remove('tooltip-text', 'tooltip-image');
-
-                    if (target.tagName.toLowerCase() === 'img') {
-                        tooltip.classList.add('tooltip-image');
-                    } else {
-                        tooltip.classList.add('tooltip-text');
-                    }
+                    tooltip.classList.add(target.tagName.toLowerCase() === 'img' ? 'tooltip-image' : 'tooltip-text');
                     tooltip.style.display = 'block';
                     tooltip.style.left = `${e.pageX + 10}px`;
                     tooltip.style.top = `${e.pageY + 10}px`;
@@ -113,13 +100,11 @@
             }
         });
 
-        // D2. touch event for mobile
+        // Touch event for mobile
         document.addEventListener('touchstart', function (e) {
             const touch = e.touches[0];
             const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
-
             if (target) {
-
                 if (currentTooltipTarget === target) {
                     tooltip.style.display = 'none';
                     currentTooltipTarget = null;
@@ -127,12 +112,7 @@
                     const text = target.getAttribute('data-tooltip') || '';
                     tooltip.textContent = text;
                     tooltip.classList.remove('tooltip-text', 'tooltip-image');
-
-                    if (target.tagName.toLowerCase() === 'img') {
-                        tooltip.classList.add('tooltip-image');
-                    } else {
-                        tooltip.classList.add('tooltip-text');
-                    }
+                    tooltip.classList.add(target.tagName.toLowerCase() === 'img' ? 'tooltip-image' : 'tooltip-text');
                     tooltip.style.display = 'block';
                     tooltip.style.left = `${touch.pageX + 10}px`;
                     tooltip.style.top = `${touch.pageY + 10}px`;
@@ -153,47 +133,24 @@
 /*--E. popup--*/
     function openPopup() {
         const donotShowAgain = localStorage.getItem('donotShowPopup');
-
         if (!donotShowAgain) {
             document.getElementById('popup').style.display = 'flex';
         }
     }
-        document.getElementById('close-popup').addEventListener('click', function() {
-            const donotShowAgainCheckbox = document.getElementById('donot-show-again');
 
-            if (donotShowAgainCheckbox.checked) {
-                localStorage.setItem('donotShowPopup', 'true');
-            }
-            document.getElementById('popup').style.display = 'none';
-        });
+    document.getElementById('close-popup').addEventListener('click', function() {
+        const donotShowAgainCheckbox = document.getElementById('donot-show-again');
+        if (donotShowAgainCheckbox.checked) {
+            localStorage.setItem('donotShowPopup', 'true');
+        }
+        document.getElementById('popup').style.display = 'none';
+    });
 
-/*--F. autoplay the video identified--*/
-    /*function videoPlay() {
-        window.onload = function() {
-            const video = document.getElementById("pdbopsVideo");
-
-            if (video) { // fix play video with canvas animation
-                video.loading = "lazy";
-                video.play().then(function() {
-                    console.log("Video Play Success");
-                }).catch(function(error) {
-                    console.log("Video Play Failure:", error);
-                }).finally(function() {
-                    startCanvasAnimation();                                
-                });
-            } else {
-                console.warn("Video Load Failure");
-                startCanvasAnimation();
-            }
-        };
-    }*/
-
-/*--F. autoplay the video identified--*/
+/*--F. play the video identified--*/
     function videoPlay() {
         const videoElement = document.getElementById("pdbopsVideo");
-
         if (videoElement) {
-            const observer = new IntersectionObserver((entries, observer) => {
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const tag = document.createElement('script');
@@ -201,32 +158,22 @@
                         tag.setAttribute('nonce', 'abc123');
                         const firstScriptTag = document.getElementsByTagName('script')[0];
                         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-                        let player;
-                        window.onYouTubeIframeAPIReady = function() {
-                            player = new YT.Player('pdbopsVideo', {
-                                events: {
-                                    'onReady': onPlayerReady
-                                }
-                            });
-                        };
 
-                        function onPlayerReady(event) {
-                            event.target.playVideo();
-                        }
+                        window.onYouTubeIframeAPIReady = function () {
+                            new YT.Player('pdbopsVideo');
+                        };
                         observer.disconnect();
                     }
                 });
             });
             observer.observe(videoElement);
-        } else {
-            console.warn("YouTube Load Failure");
-            startCanvasAnimation();
         }
     }
 
 /*--G. canvas animation--*/
-    let animationFrameID = null;
     let isAnimating = false;
+    let animationInterval = null;
+    const animationDelay = 100;
 
     // G1. start canvas animation
     function startCanvasAnimation() {
@@ -251,9 +198,7 @@
             function drawObject() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.fillStyle = 'rgba(175, 205, 235, 0.3)';
-
-                for (let i = 0; i < objAction.length; i++) {
-                    const action = objAction[i];
+                objAction.forEach(action => {
                     ctx.beginPath();
                     ctx.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
                     ctx.fill();
@@ -263,11 +208,11 @@
                         action.y = -action.radius;
                         action.x = Math.random() * canvas.width;
                     }
-                }
-                animationFrameID = requestAnimationFrame(drawObject);
+                });
             }
-            drawObject();
-            window.addEventListener('resize', function() {
+
+            animationInterval = setInterval(drawObject, animationDelay);
+            window.addEventListener('resize', function () {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
             });
@@ -277,32 +222,47 @@
     // G2. stop canvas animation
     function stopCanvasAnimation() {
         if (isAnimating) {
-            cancelAnimationFrame(animationFrameID);
+            clearInterval(animationInterval);
             isAnimating = false;
-            console.log("Canvas Animation Stopped");
         }
     }
 
 /*--Main : page load--*/
     document.addEventListener("DOMContentLoaded", function() {
-        // DOM Content Loaded control and adjust heithts
         Promise.all([
             fetchPageContent('Menu', '#nav'),
             fetchPageContent('Cover', '#container')
         ]).then(() => {
             adjustContainerHeight();
             window.addEventListener('resize', adjustContainerHeight);
-            // inter-link class for CSP
             bindInterLinkEvent();
-            // tooltip
             tooltipEventHandle();
-            // popup
             openPopup();
-            // video
             videoPlay();
+            startCanvasAnimation();
         });
     });
 
-/*--Sub : canvas animation cancle at page unload--*/
+/*--Sub : canvas animation cancel at page unload--*/
     window.addEventListener("beforeunload", stopCanvasAnimation);
-    window.addEventListener("load", startCanvasAnimation);
+
+/*--extra: play the video identified--*/
+    /*function videoPlay() {
+        window.onload = function() {
+            const video = document.getElementById("pdbopsVideo");
+
+            if (video) {
+                video.loading = "lazy";
+                video.play().then(function() {
+                    console.log("Video Play Success");
+                }).catch(function(error) {
+                    console.log("Video Play Failure:", error);
+                }).finally(function() {
+                    startCanvasAnimation();                                
+                });
+            } else {
+                console.warn("Video Load Failure");
+                startCanvasAnimation();
+            }
+        };
+    }*/
