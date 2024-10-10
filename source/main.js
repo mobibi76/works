@@ -26,7 +26,7 @@
                 bindInterLinkEvent();
 
                 if (pageTitle.includes('Demo')) {
-                    loadIframeWithTimeout('iframeId', 'https://test.pdbops.com:8000/game-ko/', 5000);
+                    loadIframeWithTimeout('iframe', 'https://test.pdbops.com:8000/game-ko/', 5000);
                 }
             }
         }).catch(error => {
@@ -256,21 +256,23 @@
     }
 
 /*--I. iframe load timeout--*/
-    function loadIframeWithTimeout(iframeId, src, timeout) {
-        const iframe = document.getElementById(iframeId);
+    function loadIframeWithTimeout(iframeSelector, src, timeout) {
+        const iframe = document.querySelector(iframeSelector);
+
+        if (!iframe) {
+            console.error(`No iframe found with selector: ${iframeSelector}`);
+            return;
+        }
         const timer = setTimeout(function() {
             iframe.srcdoc = "<p>Server Response Failure. Try Later.</p>";
         }, timeout);
-
         iframe.onload = function() {
             clearTimeout(timer);
         };
-
         iframe.onerror = function() {
             clearTimeout(timer);
             iframe.srcdoc = "<p>Server Response Failure. Try Later.</p>";
         };
-
         iframe.src = src;
     }
 
