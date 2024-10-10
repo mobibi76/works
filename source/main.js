@@ -264,14 +264,14 @@
             return;
         }
         const timer = setTimeout(function() {
-            iframe.srcdoc = "<p>Server Response Failure. Try Later.</p>";
+            iframe.srcdoc = "<p>Server Response Failure. Try Later. The server may be off.</p>";
         }, timeout);
         iframe.onload = function() {
             clearTimeout(timer);
         };
         iframe.onerror = function() {
             clearTimeout(timer);
-            iframe.srcdoc = "<p>Server Response Failure. Try Later.</p>";
+            iframe.srcdoc = "<p>Server Response Failure. Try Later. The server may be off.</p>";
         };
         iframe.src = src;
     }
