@@ -51,8 +51,8 @@
 
 .videoFrame {
     position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
+    width: 75%;
+    padding-bottom: 42.09%;
     overflow: hidden;
 }
 
@@ -71,8 +71,8 @@
     flex-direction: column;
     overflow-y: auto;
     scrollbar-width: none;
-    max-width: 700px;
-    text-align: center;
+    max-width: 600px;
+    align-items: center;
 }
 
 #formlink {
@@ -102,7 +102,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    border-bottom: 0.1rem firebrick solid;
     width: 100%;
 }
 
@@ -158,12 +157,12 @@ a {
 
 footer {
     position: sticky;
+    width: 100%;
     bottom: 0px;
     font-family:'freesentation4';
     font-size: 1.1rem;
     background-color: white;
     text-align: center;
-    border-top: 0.1rem firebrick solid;
     margin-top: auto;
 }
 
@@ -211,10 +210,6 @@ table th {
     font-size: 1.3rem;
 }
 
-/*video {
-    margin-bottom: 0px;
-}*/
-
 @media (max-width: 500px) {
     #nav a {
         font-size: 1.1rem !important;
@@ -229,7 +224,7 @@ table th {
     }
 
     #tooltip {
-        font-size: 0.7rem !important;
+        font-size: 0.9rem !important;
     }
 
     footer {
@@ -241,7 +236,7 @@ table th {
     }
 
     table, #gameFrame li {
-        font-size: 0.7rem !important;
+        font-size: 1rem !important;
     }
 
     table th, #gameFrame {
