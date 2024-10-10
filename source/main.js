@@ -175,6 +175,10 @@
     let animationFrameID = null;
     const objAction = [];
 
+    function clearCanvasObjects() {
+        objAction.length = 0;
+    }
+
     // G1. start canvas animation
     function startCanvasAnimation() {
         const canvas = document.getElementById("aniCanvas");
@@ -190,6 +194,7 @@
             }
             resizeCanvas();
             window.addEventListener('resize', resizeCanvas);
+            clearCanvasObjects();
 
             for (let i = 0; i < 30; i++) {
                 objAction.push({
@@ -224,6 +229,7 @@
     function stopCanvasAnimation() {
         if (isAnimating) {
             cancelAnimationFrame(animationFrameID);
+            clearCanvasObjects();
             isAnimating = false;
         }
     }
