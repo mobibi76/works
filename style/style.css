@@ -38,19 +38,17 @@
 }
 
 .tooltip-image {
-    background-color: white;
-    color: firebrick
+    background-color: gold;
 }
 
 .tooltip-text {
-    background-color: firebrick;
-    color: white;
+    background-color: gold;
 }
 
 .videoFrame {
     position: relative;
     width: 75%;
-    padding-bottom: 42.2%;
+    padding-bottom: 42.3%;
     overflow: hidden;
 }
 
@@ -99,10 +97,12 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    background-color: firebrick;
 }
 
 #nav a {
     font-size: 1.3rem;
+    color: white;
 }
 
 #nav li {
