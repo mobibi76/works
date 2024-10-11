@@ -3,6 +3,18 @@
         <th colspan="2">블로그</th>
     </tr>
     <tr>
+        <td id="year">2024/10/11</td>
+        <td>
+            <ul>
+                <li>
+                    <a href="https://pdbops.blogspot.com/2024/10/risk.html" target="_blank">
+                        [프로젝트매니저 시리즈] 위험(Risk)관리
+                    </a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
         <td id="year">2024/10/10</td>
         <td>
             <ul>
