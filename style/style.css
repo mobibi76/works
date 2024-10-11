@@ -70,7 +70,7 @@
     flex-direction: column;
     overflow-y: auto;
     scrollbar-width: none;
-    max-width: 600px;
+    width: 620px;
     align-items: center;
 }
 
