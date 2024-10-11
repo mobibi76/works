@@ -15,12 +15,12 @@
 .popup-content {
     font-family: 'freesentation4';
     font-size: 1.1rem;
-    background: white;
+    color: white;
+    background: linear-gradient(10deg, black, transparent);
     padding: 10px;
     border-radius: 8px;
     text-align: center;
     max-width: 500px;
-    border: 0.1rem firebrick dashed;
 }
 
 .popup-content img {
@@ -28,7 +28,6 @@
 }
 
 .popup-overlay {
-    display: none;
     position: fixed;
     top: 8.5%;
     left: 1.5%;
@@ -52,7 +51,7 @@
 .videoFrame {
     position: relative;
     width: 75%;
-    padding-bottom: 42.1%;
+    padding-bottom: 42.2%;
     overflow: hidden;
 }
 
@@ -76,11 +75,12 @@
 }
 
 #formlink {
-    margin: 5px;
+    margin: 0px;
 }
 
 #formlink a {
     font-size: 2rem;
+    color: white;
 }
 
 #flex {
@@ -91,10 +91,7 @@
 
 #gameFrame li {
     list-style-type: none;
-    font-family: 'freesentation4';
     font-size: 1.1rem;
-    color: black;
-    text-align: left;
 }
 
 #nav {
@@ -138,9 +135,7 @@
     font-family: 'freesentation4';
     padding: 8px;
     border-radius: 8px;
-    border: 0.1rem firebrick solid;
     font-size: 1rem;
-    display: none;
     z-index: 1000;
     white-space: pre-line;
 }
@@ -160,23 +155,23 @@ footer {
     width: 100%;
     bottom: 0px;
     font-family:'freesentation4';
-    font-size: 1.1rem;
-    background-color: white;
+    font-size: 1rem;
+    background-color: firebrick;
     text-align: center;
     margin-top: auto;
 }
 
 footer p {
-    margin: 0px;
+    margin: 3px;
+    color: white;
 }
 
 h2 {
     margin: 0px;
     font-family:'freesentation3';
     font-size: 2rem;
-    color: white;
     text-align: center;
-    background-color: firebrick;
+    background-color: transparent;
 }
 
 html, body {
