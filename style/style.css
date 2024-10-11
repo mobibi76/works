@@ -15,8 +15,8 @@
 .popup-content {
     font-family: 'freesentation4';
     font-size: 1.1rem;
-    color: white;
-    background: linear-gradient(10deg, black, transparent);
+    color: mediumseagreen;
+    background: linear-gradient(45deg, gold, transparent);
     padding: 10px;
     border-radius: 8px;
     text-align: center;
