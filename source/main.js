@@ -200,7 +200,7 @@
             window.addEventListener('resize', resizeCanvas);
             clearCanvasObjects();
 
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 10; i++) {
                 objAction.push({
                     x: Math.random() * canvas.width / window.devicePixelRatio,
                     y: Math.random() * canvas.height / window.devicePixelRatio,
