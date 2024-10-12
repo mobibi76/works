@@ -13,8 +13,8 @@
 }
 
 ::-webkit-scrollbar-thumb {
+    background: gold;
     border-radius: 8px;
-    border: 0.1rem solid firebrick;
 }
 
 ::-webkit-scrollbar-thumb:hover {
