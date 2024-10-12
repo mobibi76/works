@@ -1,13 +1,19 @@
 /*--A. click event to all inter-link class--*/
+    // A1. remove and rebind interlink
     function bindInterLinkEvent() {
-        const interLinks = document.querySelectorAll('.inter-link');
-        interLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                const pageTitle = this.getAttribute('href').substring(2);
-                introFetch(pageTitle);
-            });
-        });
+        const container = document.querySelector('#container');
+        container.removeEventListener('click', handleInterLinkClick);
+        container.addEventListener('click', handleInterLinkClick);
+    }
+
+    // A2. handle interlink click event
+    function handleInterLinkClick(event) {
+        const link = event.target.closest('.inter-link');
+        if (link) {
+            event.preventDefault();
+            const pageTitle = link.getAttribute('href').substring(2);
+            introFetch(pageTitle);
+        }
     }
 
 /*--B. fetch.js control--*/
@@ -43,11 +49,14 @@
         }).then(text => {
             const targetElement = document.querySelector(targetElementSelector);
             if (targetElement) {
-                targetElement.innerHTML = text;
-                targetElement.scrollTop = 0;
                 if (targetElementSelector === '#container') {
+                    targetElement.innerHTML = '';
+                    targetElement.innerHTML = text;
                     bindInterLinkEvent();
+                } else {
+                    targetElement.innerHTML = text;
                 }
+                targetElement.scrollTop = 0;
             }
         }).catch(error => {
             console.error('Fetch Operation Failure:', error);
