@@ -11,7 +11,7 @@
         const link = event.target.closest('.inter-link');
         if (link) {
             event.preventDefault();
-            const pageTitle = link.getAttribute('href').substring(2);
+            const pageTitle = link.getAttribute('href').replace(/^#!/, '');
             introFetch(pageTitle);
         }
     }
