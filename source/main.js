@@ -146,7 +146,6 @@
             bindPopupCloseEvent();
         }
     }
-
     // E2. bind and close popup
     function bindPopupCloseEvent() {
         const closeButton = document.getElementById('close-popup');
@@ -160,7 +159,6 @@
             });
         }
     }
-
     // E3. DOM event
     document.addEventListener("DOMContentLoaded", function() {
         openPopup();
@@ -198,7 +196,6 @@
     function clearCanvasObjects() {
         objAction.length = 0;
     }
-
     // G1. start canvas animation
     function startCanvasAnimation() {
         const canvas = document.getElementById("aniCanvas");
@@ -241,7 +238,6 @@
             animationFrameID = requestAnimationFrame(drawObject);
         }
     }
-
     // G2. stop canvas animation
     function stopCanvasAnimation() {
         if (isAnimating) {
