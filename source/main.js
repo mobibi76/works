@@ -8,11 +8,10 @@
         container.removeEventListener('click', handleInterLinkClick);
         container.addEventListener('click', handleInterLinkClick);
     }
-
     // A2. handle interlink click event
     function handleInterLinkClick(event) {
         const link = event.target.closest('.inter-link');
-        if (link) {
+        if (link && !event.target.closest('#popup')) {
             event.preventDefault();
             const pageTitle = link.getAttribute('href').replace(/^#!/, '');
             introFetch(pageTitle);
@@ -33,6 +32,7 @@
                 containerElement.innerHTML = text;
                 containerElement.scrollTop = 0;
                 bindInterLinkEvent();
+                bindPopupCloseEvent();
                 if (pageTitle.includes('Demo')) {
                     loadIframeWithTimeout('iframe', 'https://test.pdbops.com:8000/game-ko/', 5000);
                 }
@@ -41,7 +41,6 @@
             console.error('Fetch Operation Failure:', error);
         });
     }
-
     // B2. load pages through fetch.js with error handling
     function fetchPageContent(pageTitle, targetElementSelector) {
         return fetch(pageTitle).then(response => {
@@ -159,10 +158,6 @@
             });
         }
     }
-    // E3. DOM event
-    document.addEventListener("DOMContentLoaded", function() {
-        openPopup();
-    });
 
 /*--F. play the video identified--*/
     function videoPlay() {
