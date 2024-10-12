@@ -9,12 +9,22 @@
 }
 
 ::-webkit-scrollbar {
-    display: 10px;
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: gold;
+    background-color: white;
     border-radius: 10px;
+    border: 0.1rem solid gold;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: firebrick;
 }
 
 .popup-content {
@@ -74,6 +84,8 @@
     scrollbar-width: auto;
     width: 620px;
     align-items: center;
+    scrollbar-width: thin; /*firefox*/
+    scrollbar-color: white gold; /*firefox*/
 }
 
 #formlink {
@@ -210,6 +222,10 @@ table th {
 }
 
 @media (max-width: 620px) {
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
     #container {
         width: auto;
         max-width: 520px;
