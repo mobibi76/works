@@ -312,11 +312,11 @@
         ]).then(() => {
             adjustContainerHeight();
             window.addEventListener('resize', adjustContainerHeight);
+            startCanvasAnimation();
             bindInterLinkEvent();
             tooltipEventHandle();
             openPopup();
             videoPlay();
-            startCanvasAnimation();
         });
     });
 
