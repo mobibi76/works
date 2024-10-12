@@ -14,14 +14,12 @@
     // B1. define introFetch function
     function introFetch(pageTitle) {
         fetch(pageTitle).then(response => {
-
             if (!response.ok) {
                 throw new Error('Network Failure');
             }
             return response.text();
         }).then(text => {
             const containerElement = document.querySelector('#container');
-
             if (containerElement) {
                 containerElement.innerHTML = text;
                 containerElement.scrollTop = 0;
@@ -39,22 +37,15 @@
     // B2. load pages through fetch.js with error handling
     function fetchPageContent(pageTitle, targetElementSelector) {
         return fetch(pageTitle).then(response => {
-
             if (!response.ok) {
                 throw new Error('Network Failure');
             }
             return response.text();
         }).then(text => {
             const targetElement = document.querySelector(targetElementSelector);
-
-        if (targetElement) {
-                
-            if (targetElement.innerHTML !== text) {
+            if (targetElement) {
                 targetElement.innerHTML = text;
-            }
-
-            targetElement.scrollTop = 0;
-
+                targetElement.scrollTop = 0;
                 if (targetElementSelector === '#container') {
                     bindInterLinkEvent();
                 }
@@ -75,7 +66,6 @@
         const flexHeight = windowHeight - headerHeight;
         document.querySelector('#flex').style.height = `${flexHeight}px`;
         const navElement = document.querySelector('#nav');
-
         if (navElement) {
             const navHeight = navElement.scrollHeight;
             navElement.style.height = `${navHeight}px`;
@@ -95,7 +85,6 @@
         document.addEventListener('click', function (e) {
             const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
             if (target) {
-
                 if (currentTooltipTarget === target) {
                     tooltip.style.display = 'none';
                     currentTooltipTarget = null;
@@ -119,9 +108,7 @@
         document.addEventListener('touchstart', function (e) {
             const touch = e.touches[0];
             const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
-            
             if (target) {
-                
                 if (currentTooltipTarget === target) {
                     tooltip.style.display = 'none';
                     currentTooltipTarget = null;
@@ -199,7 +186,7 @@
     // G1. start canvas animation
     function startCanvasAnimation() {
         const canvas = document.getElementById("aniCanvas");
-
+    
         if (canvas && !isAnimating) {
             isAnimating = true;
             const ctx = canvas.getContext('2d');
@@ -214,35 +201,31 @@
             clearCanvasObjects();
 
             for (let i = 0; i < 10; i++) {
-                const maxObjects = 5; // Reduce the number of canvas objects
-                
-                for (let i = 0; i < maxObjects; i++) {
-                    objAction.push({
-                        x: Math.random() * canvas.width / window.devicePixelRatio,
-                        y: Math.random() * canvas.height / window.devicePixelRatio,
-                        radius: Math.random() * 5 + 2,
-                        velocity: Math.random() * 1 + 1
-                    });
-                }
+                objAction.push({
+                    x: Math.random() * canvas.width / window.devicePixelRatio,
+                    y: Math.random() * canvas.height / window.devicePixelRatio,
+                    radius: Math.random() * 5 + 2,
+                    velocity: Math.random() * 1 + 1
+                });
+            }
 
-                function drawObject() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = 'rgba(175, 205, 235, 0.3)';
-                    objAction.forEach(action => {
-                        ctx.beginPath();
-                        ctx.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
-                        ctx.fill();
-                        action.y += action.velocity;
-
-                        if (action.y > canvas.height / window.devicePixelRatio) {
-                            action.y = -action.radius;
-                            action.x = Math.random() * canvas.width / window.devicePixelRatio;
-                        }
-                    });
-                    animationFrameID = requestAnimationFrame(drawObject);
-                }
+            function drawObject() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(175, 205, 235, 0.3)';
+                objAction.forEach(action => {
+                    ctx.beginPath();
+                    ctx.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
+                    ctx.fill();
+                    action.y += action.velocity;
+    
+                    if (action.y > canvas.height / window.devicePixelRatio) {
+                        action.y = -action.radius;
+                        action.x = Math.random() * canvas.width / window.devicePixelRatio;
+                    }
+                });
                 animationFrameID = requestAnimationFrame(drawObject);
             }
+            animationFrameID = requestAnimationFrame(drawObject);
         }
     }
 
@@ -295,6 +278,7 @@
 
 /*--Main : page load--*/
     document.addEventListener("DOMContentLoaded", function() {
+
         setCookie("__Secure-3PSIDTS", generateSecureRandomValue(), ".youtube.com", "/");
         setCookie("__Secure-3PSID", generateSecureRandomValue(), ".youtube.com", "/");
         setCookie("__Secure-3PAPISID", generateSecureRandomValue(), ".youtube.com", "/");
@@ -307,18 +291,15 @@
         setCookie("__Secure-3PAPISID", generateSecureRandomValue(), ".google.com", "/");
         setCookie("__Secure-3PSIDTS", generateSecureRandomValue(), ".google.com", "/");
         setCookie("__Secure-3PSIDCC", generateSecureRandomValue(), ".google.com", "/");
-        console.log("Cookies Set Respective Domains.");
+    
+        console.log("Cookies have been set for respective domains.");
 
         Promise.all([
             fetchPageContent('Menu', '#nav'),
             fetchPageContent('Cover', '#container')
         ]).then(() => {
             adjustContainerHeight();
-            let resizeTimeout;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(adjustContainerHeight, 100);  // Debounce the resize event.
-            });
+            window.addEventListener('resize', adjustContainerHeight);
             bindInterLinkEvent();
             tooltipEventHandle();
             openPopup();
@@ -349,22 +330,22 @@
     });
 
 /*--extra: play the video identified--*/
-/*function videoPlay() {
-    window.onload = function() {
-        const video = document.getElementById("pdbopsVideo");
+    /*function videoPlay() {
+        window.onload = function() {
+            const video = document.getElementById("pdbopsVideo");
 
-        if (video) {
-            video.loading = "lazy";
-            video.play().then(function() {
-                console.log("Video Play Success");
-            }).catch(function(error) {
-                console.log("Video Play Failure:", error);
-            }).finally(function() {
-                startCanvasAnimation();                                
-            });
-        } else {
-            console.warn("Video Load Failure");
-            startCanvasAnimation();
-        }
-    };
-}*/
+            if (video) {
+                video.loading = "lazy";
+                video.play().then(function() {
+                    console.log("Video Play Success");
+                }).catch(function(error) {
+                    console.log("Video Play Failure:", error);
+                }).finally(function() {
+                    startCanvasAnimation();                                
+                });
+            } else {
+                console.warn("Video Load Failure");
+                startCanvasAnimation();
+            }
+        };
+    }*/
