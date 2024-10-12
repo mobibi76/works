@@ -1,7 +1,10 @@
 /*--A. click event to all inter-link class--*/
     // A1. remove and rebind interlink
     function bindInterLinkEvent() {
+        const nav = document.querySelector('#nav');
         const container = document.querySelector('#container');
+        nav.removeEventListener('click', handleInterLinkClick);
+        nav.addEventListener('click', handleInterLinkClick);
         container.removeEventListener('click', handleInterLinkClick);
         container.addEventListener('click', handleInterLinkClick);
     }
@@ -49,13 +52,8 @@
         }).then(text => {
             const targetElement = document.querySelector(targetElementSelector);
             if (targetElement) {
-                if (targetElementSelector === '#container') {
-                    targetElement.innerHTML = '';
-                    targetElement.innerHTML = text;
-                    bindInterLinkEvent();
-                } else {
-                    targetElement.innerHTML = text;
-                }
+                targetElement.innerHTML = text;
+                bindInterLinkEvent();
                 targetElement.scrollTop = 0;
             }
         }).catch(error => {
