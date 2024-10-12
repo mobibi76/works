@@ -14,19 +14,16 @@
     // B1. define introFetch function
     function introFetch(pageTitle) {
         fetch(pageTitle).then(response => {
-
             if (!response.ok) {
                 throw new Error('Network Failure');
             }
             return response.text();
         }).then(text => {
             const containerElement = document.querySelector('#container');
-
             if (containerElement) {
                 containerElement.innerHTML = text;
                 containerElement.scrollTop = 0;
                 bindInterLinkEvent();
-
                 if (pageTitle.includes('Demo')) {
                     loadIframeWithTimeout('iframe', 'https://test.pdbops.com:8000/game-ko/', 5000);
                 }
@@ -39,18 +36,15 @@
     // B2. load pages through fetch.js with error handling
     function fetchPageContent(pageTitle, targetElementSelector) {
         return fetch(pageTitle).then(response => {
-
             if (!response.ok) {
                 throw new Error('Network Failure');
             }
             return response.text();
         }).then(text => {
             const targetElement = document.querySelector(targetElementSelector);
-
             if (targetElement) {
                 targetElement.innerHTML = text;
                 targetElement.scrollTop = 0;
-
                 if (targetElementSelector === '#container') {
                     bindInterLinkEvent();
                 }
@@ -71,7 +65,6 @@
         const flexHeight = windowHeight - headerHeight;
         document.querySelector('#flex').style.height = `${flexHeight}px`;
         const navElement = document.querySelector('#nav');
-
         if (navElement) {
             const navHeight = navElement.scrollHeight;
             navElement.style.height = `${navHeight}px`;
@@ -86,13 +79,10 @@
         tooltip.id = 'tooltip';
         document.body.appendChild(tooltip);
         let currentTooltipTarget = null;
-
-        // D1. Mouse event for desktop
+        // D1. mouse event for desktop
         document.addEventListener('click', function (e) {
             const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
-
             if (target) {
-
                 if (currentTooltipTarget === target) {
                     tooltip.style.display = 'none';
                     currentTooltipTarget = null;
@@ -111,14 +101,11 @@
                 currentTooltipTarget = null;
             }
         });
-
-        // D2. Touch event for mobile
+        // D2. touch event for mobile
         document.addEventListener('touchstart', function (e) {
             const touch = e.touches[0];
             const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
-            
             if (target) {
-            
                 if (currentTooltipTarget === target) {
                     tooltip.style.display = 'none';
                     currentTooltipTarget = null;
@@ -146,15 +133,12 @@
 /*--E. popup--*/
     function openPopup() {
         const donotShowAgain = localStorage.getItem('donotShowPopup');
-        
         if (!donotShowAgain) {
             document.getElementById('popup').style.display = 'flex';
         }
     }
-
     document.getElementById('close-popup').addEventListener('click', function() {
         const donotShowAgainCheckbox = document.getElementById('donot-show-again');
-        
         if (donotShowAgainCheckbox.checked) {
             localStorage.setItem('donotShowPopup', 'true');
         }
@@ -164,11 +148,9 @@
 /*--F. play the video identified--*/
     function videoPlay() {
         const videoElement = document.getElementById("pdbopsVideo");
-        
         if (videoElement) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    
                     if (entry.isIntersecting) {
                         const tag = document.createElement('script');
                         tag.src = "https://www.youtube.com/iframe_api";
@@ -199,7 +181,6 @@
     // G1. start canvas animation
     function startCanvasAnimation() {
         const canvas = document.getElementById("aniCanvas");
-    
         if (canvas && !isAnimating) {
             isAnimating = true;
             const ctx = canvas.getContext('2d');
@@ -212,7 +193,6 @@
             resizeCanvas();
             window.addEventListener('resize', resizeCanvas);
             clearCanvasObjects();
-
             for (let i = 0; i < 10; i++) {
                 objAction.push({
                     x: Math.random() * canvas.width / window.devicePixelRatio,
@@ -230,7 +210,6 @@
                     ctx.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
                     ctx.fill();
                     action.y += action.velocity;
-    
                     if (action.y > canvas.height / window.devicePixelRatio) {
                         action.y = -action.radius;
                         action.x = Math.random() * canvas.width / window.devicePixelRatio;
@@ -244,7 +223,6 @@
 
     // G2. stop canvas animation
     function stopCanvasAnimation() {
-        
         if (isAnimating) {
             cancelAnimationFrame(animationFrameID);
             clearCanvasObjects();
@@ -261,7 +239,6 @@
 
     function setCookie(name, value, days, domain, path) {
         let expires = "";
-        
         if (days) {
             const date = new Date();
             date.setTime(date.getTime() + (days*24*60*60*1000));
@@ -273,7 +250,6 @@
 /*--I. iframe load timeout--*/
     function loadIframeWithTimeout(iframeSelector, src, timeout) {
         const iframe = document.querySelector(iframeSelector);
-
         if (!iframe) {
             console.error(`No iframe found with selector: ${iframeSelector}`);
             return;
@@ -305,15 +281,13 @@
         setCookie("__Secure-3PAPISID", generateSecureRandomValue(), ".google.com", "/");
         setCookie("__Secure-3PSIDTS", generateSecureRandomValue(), ".google.com", "/");
         setCookie("__Secure-3PSIDCC", generateSecureRandomValue(), ".google.com", "/");
-        console.log("Cookies Set Respective Domains.");
+        console.log("Cookies have been set for respective domains.");
         adjustContainerHeight();
         window.addEventListener('resize', adjustContainerHeight);
-        fetchPageContent('Menu', '#nav').catch(error => {
-            console.error('Error loading Menu:', error);
-        });  
-        fetchPageContent('Cover', '#container').catch(error => {
-            console.error('Error loading Cover:', error);
-        }).then(() => {
+        Promise.all([
+            fetchPageContent('Menu', '#nav'),
+            fetchPageContent('Cover', '#container')
+        ]).then(() => {
             bindInterLinkEvent();
             tooltipEventHandle();
             openPopup();
@@ -325,17 +299,14 @@
 /*--Sub : canvas animation--*/
     // Sub1. cancel at page unload
     window.addEventListener("beforeunload", stopCanvasAnimation);
-
     // Sub2. cancel and play on page activation
     document.addEventListener("visibilitychange", function() {
-        
         if (document.hidden) {
             stopCanvasAnimation();
         } else {
             startCanvasAnimation();
         }
     });
-
     // Sub3. candel at external link click
     const externalLinks = document.querySelectorAll('a[target="_blank"]');
     externalLinks.forEach(link => {
