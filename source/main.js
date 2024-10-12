@@ -200,12 +200,6 @@
         if (canvas && !isAnimating) {
             isAnimating = true;
             const ctx = canvas.getContext('2d');
-
-            function resizeCanvas() {
-                canvas.width = window.innerWidth * window.devicePixelRatio;
-                canvas.height = window.innerHeight * window.devicePixelRatio;
-                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-            }
             resizeCanvas();
             window.addEventListener('resize', resizeCanvas);
             clearCanvasObjects();
@@ -247,6 +241,13 @@
             clearCanvasObjects();
             isAnimating = false;
         }
+    }
+
+    // G3. resize canvas animation
+    function resizeCanvas() {
+        canvas.width = window.innerWidth * window.devicePixelRatio;
+        canvas.height = window.innerHeight * window.devicePixelRatio;
+        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     }
 
 /*--H. cookie--*/
