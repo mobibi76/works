@@ -308,10 +308,15 @@
         console.log("Cookies Set Respective Domains.");
         adjustContainerHeight();
         window.addEventListener('resize', adjustContainerHeight);
-        Promise.all([
+        Promise.allSettled([
             fetchPageContent('Menu', '#nav'),
             fetchPageContent('Cover', '#container')
-        ]).then(() => {
+        ]).then((results) => {
+            results.forEach((result) => {
+                if (result.status === 'rejected') {
+                    console.error('Error loading resource:', result.reason);
+                }
+            });
             bindInterLinkEvent();
             tooltipEventHandle();
             openPopup();
