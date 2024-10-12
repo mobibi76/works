@@ -138,19 +138,29 @@
     }
 
 /*--E. popup--*/
+    // E1. open popup
     function openPopup() {
         const donotShowAgain = localStorage.getItem('donotShowPopup');
         if (donotShowAgain !== 'true') {
             document.getElementById('popup').style.display = 'flex';
+            bindPopupCloseEvent();
         }
     }
-    document.getElementById('close-popup').addEventListener('click', function() {
-        const donotShowAgainCheckbox = document.getElementById('donot-show-again');
-        if (donotShowAgainCheckbox.checked) {
-            localStorage.setItem('donotShowPopup', 'true');
+
+    // E2. bind and close popup
+    function bindPopupCloseEvent() {
+        const closeButton = document.getElementById('close-popup');
+        if (closeButton) {
+            closeButton.addEventListener('click', function() {
+                const donotShowAgainCheckbox = document.getElementById('donot-show-again');
+                if (donotShowAgainCheckbox.checked) {
+                    localStorage.setItem('donotShowPopup', 'true');
+                }
+                document.getElementById('popup').style.display = 'none';
+            });
         }
-        document.getElementById('popup').style.display = 'none';
-    });
+    }
+    document.addEventListener("DOMContentLoaded", openPopup);
 
 /*--F. play the video identified--*/
     function videoPlay() {
