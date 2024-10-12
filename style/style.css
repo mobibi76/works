@@ -9,22 +9,16 @@
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: white;
-    border-radius: 10px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: white;
-    border-radius: 10px;
+    border-radius: 8px;
     border: 0.1rem solid gold;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: firebrick;
+    background: gold;
 }
 
 .popup-content {
@@ -84,8 +78,6 @@
     scrollbar-width: auto;
     width: 620px;
     align-items: center;
-    scrollbar-width: thin; /*firefox*/
-    scrollbar-color: white gold; /*firefox*/
 }
 
 #formlink {
