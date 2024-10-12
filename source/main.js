@@ -80,6 +80,7 @@
         tooltip.id = 'tooltip';
         document.body.appendChild(tooltip);
         let currentTooltipTarget = null;
+
         // Mouse event for desktop
         document.addEventListener('click', function (e) {
             const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
@@ -102,6 +103,7 @@
                 currentTooltipTarget = null;
             }
         });
+
         // Touch event for mobile
         document.addEventListener('touchstart', function (e) {
             const touch = e.touches[0];
@@ -125,6 +127,7 @@
                 currentTooltipTarget = null;
             }
         });
+
         document.addEventListener('wheel', function () {
             tooltip.style.display = 'none';
             currentTooltipTarget = null;
@@ -138,6 +141,7 @@
             document.getElementById('popup').style.display = 'flex';
         }
     }
+
     document.getElementById('close-popup').addEventListener('click', function() {
         const donotShowAgainCheckbox = document.getElementById('donot-show-again');
         if (donotShowAgainCheckbox.checked) {
@@ -170,7 +174,71 @@
         }
     }
 
-/*--G. cookie--*/
+/*--G. canvas animation--*/
+    let isAnimating = false;
+    let animationFrameID = null;
+    const objAction = [];
+
+    function clearCanvasObjects() {
+        objAction.length = 0;
+    }
+
+    // G1. start canvas animation
+    function startCanvasAnimation() {
+        const canvas = document.getElementById("aniCanvas");
+    
+        if (canvas && !isAnimating) {
+            isAnimating = true;
+            const ctx = canvas.getContext('2d');
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth * window.devicePixelRatio;
+                canvas.height = window.innerHeight * window.devicePixelRatio;
+                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            clearCanvasObjects();
+
+            for (let i = 0; i < 10; i++) {
+                objAction.push({
+                    x: Math.random() * canvas.width / window.devicePixelRatio,
+                    y: Math.random() * canvas.height / window.devicePixelRatio,
+                    radius: Math.random() * 5 + 2,
+                    velocity: Math.random() * 1 + 1
+                });
+            }
+
+            function drawObject() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(175, 205, 235, 0.3)';
+                objAction.forEach(action => {
+                    ctx.beginPath();
+                    ctx.arc(action.x, action.y, action.radius, 0, Math.PI * 2, false);
+                    ctx.fill();
+                    action.y += action.velocity;
+    
+                    if (action.y > canvas.height / window.devicePixelRatio) {
+                        action.y = -action.radius;
+                        action.x = Math.random() * canvas.width / window.devicePixelRatio;
+                    }
+                });
+                animationFrameID = requestAnimationFrame(drawObject);
+            }
+            animationFrameID = requestAnimationFrame(drawObject);
+        }
+    }
+
+    // G2. stop canvas animation
+    function stopCanvasAnimation() {
+        if (isAnimating) {
+            cancelAnimationFrame(animationFrameID);
+            clearCanvasObjects();
+            isAnimating = false;
+        }
+    }
+
+/*--H. cookie--*/
     function generateSecureRandomValue() {
         let array = new Uint8Array(16);
         window.crypto.getRandomValues(array);
@@ -187,7 +255,7 @@
         document.cookie = name + "=" + (value || "")  + expires + "; Domain=" + domain + "; Path=" + path + "; SameSite=None; Secure; HttpOnly";
     }
 
-/*--H. iframe load timeout--*/
+/*--I. iframe load timeout--*/
     function loadIframeWithTimeout(iframeSelector, src, timeout) {
         const iframe = document.querySelector(iframeSelector);
 
@@ -210,6 +278,7 @@
 
 /*--Main : page load--*/
     document.addEventListener("DOMContentLoaded", function() {
+
         setCookie("__Secure-3PSIDTS", generateSecureRandomValue(), ".youtube.com", "/");
         setCookie("__Secure-3PSID", generateSecureRandomValue(), ".youtube.com", "/");
         setCookie("__Secure-3PAPISID", generateSecureRandomValue(), ".youtube.com", "/");
@@ -222,8 +291,9 @@
         setCookie("__Secure-3PAPISID", generateSecureRandomValue(), ".google.com", "/");
         setCookie("__Secure-3PSIDTS", generateSecureRandomValue(), ".google.com", "/");
         setCookie("__Secure-3PSIDCC", generateSecureRandomValue(), ".google.com", "/");
-
+    
         console.log("Cookies have been set for respective domains.");
+
         Promise.all([
             fetchPageContent('Menu', '#nav'),
             fetchPageContent('Cover', '#container')
@@ -234,5 +304,48 @@
             tooltipEventHandle();
             openPopup();
             videoPlay();
+            startCanvasAnimation();
         });
     });
+
+/*--Sub : canvas animation--*/
+    // Sub1. cancel at page unload
+    window.addEventListener("beforeunload", stopCanvasAnimation);
+
+    // Sub2. cancel and play on page activation
+    document.addEventListener("visibilitychange", function() {
+        if (document.hidden) {
+            stopCanvasAnimation();
+        } else {
+            startCanvasAnimation();
+        }
+    });
+
+    // Sub3. candel at external link click
+    const externalLinks = document.querySelectorAll('a[target="_blank"]');
+    externalLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            stopCanvasAnimation();
+        });
+    });
+
+/*--extra: play the video identified--*/
+    /*function videoPlay() {
+        window.onload = function() {
+            const video = document.getElementById("pdbopsVideo");
+
+            if (video) {
+                video.loading = "lazy";
+                video.play().then(function() {
+                    console.log("Video Play Success");
+                }).catch(function(error) {
+                    console.log("Video Play Failure:", error);
+                }).finally(function() {
+                    startCanvasAnimation();                                
+                });
+            } else {
+                console.warn("Video Load Failure");
+                startCanvasAnimation();
+            }
+        };
+    }*/
