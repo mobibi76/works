@@ -200,8 +200,9 @@
         if (canvas && !isAnimating) {
             isAnimating = true;
             const ctx = canvas.getContext('2d');
-            resizeCanvas(canvas, ctx);
-            window.addEventListener('resize', () => resizeCanvas(canvas, ctx));
+            window.removeEventListener('resize', resizeCanvasHandle);
+            window.addEventListener('resize', resizeCanvasHandle);
+            resizeCanvasAnimation(canvas, ctx);
             clearCanvasObjects();
 
             for (let i = 0; i < 10; i++) {
@@ -237,14 +238,23 @@
     function stopCanvasAnimation() {
         if (isAnimating) {
             cancelAnimationFrame(animationFrameID);
-            window.removeEventListener('resize', resizeCanvas);
+            window.removeEventListener('resize', resizeCanvasHandle);
             clearCanvasObjects();
             isAnimating = false;
         }
     }
 
-    // G3. resize canvas animation
-    function resizeCanvas(canvas, ctx) {
+    // G3. resize canvas handle
+    function resizeCanvasHandle() {
+        const canvas = document.getElementById("aniCanvas");
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            resizeCanvasAnimation(canvas, ctx);
+        }
+    }
+
+    // G4. resize canvas animation
+    function resizeCanvasAnimation(canvas, ctx) {
         canvas.width = window.innerWidth * window.devicePixelRatio;
         canvas.height = window.innerHeight * window.devicePixelRatio;
         ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
