@@ -33,6 +33,10 @@
             }
         }).catch(error => {
             console.error('Fetch Operation Failure:', error);
+            const containerElement = document.querySelector('#container');
+            if (containerElement) {
+                containerElement.innerHTML = '<p>Page Load Failure: ${error.message}</p>';
+            }
         });
     }
 
@@ -138,9 +142,13 @@
 
 /*--E. popup--*/
     function openPopup() {
-        const donotShowAgain = localStorage.getItem('donotShowPopup');
-        if (!donotShowAgain) {
-            document.getElementById('popup').style.display = 'flex';
+        try {
+            const donotShowAgain = localStorage.getItem('donotShowPopup');
+            if (!donotShowAgain) {
+                document.getElementById('popup').style.display = 'flex';
+            }
+        } catch (error) {
+            console.error('Local Storage Error:', error);
         }
     }
 
@@ -235,6 +243,7 @@
     function stopCanvasAnimation() {
         if (isAnimating) {
             cancelAnimationFrame(animationFrameID);
+            window.removeEventListener('resize', resizeCanvas);
             clearCanvasObjects();
             isAnimating = false;
         }
