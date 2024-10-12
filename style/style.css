@@ -9,7 +9,12 @@
 }
 
 ::-webkit-scrollbar {
-    display: none;
+    display: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: gold;
+    border-radius: 10px;
 }
 
 .popup-content {
@@ -66,7 +71,7 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    scrollbar-width: none;
+    scrollbar-width: auto;
     width: 620px;
     align-items: center;
 }
