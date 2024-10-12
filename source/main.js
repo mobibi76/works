@@ -160,7 +160,6 @@
             });
         }
     }
-    document.addEventListener("DOMContentLoaded", openPopup);
 
 /*--F. play the video identified--*/
     function videoPlay() {
