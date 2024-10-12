@@ -282,12 +282,13 @@
         setCookie("__Secure-3PSIDTS", generateSecureRandomValue(), ".google.com", "/");
         setCookie("__Secure-3PSIDCC", generateSecureRandomValue(), ".google.com", "/");
         console.log("Cookies have been set for respective domains.");
-        adjustContainerHeight();
-        window.addEventListener('resize', adjustContainerHeight);
+
         Promise.all([
             fetchPageContent('Menu', '#nav'),
             fetchPageContent('Cover', '#container')
         ]).then(() => {
+            adjustContainerHeight();
+            window.addEventListener('resize', adjustContainerHeight);
             bindInterLinkEvent();
             tooltipEventHandle();
             openPopup();
