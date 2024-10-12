@@ -140,7 +140,7 @@
 /*--E. popup--*/
     function openPopup() {
         const donotShowAgain = localStorage.getItem('donotShowPopup');
-        if (!donotShowAgain) {
+        if (donotShowAgain !== 'true') {
             document.getElementById('popup').style.display = 'flex';
         }
     }
