@@ -15,7 +15,7 @@
     function introFetch(pageTitle) {
         fetch(pageTitle).then(response => {
             if (!response.ok) {
-                throw new Error('Network Failure');
+                throw new Error(`Network Failure': ${response.statusText}`);
             }
             return response.text();
         }).then(text => {
