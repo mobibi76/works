@@ -9,16 +9,16 @@
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
     border-radius: 8px;
-    border: 0.1rem solid gold;
+    border: 0.1rem solid firebrick;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: gold;
+    background: firebrick;
 }
 
 .popup-content {
