@@ -15,7 +15,7 @@
     function introFetch(pageTitle) {
         fetch(pageTitle).then(response => {
             if (!response.ok) {
-                throw new Error(`Network Failure': ${response.statusText}`);
+                throw new Error('Network Failure');
             }
             return response.text();
         }).then(text => {
@@ -28,15 +28,9 @@
                 if (pageTitle.includes('Demo')) {
                     loadIframeWithTimeout('iframe', 'https://test.pdbops.com:8000/game-ko/', 5000);
                 }
-                stopCanvasAnimation();
-                startCanvasAnimation();
             }
         }).catch(error => {
             console.error('Fetch Operation Failure:', error);
-            const containerElement = document.querySelector('#container');
-            if (containerElement) {
-                containerElement.innerHTML = `<p>Page Load Failure: ${error.message}</p>`;
-            }
         });
     }
 
@@ -142,13 +136,9 @@
 
 /*--E. popup--*/
     function openPopup() {
-        try {
-            const donotShowAgain = localStorage.getItem('donotShowPopup');
-            if (!donotShowAgain) {
-                document.getElementById('popup').style.display = 'flex';
-            }
-        } catch (error) {
-            console.error('Local Storage Error:', error);
+        const donotShowAgain = localStorage.getItem('donotShowPopup');
+        if (!donotShowAgain) {
+            document.getElementById('popup').style.display = 'flex';
         }
     }
 
@@ -200,9 +190,14 @@
         if (canvas && !isAnimating) {
             isAnimating = true;
             const ctx = canvas.getContext('2d');
-            window.removeEventListener('resize', resizeCanvasHandle);
-            window.addEventListener('resize', resizeCanvasHandle);
-            resizeCanvasAnimation(canvas, ctx);
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth * window.devicePixelRatio;
+                canvas.height = window.innerHeight * window.devicePixelRatio;
+                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
             clearCanvasObjects();
 
             for (let i = 0; i < 10; i++) {
@@ -238,26 +233,9 @@
     function stopCanvasAnimation() {
         if (isAnimating) {
             cancelAnimationFrame(animationFrameID);
-            window.removeEventListener('resize', resizeCanvasHandle);
             clearCanvasObjects();
             isAnimating = false;
         }
-    }
-
-    // G3. resize canvas handle
-    function resizeCanvasHandle() {
-        const canvas = document.getElementById("aniCanvas");
-        if (canvas) {
-            const ctx = canvas.getContext('2d');
-            resizeCanvasAnimation(canvas, ctx);
-        }
-    }
-
-    // G4. resize canvas animation
-    function resizeCanvasAnimation(canvas, ctx) {
-        canvas.width = window.innerWidth * window.devicePixelRatio;
-        canvas.height = window.innerHeight * window.devicePixelRatio;
-        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     }
 
 /*--H. cookie--*/
@@ -322,11 +300,11 @@
         ]).then(() => {
             adjustContainerHeight();
             window.addEventListener('resize', adjustContainerHeight);
-            startCanvasAnimation();
             bindInterLinkEvent();
             tooltipEventHandle();
             openPopup();
             videoPlay();
+            startCanvasAnimation();
         });
     });
 
