@@ -200,8 +200,8 @@
         if (canvas && !isAnimating) {
             isAnimating = true;
             const ctx = canvas.getContext('2d');
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas(canvas, ctx);
+            window.addEventListener('resize', () => resizeCanvas(canvas, ctx));
             clearCanvasObjects();
 
             for (let i = 0; i < 10; i++) {
@@ -244,7 +244,7 @@
     }
 
     // G3. resize canvas animation
-    function resizeCanvas() {
+    function resizeCanvas(canvas, ctx) {
         canvas.width = window.innerWidth * window.devicePixelRatio;
         canvas.height = window.innerHeight * window.devicePixelRatio;
         ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
