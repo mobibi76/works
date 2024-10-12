@@ -200,7 +200,7 @@
             resizeCanvas();
             window.addEventListener('resize', resizeCanvas);
             clearCanvasObjects();
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 20; i++) {
                 objAction.push({
                     x: Math.random() * canvas.width / window.devicePixelRatio,
                     y: Math.random() * canvas.height / window.devicePixelRatio,
@@ -283,12 +283,14 @@
         setCookie("__Secure-3PSIDCC", generateSecureRandomValue(), ".youtube.com", "/");
         setCookie("__Host-3PLSID", generateSecureRandomValue(), "accounts.google.com", "/");
         setCookie("__Secure-OSID", generateSecureRandomValue(), ".docs.google.com", "/");
+        setCookie("__Secure-OSID", generateSecureRandomValue(), ".drive.google.com", "/");
+        setCookie("COMPASS", generateSecureRandomValue(), ".drive.google.com", "/");
         setCookie("NID", generateSecureRandomValue(), ".google.com", "/");
         setCookie("__Secure-3PSID", generateSecureRandomValue(), ".google.com", "/");
         setCookie("__Secure-3PAPISID", generateSecureRandomValue(), ".google.com", "/");
         setCookie("__Secure-3PSIDTS", generateSecureRandomValue(), ".google.com", "/");
         setCookie("__Secure-3PSIDCC", generateSecureRandomValue(), ".google.com", "/");
-        console.log("Cookies have been set for respective domains.");
+        console.log("Cookies Set Respective Domains.");
 
         Promise.all([
             fetchPageContent('Menu', '#nav'),
