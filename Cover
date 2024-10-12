@@ -3,9 +3,8 @@
                 ✓Learn more about our process design workshops.
                 ✓Apply for the project through the link below."
     src="./notice/notice.png" width="100%">
-<!--<video id="pdbopsVideo" width="100%" autoplay muted loop>
-  <source src="./notice/pdbops48.mp4" type="video/mp4">
-</video>-->
+
+<!--video-->
 <div class="videoFrame">
   <iframe id="pdbopsVideo"
       src="https://www.youtube.com/embed/PWeBjcs4nQY?autoplay=0&controls=0&modestbranding=0&rel=0&mute=1&loop=0&fs=0&cc_load_policy=0&iv_load_policy=3&disablekb=1&playsinline=1&enablejsapi=1&playlist=PWeBjcs4nQY" 
@@ -14,8 +13,11 @@
       <!--start=sec, end=sec, origin=https://, wiget_referrer-->
   </iframe>
 </div>
-<!--tooltip display-->
+
+<!--tooltip-->
 <div id="tooltip"></div>
+
+<!--table-->
 <table>
     <tr>
         <th colspan="2">자료 다운로드</th>
@@ -43,6 +45,8 @@
         </td>
     </tr>
 </table>
+
+<!--footer-->
 <footer>
     <p id="formlink">
         <a href="https://forms.gle/1NiC53k2jivfyrcr8" target="_blank">🖱️신청(APPLY)🖱️</a>

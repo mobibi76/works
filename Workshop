@@ -32,6 +32,8 @@
                 ✓Certified Risk Management Expert.
                 ✓Process design patent holder."
     src="./img/consultant.png" width="100%">
+
+<!--table-->
 <table>
     <tr>
         <th colspan="2">자료 다운로드</th>
@@ -65,6 +67,8 @@
                 ✓(Government Tech.)Project risk management from A to Z.
                 ✓Agile risk communication workshops."
     src="./img/serviceApply.png" width="100%">
+
+<!--footer-->
 <footer>
     <p id="formlink">
         <a href="https://forms.gle/1NiC53k2jivfyrcr8" target="_blank">🖱️신청(APPLY)🖱️</a>

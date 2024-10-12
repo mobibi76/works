@@ -1,3 +1,4 @@
+<!--table-->
 <table>
     <tr data-tooltip="For users of other languages,
     please use the translation function in your web browser.
@@ -295,8 +296,11 @@
         </td>
     </tr>
 </table>
-<!--tooltip display-->
+
+<!--tooltip-->
 <div id="tooltip"></div>
+
+<!--footer-->
 <footer>
     <p id="formlink">
         <a href="#!Demo" class="inter-link">🖱️데모(DEMO)🖱️</a>
