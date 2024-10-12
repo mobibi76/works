@@ -28,6 +28,8 @@
                 if (pageTitle.includes('Demo')) {
                     loadIframeWithTimeout('iframe', 'https://test.pdbops.com:8000/game-ko/', 5000);
                 }
+                stopCanvasAnimation();
+                startCanvasAnimation();
             }
         }).catch(error => {
             console.error('Fetch Operation Failure:', error);
