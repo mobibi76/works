@@ -161,6 +161,11 @@
         }
     }
 
+    // E3. DOM event
+    document.addEventListener("DOMContentLoaded", function() {
+        openPopup();
+    });
+
 /*--F. play the video identified--*/
     function videoPlay() {
         const videoElement = document.getElementById("pdbopsVideo");
