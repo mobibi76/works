@@ -14,12 +14,14 @@
     // B1. define introFetch function
     function introFetch(pageTitle) {
         fetch(pageTitle).then(response => {
+
             if (!response.ok) {
                 throw new Error('Network Failure');
             }
             return response.text();
         }).then(text => {
             const containerElement = document.querySelector('#container');
+
             if (containerElement) {
                 containerElement.innerHTML = text;
                 containerElement.scrollTop = 0;
@@ -37,15 +39,18 @@
     // B2. load pages through fetch.js with error handling
     function fetchPageContent(pageTitle, targetElementSelector) {
         return fetch(pageTitle).then(response => {
+
             if (!response.ok) {
                 throw new Error('Network Failure');
             }
             return response.text();
         }).then(text => {
             const targetElement = document.querySelector(targetElementSelector);
+
             if (targetElement) {
                 targetElement.innerHTML = text;
                 targetElement.scrollTop = 0;
+
                 if (targetElementSelector === '#container') {
                     bindInterLinkEvent();
                 }
@@ -66,6 +71,7 @@
         const flexHeight = windowHeight - headerHeight;
         document.querySelector('#flex').style.height = `${flexHeight}px`;
         const navElement = document.querySelector('#nav');
+
         if (navElement) {
             const navHeight = navElement.scrollHeight;
             navElement.style.height = `${navHeight}px`;
@@ -81,10 +87,12 @@
         document.body.appendChild(tooltip);
         let currentTooltipTarget = null;
 
-        // Mouse event for desktop
+        // D1. Mouse event for desktop
         document.addEventListener('click', function (e) {
             const target = e.target.closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
+
             if (target) {
+
                 if (currentTooltipTarget === target) {
                     tooltip.style.display = 'none';
                     currentTooltipTarget = null;
@@ -104,11 +112,13 @@
             }
         });
 
-        // Touch event for mobile
+        // D2. Touch event for mobile
         document.addEventListener('touchstart', function (e) {
             const touch = e.touches[0];
             const target = document.elementFromPoint(touch.clientX, touch.clientY).closest('td[data-tooltip], tr[data-tooltip], img[data-tooltip]');
+            
             if (target) {
+            
                 if (currentTooltipTarget === target) {
                     tooltip.style.display = 'none';
                     currentTooltipTarget = null;
@@ -127,7 +137,6 @@
                 currentTooltipTarget = null;
             }
         });
-
         document.addEventListener('wheel', function () {
             tooltip.style.display = 'none';
             currentTooltipTarget = null;
@@ -137,6 +146,7 @@
 /*--E. popup--*/
     function openPopup() {
         const donotShowAgain = localStorage.getItem('donotShowPopup');
+        
         if (!donotShowAgain) {
             document.getElementById('popup').style.display = 'flex';
         }
@@ -144,6 +154,7 @@
 
     document.getElementById('close-popup').addEventListener('click', function() {
         const donotShowAgainCheckbox = document.getElementById('donot-show-again');
+        
         if (donotShowAgainCheckbox.checked) {
             localStorage.setItem('donotShowPopup', 'true');
         }
@@ -153,9 +164,11 @@
 /*--F. play the video identified--*/
     function videoPlay() {
         const videoElement = document.getElementById("pdbopsVideo");
+        
         if (videoElement) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
+                    
                     if (entry.isIntersecting) {
                         const tag = document.createElement('script');
                         tag.src = "https://www.youtube.com/iframe_api";
@@ -231,6 +244,7 @@
 
     // G2. stop canvas animation
     function stopCanvasAnimation() {
+        
         if (isAnimating) {
             cancelAnimationFrame(animationFrameID);
             clearCanvasObjects();
@@ -247,6 +261,7 @@
 
     function setCookie(name, value, days, domain, path) {
         let expires = "";
+        
         if (days) {
             const date = new Date();
             date.setTime(date.getTime() + (days*24*60*60*1000));
@@ -278,7 +293,6 @@
 
 /*--Main : page load--*/
     document.addEventListener("DOMContentLoaded", function() {
-
         setCookie("__Secure-3PSIDTS", generateSecureRandomValue(), ".youtube.com", "/");
         setCookie("__Secure-3PSID", generateSecureRandomValue(), ".youtube.com", "/");
         setCookie("__Secure-3PAPISID", generateSecureRandomValue(), ".youtube.com", "/");
@@ -291,15 +305,13 @@
         setCookie("__Secure-3PAPISID", generateSecureRandomValue(), ".google.com", "/");
         setCookie("__Secure-3PSIDTS", generateSecureRandomValue(), ".google.com", "/");
         setCookie("__Secure-3PSIDCC", generateSecureRandomValue(), ".google.com", "/");
-    
-        console.log("Cookies have been set for respective domains.");
-
+        console.log("Cookies Set Respective Domains.");
+         adjustContainerHeight();
+        window.addEventListener('resize', adjustContainerHeight);
         Promise.all([
             fetchPageContent('Menu', '#nav'),
             fetchPageContent('Cover', '#container')
         ]).then(() => {
-            adjustContainerHeight();
-            window.addEventListener('resize', adjustContainerHeight);
             bindInterLinkEvent();
             tooltipEventHandle();
             openPopup();
@@ -314,6 +326,7 @@
 
     // Sub2. cancel and play on page activation
     document.addEventListener("visibilitychange", function() {
+        
         if (document.hidden) {
             stopCanvasAnimation();
         } else {
@@ -328,24 +341,3 @@
             stopCanvasAnimation();
         });
     });
-
-/*--extra: play the video identified--*/
-    /*function videoPlay() {
-        window.onload = function() {
-            const video = document.getElementById("pdbopsVideo");
-
-            if (video) {
-                video.loading = "lazy";
-                video.play().then(function() {
-                    console.log("Video Play Success");
-                }).catch(function(error) {
-                    console.log("Video Play Failure:", error);
-                }).finally(function() {
-                    startCanvasAnimation();                                
-                });
-            } else {
-                console.warn("Video Load Failure");
-                startCanvasAnimation();
-            }
-        };
-    }*/
