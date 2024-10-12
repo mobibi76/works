@@ -140,6 +140,8 @@
         const donotShowAgain = localStorage.getItem('donotShowPopup');
         if (donotShowAgain !== 'true') {
             document.getElementById('popup').style.display = 'flex';
+        } else {
+            document.getElementById('popup').style.display = 'none';
         }
     }
     document.getElementById('close-popup').addEventListener('click', function() {
