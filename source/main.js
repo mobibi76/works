@@ -35,7 +35,7 @@
             console.error('Fetch Operation Failure:', error);
             const containerElement = document.querySelector('#container');
             if (containerElement) {
-                containerElement.innerHTML = '<p>Page Load Failure: ${error.message}</p>';
+                containerElement.innerHTML = `<p>Page Load Failure: ${error.message}</p>`;
             }
         });
     }
