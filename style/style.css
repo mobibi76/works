@@ -24,7 +24,7 @@
 .popup-content {
     font-family: 'freesentation4';
     font-size: 1.1rem;
-    background: linear-gradient(45deg, gold, transparent);
+    background: linear-gradient(0deg, white, transparent);
     padding: 10px;
     border-radius: 8px;
     text-align: center;
@@ -33,6 +33,11 @@
 
 .popup-content img {
     max-width: 100%;
+}
+
+.popup-content p {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .popup-overlay {
