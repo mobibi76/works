@@ -37,8 +37,8 @@
 
 .popup-overlay {
     position: fixed;
-    top: 8.5%;
-    left: 1.5%;
+    top: 9%;
+    left: 1%;
     width: auto;
     height: auto;
     justify-content: center;
@@ -57,7 +57,7 @@
 .videoFrame {
     position: relative;
     width: 80%;
-    padding-bottom: 45.04%;
+    padding-bottom: 44.99%;
     overflow: hidden;
 }
 
