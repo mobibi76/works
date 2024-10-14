@@ -265,7 +265,7 @@
                     <p>Server Response Failure. Try Later.<br>The server may be off.</p>
                     <img src="demoLoadFailure.png" alt="Demo Load Failure" style="max-width: 100%; height: auto;">
                 </div>
-                `;
+            `;
         }, timeout);
         iframe.onload = function() {
             clearTimeout(timer);
@@ -277,7 +277,7 @@
                     <p>Server Response Failure. Try Later.<br>The server may be off.</p>
                     <img src="demoLoadFailure.png" alt="Demo Load Failure" style="max-width: 100%; height: auto;">
                 </div>
-                `;
+            `;
         };
         iframe.src = src;
     }
