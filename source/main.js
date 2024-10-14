@@ -185,12 +185,12 @@
         objAction.length = 0;
     }
     // G1. start canvas animation
-    function startCanvasAnimation() {
+    function startCanvasAnimations() {
         const canvas = document.getElementById("aniCanvas");
         if (canvas && !isAnimating) {
             isAnimating = true;
             const ctx = canvas.getContext('2d');
-
+    
             function resizeCanvas() {
                 canvas.width = window.innerWidth * window.devicePixelRatio;
                 canvas.height = window.innerHeight * window.devicePixelRatio;
@@ -198,6 +198,8 @@
             }
             resizeCanvas();
             window.addEventListener('resize', resizeCanvas);
+    
+            // 기존 애니메이션 데이터 초기화
             clearCanvasObjects();
             for (let i = 0; i < 20; i++) {
                 objAction.push({
@@ -207,8 +209,68 @@
                     velocity: Math.random() * 1 + 1
                 });
             }
-
-            function drawObject() {
+    
+            // 3D 원근감 애니메이션 설정
+            const healer = {
+                x: canvas.width * 0.5,
+                y: canvas.height * 0.85,
+                depth: 1,
+                castHeal: function() {
+                    const size = 30 * this.depth;
+                    ctx.fillStyle = 'green';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
+                    ctx.fill();
+    
+                    // 힐 에너지 (힐러에서 용사로 전달)
+                    ctx.strokeStyle = 'lightgreen';
+                    ctx.lineWidth = 5 * this.depth;
+                    ctx.beginPath();
+                    ctx.moveTo(this.x, this.y);
+                    ctx.lineTo(warrior.x + warrior.width / 2, warrior.y + warrior.height / 2);
+                    ctx.stroke();
+                }
+            };
+    
+            const warrior = {
+                x: canvas.width * 0.5,
+                y: canvas.height * 0.6,
+                width: 40 * 0.6,
+                height: 60 * 0.6,
+                attack: function() {
+                    ctx.fillStyle = 'blue';
+                    ctx.fillRect(this.x, this.y, this.width, this.height);
+                    ctx.fillStyle = 'gray';
+                    ctx.fillRect(this.x - 10, this.y + 10, 10 * 0.6, this.height / 2);
+                }
+            };
+    
+            const skeleton = {
+                x: canvas.width * 0.8,
+                y: canvas.height * 0.6,
+                width: 40 * 0.2,
+                height: 70 * 0.2,
+                velocity: -0.5,
+                depth: 0.2,
+                move: function() {
+                    this.x += this.velocity;
+                    this.depth += 0.01;
+                    this.width = 40 * this.depth;
+                    this.height = 70 * this.depth;
+    
+                    if (this.x < warrior.x + warrior.width) {
+                        this.x = canvas.width * 0.8;
+                        this.depth = 0.2;
+                    }
+                },
+                draw: function() {
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(this.x, this.y, this.width, this.height);
+                }
+            };
+    
+            function drawBothAnimations() {
+                // 기존 애니메이션 (화면의 원들)
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.fillStyle = 'rgba(175, 205, 235, 0.3)';
                 objAction.forEach(action => {
@@ -221,9 +283,17 @@
                         action.x = Math.random() * canvas.width / window.devicePixelRatio;
                     }
                 });
-                animationFrameID = requestAnimationFrame(drawObject);
+    
+                // 새로운 3D 애니메이션 (힐러, 용사, 해골)
+                healer.castHeal();
+                warrior.attack();
+                skeleton.move();
+                skeleton.draw();
+    
+                animationFrameID = requestAnimationFrame(drawBothAnimations);
             }
-            animationFrameID = requestAnimationFrame(drawObject);
+    
+            animationFrameID = requestAnimationFrame(drawBothAnimations);
         }
     }
     // G2. stop canvas animation
@@ -234,109 +304,6 @@
             isAnimating = false;
         }
     }
-
-
-
-
-
-
-
-
-
-    
-// 새로운 3D 원근감 애니메이션
-function start3DAnimation() {
-    const canvas = document.getElementById("aniCanvas");
-    if (canvas && isAnimating) {  // 기존 애니메이션과 함께 실행되도록 조정
-        const ctx = canvas.getContext('2d');
-        const maxDepth = 1;   // 가까운 객체 (힐러)
-        const midDepth = 0.6; // 중간 깊이 (용사)
-        const minDepth = 0.2; // 먼 객체 (해골)
-
-        const healer = {
-            x: canvas.width * 0.5,
-            y: canvas.height * 0.85,
-            depth: maxDepth,
-            castHeal: function() {
-                const size = 30 * this.depth;
-                ctx.fillStyle = 'green';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
-                ctx.fill();
-
-                // 힐 에너지가 용사에게 전달되는 선
-                ctx.strokeStyle = 'lightgreen';
-                ctx.lineWidth = 5 * this.depth;
-                ctx.beginPath();
-                ctx.moveTo(this.x, this.y);
-                ctx.lineTo(warrior.x + warrior.width / 2, warrior.y + warrior.height / 2);
-                ctx.stroke();
-            }
-        };
-
-        const warrior = {
-            x: canvas.width * 0.5,
-            y: canvas.height * 0.6,
-            width: 40 * midDepth,
-            height: 60 * midDepth,
-            attack: function() {
-                ctx.fillStyle = 'blue';
-                ctx.fillRect(this.x, this.y, this.width, this.height);
-                ctx.fillStyle = 'gray';
-                ctx.fillRect(this.x - 10, this.y + 10, 10 * midDepth, this.height / 2); // 방패
-            }
-        };
-
-        const skeleton = {
-            x: canvas.width * 0.8,
-            y: canvas.height * 0.6,
-            width: 40 * minDepth,
-            height: 70 * minDepth,
-            velocity: -0.5,
-            depth: minDepth,
-            move: function() {
-                this.x += this.velocity;
-                this.depth += 0.01;
-                this.width = 40 * this.depth;
-                this.height = 70 * this.depth;
-
-                if (this.x < warrior.x + warrior.width) {
-                    this.x = canvas.width * 0.8;
-                    this.depth = minDepth;
-                }
-            },
-            draw: function() {
-                ctx.fillStyle = 'white';
-                ctx.fillRect(this.x, this.y, this.width, this.height);
-            }
-        };
-
-        function draw3DScene() {
-            healer.castHeal();
-            warrior.attack();
-            skeleton.move();
-            skeleton.draw();
-        }
-
-        function drawScene() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawObject(); // 기존 애니메이션 호출
-            draw3DScene(); // 새로운 애니메이션 호출
-            animationFrameID = requestAnimationFrame(drawScene);
-        }
-
-        animationFrameID = requestAnimationFrame(drawScene);
-    }
-}
-
-
-
-
-
-
-
-
-
 
 /*--H. cookie--*/
     function generateSecureRandomValue() {
@@ -424,7 +391,7 @@ function start3DAnimation() {
 
 
 
-            
+
         });
     });
 
