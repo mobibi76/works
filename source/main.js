@@ -404,6 +404,27 @@ function start3DAnimation() {
             openPopup();
             videoPlay();
             startCanvasAnimation();
+
+
+
+
+
+
+
+
+
+
+            start3DAnimation();
+
+
+
+
+
+
+
+
+
+            
         });
     });
 
