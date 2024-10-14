@@ -370,7 +370,7 @@
             tooltipEventHandle();
             openPopup();
             videoPlay();
-            startCanvasAnimation();
+            startCanvasAnimations();
 
 
 
@@ -381,7 +381,7 @@
 
 
 
-            start3DAnimation();
+
 
 
 
