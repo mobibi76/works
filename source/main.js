@@ -33,7 +33,7 @@
                 containerElement.scrollTop = 0;
                 bindInterLinkEvent();
                 if (pageTitle.includes('Demo')) {
-                    loadIframeWithTimeout('iframe', 'https://test.pdbops.com:8000/test/', 4000);
+                    loadIframeWithTimeout('iframe', 'https://test.pdbops.com:8000/test/', 3500);
                 }
             }
         }).catch(error => {
