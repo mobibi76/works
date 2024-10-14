@@ -256,7 +256,7 @@
     function loadIframeWithTimeout(iframeSelector, src, timeout) {
         const iframe = document.querySelector(iframeSelector);
         if (!iframe) {
-            console.error(`No iframe found with selector: ${iframeSelector}`);
+            console.error(`No Iframe Found With Selector: ${iframeSelector}`);
             return;
         }
         const timer = setTimeout(function() {
