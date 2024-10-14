@@ -260,14 +260,24 @@
             return;
         }
         const timer = setTimeout(function() {
-            iframe.srcdoc = "<p>Server Response Failure. Try Later.<br>The server may be off.</p>";
+            iframe.srcdoc = `
+                <div style="text-align: center;">
+                    <p>Server Response Failure. Try Later.<br>The server may be off.</p>
+                    <img src="demoLoadFailure.png" alt="Demo Load Failure" style="max-width: 100%; height: auto;">
+                </div>
+                `;
         }, timeout);
         iframe.onload = function() {
             clearTimeout(timer);
         };
         iframe.onerror = function() {
             clearTimeout(timer);
-            iframe.srcdoc = "<p>Server Response Failure. Try Later.<br>The server may be off.</p>";
+            iframe.srcdoc = `
+                <div style="text-align: center;">
+                    <p>Server Response Failure. Try Later.<br>The server may be off.</p>
+                    <img src="demoLoadFailure.png" alt="Demo Load Failure" style="max-width: 100%; height: auto;">
+                </div>
+                `;
         };
         iframe.src = src;
     }
