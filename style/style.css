@@ -195,10 +195,6 @@ iframe {
     height: 70%;
 }
 
-iframe img {
-    width: 39%;
-}
-
 label {
     margin-right: 20px;
 }
@@ -249,10 +245,6 @@ table th {
 
     h2 {
         font-size: 1.4rem !important;
-    }
-
-    iframe img {
-        width: 90%;
     }
 
     table, #gameFrame li {
