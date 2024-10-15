@@ -62,15 +62,15 @@
                     document.head.appendChild(linkElement);
                 });
             }
-            window.onload = function() {
+            window.addEventListener('load', function() {
                 loadRandomStylesheet().then(() => {
                     if (typeof adjustContainerHeight === 'function') {
                         adjustContainerHeight();
                     } else {
-                        console.error('adjustContainerHeight Not Defined');
+                        console.error('adjustContainerHeight Not Defined.');
                     }
                 });
-            };
+            });
         </script>
 
         <!--apply fetch.js-->
