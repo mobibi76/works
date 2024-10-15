@@ -298,6 +298,10 @@
         const linkElement = document.createElement('link');
         linkElement.rel = 'stylesheet';
         linkElement.href = stylesheets[randomIndex];
+        linkElement.onload = function() {
+            document.body.style.visibility = 'visible';
+        };
+        document.body.style.visibility = 'hidden';
         document.head.appendChild(linkElement);
     }
 
