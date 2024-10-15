@@ -47,31 +47,23 @@
 
         <!--load style_n.css random-->
         <script nonce="abc123">
-            function loadRandomStylesheetAndScript() {
-                const stylesheets = [
+            window.onload = function() {
+                var stylesheets = [
                     './style/style_1.css', 
                     './style/style_2.css', 
                     './style/style_3.css'
                 ];
-                const randomIndex = Math.floor(Math.random() * stylesheets.length);
-                const linkElement = document.createElement('link');
+                var randomIndex = Math.floor(Math.random() * stylesheets.length);
+                var linkElement = document.createElement('link');
                 linkElement.rel = 'stylesheet';
                 linkElement.href = stylesheets[randomIndex];
-                linkElement.onload = () => {
-                    const script = document.createElement('script');
-                    script.src = './source/main.js';
-                    script.type = 'module';
-                    script.defer = true;
-                    script.onload = () => {
-                        if (typeof adjustContainerHeight === 'function') {
-                            adjustContainerHeight();
-                        }
-                    };
-                    document.head.appendChild(script);
+                linkElement.onload = function() {
+                      if (typeof adjustContainerHeight === 'function') {
+                        adjustContainerHeight();
+                    }
                 };
                 document.head.appendChild(linkElement);
-            }
-            window.addEventListener('load', loadRandomStylesheetAndScript);
+            };
         </script>
 
         <!--apply fetch.js-->
