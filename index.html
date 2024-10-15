@@ -46,34 +46,9 @@
 		</script>
 
         <!--load style_n.css random-->
-        <script nonce="abc123">
-            function loadRandomStylesheet() {
-                return new Promise((resolve) => {
-                    var stylesheets = [
-                        './style/style_1.css', 
-                        './style/style_2.css', 
-                        './style/style_3.css'
-                    ];
-                    var randomIndex = Math.floor(Math.random() * stylesheets.length);
-                    var linkElement = document.createElement('link');
-                    linkElement.rel = 'stylesheet';
-                    linkElement.href = stylesheets[randomIndex];
-                    linkElement.onload = resolve;
-                    document.head.appendChild(linkElement);
-                });
-            }
-            window.addEventListener('load', function() {
-                loadRandomStylesheet().then(() => {
-                    if (typeof adjustContainerHeight === 'function') {
-                        adjustContainerHeight();
-                    } else {
-                        console.error('adjustContainerHeight Not Defined.');
-                    }
-                });
-            });
-        </script>
+        <link rel="stylesheet" href="./style/style.css">
 
-        <!--apply fetch.js-->
+        <!--fetch.js-->
         <script src="./source/fetch.js" type="module" defer></script>
     </head>
 
