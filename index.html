@@ -57,6 +57,10 @@
                 var linkElement = document.createElement('link');
                 linkElement.rel = 'stylesheet';
                 linkElement.href = stylesheets[randomIndex];
+
+                linkElement.onload = function() {
+                    adjustContainerHeight();
+                };
                 document.head.appendChild(linkElement);
             };
         </script>
