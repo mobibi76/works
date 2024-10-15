@@ -303,7 +303,7 @@
 
     // J2. load container and apply css style
     function loadContainerContent() {
-        fetch('/path/to/container/content')
+        fetch('/index.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('container').innerHTML = html;
