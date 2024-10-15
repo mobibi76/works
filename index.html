@@ -45,10 +45,23 @@
 			gtag('config', 'G-24VQ8R21C5');
 		</script>
 
-        <!--style.css-->
-        <link rel="stylesheet" href="./style/style.css">
+        <!--load style_n.css random-->
+        <script>
+            window.onload = function() {
+                var stylesheets = [
+                    './style/style_1.css', 
+                    './style/style_2.css', 
+                    './style/style_3.css'
+                ];
+                var randomIndex = Math.floor(Math.random() * stylesheets.length);
+                var linkElement = document.createElement('link');
+                linkElement.rel = 'stylesheet';
+                linkElement.href = stylesheets[randomIndex];
+                document.head.appendChild(linkElement);
+            };
+        </script>
 
-        <!--fetch.js-->
+        <!--apply fetch.js-->
         <script src="./source/fetch.js" type="module" defer></script>
     </head>
 

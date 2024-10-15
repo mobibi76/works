@@ -1,0 +1,257 @@
+@font-face {
+    font-family:'freesentation4';
+    src: url('../font/Freesentation-4Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family:'freesentation3';
+    src: url('../font/Freesentation-3Light.ttf') format('truetype');
+}
+
+::-webkit-scrollbar {
+    width: 0.1rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(0deg, transparent, firebrick, transparent);
+}
+
+.popup-content {
+    font-family: 'freesentation4';
+    font-size: 1.1rem;
+    background: linear-gradient(90deg, transparent, gold, beige, transparent);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 500px;
+}
+
+.popup-content img {
+    max-width: 100%;
+}
+
+.popup-content p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 9%;
+    left: 1%;
+    width: auto;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.tooltip-image {
+    background-color: gold;
+}
+
+.tooltip-text {
+    background-color: gold;
+}
+
+.videoFrame {
+    position: relative;
+    width: 80%;
+    padding-bottom: 44.99%;
+    overflow: hidden;
+}
+
+#aniCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    scrollbar-width: auto;
+    width: 620px;
+    align-items: center;
+}
+
+#formlink {
+    margin: 0px;
+}
+
+#formlink a {
+    font-size: 2rem;
+    color: white;
+}
+
+#flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#gameFrame li {
+    list-style-type: none;
+    font-size: 1.1rem;
+}
+
+#nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: firebrick;
+}
+
+#nav a {
+    font-size: 1.3rem;
+    color: white;
+}
+
+#nav li {
+    display: inline-block;
+    margin-right: 40px;
+}
+
+#nav li:last-child {
+    margin-right: 0px;
+}
+
+#nav ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#pdbopsVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#tooltip {
+    position: absolute;
+    font-family: 'freesentation4';
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 1rem;
+    z-index: 1000;
+    white-space: pre-line;
+}
+
+#year {
+    vertical-align: text-top;
+}
+
+a {
+    font-family: 'freesentation4';
+    color: firebrick;
+    text-decoration: none;
+}
+
+footer {
+    position: sticky;
+    width: 100%;
+    bottom: 0px;
+    font-family:'freesentation4';
+    font-size: 1rem;
+    background-color: firebrick;
+    text-align: center;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 3px;
+    color: white;
+}
+
+h2 {
+    margin: 0px;
+    font-family:'freesentation3';
+    font-size: 2rem;
+    text-align: center;
+    background-color: transparent;
+}
+
+html, body {
+    margin: 0px;
+    overflow: hidden;
+    filter: grayscale(100%);
+}
+
+iframe {
+    border: none;
+    border-bottom: 0.1rem firebrick solid;
+    width: 100%;
+    height: 70%;
+}
+
+label {
+    margin-right: 20px;
+}
+
+table {
+    font-family: 'freesentation4';
+    font-size: 1.2rem;
+    text-align: left;
+    width: 100%;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+table th {
+    font-family: 'freesentation3';
+    font-size: 1.3rem;
+}
+
+@media (max-width: 620px) {
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    #container {
+        width: auto;
+        max-width: 520px;
+    }
+
+    #nav a {
+        font-size: 1.1rem !important;
+    }
+
+    #nav li {
+        margin-right: 10px !important;
+    }
+
+    #formlink a {
+        font-size: 1.4rem !important;
+    }
+
+    #tooltip {
+        font-size: 0.9rem !important;
+    }
+
+    footer {
+        font-size: 1rem !important;
+    }
+
+    h2 {
+        font-size: 1.4rem !important;
+    }
+
+    table, #gameFrame li {
+        font-size: 1rem !important;
+    }
+
+    table th, #gameFrame {
+        font-size: 1rem !important;
+    }
+}
