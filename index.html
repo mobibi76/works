@@ -47,7 +47,7 @@
 
         <!--load style_n.css random-->
         <script nonce="abc123">
-            window.onload = function() {
+            function loadRandomStylesheet(callback) {
                 var stylesheets = [
                     './style/style_1.css', 
                     './style/style_2.css', 
@@ -57,7 +57,13 @@
                 var linkElement = document.createElement('link');
                 linkElement.rel = 'stylesheet';
                 linkElement.href = stylesheets[randomIndex];
+                linkElement.onload = callback;
                 document.head.appendChild(linkElement);
+            }
+            window.onload = function() {
+                loadRandomStylesheet(function() {
+                    adjustContainerHeight();
+                });
             };
         </script>
 
