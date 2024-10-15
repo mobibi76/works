@@ -45,28 +45,10 @@
 			gtag('config', 'G-24VQ8R21C5');
 		</script>
 
-        <!--load style_n.css random-->
-        <script nonce="abc123">
-            window.onload = function() {
-                var stylesheets = [
-                    './style/style_1.css', 
-                    './style/style_2.css', 
-                    './style/style_3.css'
-                ];
-                var randomIndex = Math.floor(Math.random() * stylesheets.length);
-                var linkElement = document.createElement('link');
-                linkElement.rel = 'stylesheet';
-                linkElement.href = stylesheets[randomIndex];
-                linkElement.onload = function() {
-                      if (typeof adjustContainerHeight === 'function') {
-                        adjustContainerHeight();
-                    }
-                };
-                document.head.appendChild(linkElement);
-            };
-        </script>
+        <!--style.css-->
+        <link rel="stylesheet" href="./style/style.css">
 
-        <!--apply fetch.js-->
+        <!--fetch.js-->
         <script src="./source/fetch.js" type="module" defer></script>
     </head>
 
