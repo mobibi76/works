@@ -282,6 +282,36 @@
         iframe.src = src;
     }
 
+/*--J. apply random css style--*/
+    // J1. load random css style
+    function loadRandomStylesheet() {
+        const stylesheets = [
+            '../style/style_1.css', 
+            '../style/style_2.css', 
+            '../style/style_3.css'
+        ];
+        const randomIndex = Math.floor(Math.random() * stylesheets.length);
+        let existingLink = document.querySelector('link[rel="stylesheet"]');
+        if (existingLink) {
+            existingLink.remove();
+        }
+        const linkElement = document.createElement('link');
+        linkElement.rel = 'stylesheet';
+        linkElement.href = stylesheets[randomIndex];
+        document.head.appendChild(linkElement);
+    }
+
+    // J2. load container and apply css style
+    function loadContainerContent() {
+        fetch('/path/to/container/content')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('container').innerHTML = html;
+                loadRandomStylesheet();
+            })
+            .catch(error => console.error('Error loading container content:', error));
+    }
+
 /*--Main : page load--*/
     document.addEventListener("DOMContentLoaded", function() {
         setCookie("__Secure-3PSIDTS", generateSecureRandomValue(), ".youtube.com", "/");
@@ -311,6 +341,7 @@
             openPopup();
             videoPlay();
             startCanvasAnimation();
+            loadContainerContent();
         });
     });
 
