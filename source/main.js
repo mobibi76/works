@@ -71,10 +71,8 @@
         document.querySelector('#flex').style.height = `${flexHeight}px`;
         const navElement = document.querySelector('#nav');
         if (navElement) {
-            //const navHeight = navElement.scrollHeight;
-            //navElement.style.height = `${navHeight}px`;
-            navElement.style.width = 'auto';
-            navElement.style.maxHeight = `${flexHeight * 0.2}px`;
+            const navHeight = navElement.scrollHeight;
+            navElement.style.height = `${navHeight}px`;
         }
         const containerHeight = flexHeight - navElement.offsetHeight;
         document.querySelector('#container').style.height = `${containerHeight}px`;
