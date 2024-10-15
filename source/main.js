@@ -15,6 +15,7 @@
             event.preventDefault();
             const pageTitle = link.getAttribute('href').replace(/^#!/, '');
             introFetch(pageTitle);
+            loadRandomStylesheet();
         }
     }
 
@@ -283,7 +284,6 @@
     }
 
 /*--J. apply random css style--*/
-    // J1. load random css style
     function loadRandomStylesheet() {
         const stylesheets = [
             '../style/style_1.css', 
@@ -299,17 +299,6 @@
         linkElement.rel = 'stylesheet';
         linkElement.href = stylesheets[randomIndex];
         document.head.appendChild(linkElement);
-    }
-
-    // J2. load container and apply css style
-    function loadContainerContent() {
-        fetch('/index.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('container').innerHTML = html;
-                loadRandomStylesheet();
-            })
-            .catch(error => console.error('Error loading container content:', error));
     }
 
 /*--Main : page load--*/
@@ -341,7 +330,6 @@
             openPopup();
             videoPlay();
             startCanvasAnimation();
-            loadContainerContent();
         });
     });
 
