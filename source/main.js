@@ -331,7 +331,7 @@
             window.addEventListener('resize', adjustContainerHeight);
             bindInterLinkEvent();
             tooltipEventHandle();
-            openPopup();
+            //openPopup();
             videoPlay();
             startCanvasAnimation();
         });
