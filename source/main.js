@@ -36,21 +36,12 @@
 
 
 
-                
 
-                const observer = new MutationObserver((mutations) => {
-                    mutations.forEach((mutation) => {
-                        if (mutation.addedNodes.length) {
-                            const footer = document.querySelector('footer');
-                            if (footer) {
-                                const event = new CustomEvent('pageLoaded', { detail: { page: pageTitle } });
-                                document.dispatchEvent(event);
-                                observer.disconnect();
-                            }
-                        }
-                    });
-                });
-                observer.observe(containerElement, { childList: true, subtree: true });
+
+                setTimeout(() => {
+                    const event = new CustomEvent('pageLoaded', { detail: { page: pageTitle } });
+                    document.dispatchEvent(event);
+                }, 100);
 
 
 
