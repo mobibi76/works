@@ -81,9 +81,9 @@
         if (emailElement) {
             emailElement.innerHTML = 
                 '<a href="mailto:processdesignbase@gmail.com">processdesignbase@gmail.com</a> (125-51-00257)';
-            console.log('Email inserted successfully.');
+            console.log('Email Inserted.');
         } else {
-            console.log('#email element not found, skipping insertion.');
+            console.log('#email Element Not Found, Skip Insert');
         }
     }
 
@@ -91,7 +91,7 @@
 
 
 
-    
+
 /*--C. calculate header-flex to fix scroll issue on container--*/
     function adjustContainerHeight() {
         const headers = document.querySelectorAll('header h1, header h2');
@@ -357,6 +357,16 @@
             openPopup();
             videoPlay();
             startCanvasAnimation();
+
+
+
+
+            insertEmailIfPresent();
+            
+            
+
+
+            
         });
     });
 
