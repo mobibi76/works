@@ -7,18 +7,14 @@ function insertEmail() {
         console.error('Email Element Not Found.');
     }
 }
+
 document.addEventListener('DOMContentLoaded', () => {
-    const footer = document.querySelector('footer');
-    if (footer) {
-        insertEmail();
-    } else {
-        const observer = new MutationObserver(() => {
-            const emailElement = document.getElementById('email');
-            if (emailElement) {
-                insertEmail();
-                observer.disconnect();
-            }
-        });
-        observer.observe(document.body, { childList: true, subtree: true });
-    }
+    const observer = new MutationObserver(() => {
+        const emailElement = document.getElementById('email');
+        if (emailElement) {
+            insertEmail();
+            observer.disconnect();
+        }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
 });
