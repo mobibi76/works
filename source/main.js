@@ -238,19 +238,14 @@
 
 /*--H. cookie--*/
     function generateSecureRandomValue() {
-        let array = new Uint8Array(16);
+        const array = new Uint8Array(16);
         window.crypto.getRandomValues(array);
         return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
     }
 
-    function setCookie(name, value, days, domain, path) {
-        let expires = "";
-        if (days) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days*24*60*60*1000));
-            expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + (value || "")  + expires + "; Domain=" + domain + "; Path=" + path + "; SameSite=None; Secure; HttpOnly";
+    function setCookie(name, value, domain = '', path = '/', secure = true) {
+        const sameSite = secure ? 'SameSite=None; Secure' : 'SameSite=Lax';
+        document.cookie = `${name}=${value || ''}; Domain=${domain}; Path=${path}; ${sameSite}; HttpOnly`;
     }
 
 /*--I. iframe load timeout--*/
@@ -307,21 +302,17 @@
 
 /*--Main : page load--*/
     document.addEventListener("DOMContentLoaded", function() {
-        setCookie("__Secure-3PSIDTS", generateSecureRandomValue(), ".youtube.com", "/");
-        setCookie("__Secure-3PSID", generateSecureRandomValue(), ".youtube.com", "/");
-        setCookie("__Secure-3PAPISID", generateSecureRandomValue(), ".youtube.com", "/");
-        setCookie("LOGIN_INFO", generateSecureRandomValue(), ".youtube.com", "/");
-        setCookie("__Secure-3PSIDCC", generateSecureRandomValue(), ".youtube.com", "/");
-        setCookie("__Host-3PLSID", generateSecureRandomValue(), "accounts.google.com", "/");
-        setCookie("__Secure-OSID", generateSecureRandomValue(), ".docs.google.com", "/");
-        setCookie("__Secure-OSID", generateSecureRandomValue(), ".drive.google.com", "/");
-        setCookie("COMPASS", generateSecureRandomValue(), ".drive.google.com", "/");
-        setCookie("NID", generateSecureRandomValue(), ".google.com", "/");
-        setCookie("__Secure-3PSID", generateSecureRandomValue(), ".google.com", "/");
-        setCookie("__Secure-3PAPISID", generateSecureRandomValue(), ".google.com", "/");
-        setCookie("__Secure-3PSIDTS", generateSecureRandomValue(), ".google.com", "/");
-        setCookie("__Secure-3PSIDCC", generateSecureRandomValue(), ".google.com", "/");
-        console.log("Cookies Set Respective Domains.");
+        const domains = [
+            '.youtube.com', '.google.com', '.docs.google.com', '.drive.google.com', 'accounts.google.com'
+        ];
+        domains.forEach(domain => {
+            setCookie('__Secure-3PSIDTS', generateSecureRandomValue(), domain);
+            setCookie('__Secure-3PSID', generateSecureRandomValue(), domain);
+            setCookie('__Secure-3PAPISID', generateSecureRandomValue(), domain);
+            setCookie('LOGIN_INFO', generateSecureRandomValue(), domain);
+            setCookie('COMPASS', generateSecureRandomValue(), domain);
+        });
+        console.log('Session cookies have been set for respective domains.');
 
         Promise.all([
             fetchPageContent('Menu', '#nav'),
