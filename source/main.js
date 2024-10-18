@@ -33,6 +33,12 @@
                 containerElement.innerHTML = text;
                 containerElement.scrollTop = 0;
                 bindInterLinkEvent();
+
+                const emailScript = document.createElement('script');
+                emailScript.src = './source/email.js';
+                emailScript.type = 'module';
+                document.body.appendChild(emailScript);
+
                 if (pageTitle.includes('Demo')) {
                     loadIframeWithTimeout('iframe', 'https://test.pdbops.com:8000/test/', 3500);
                 }
