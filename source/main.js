@@ -291,7 +291,7 @@
             iframe.srcdoc = `
                 <div style="text-align: center;">
                     <p>Server Response Failure. Try Later.<br>The server may be off.</p>
-                    <img src="../notice/demoLoadFailure.png" alt="Demo Load Failure" style="width: 100%;">
+                    <img src="../notice/demoLoadFailure.png" alt="Demo Load Failure" style="width: 100%;" nonce="abc123">
                 </div>
             `;
         }, timeout);
@@ -303,7 +303,7 @@
             iframe.srcdoc = `
                 <div style="text-align: center;">
                     <p>Server Response Failure. Try Later.<br>The server may be off.</p>
-                    <img src="../notice/demoLoadFailure.png" alt="Demo Load Failure" style="width: 100%;">
+                    <img src="../notice/demoLoadFailure.png" alt="Demo Load Failure" style="width: 100%;" nonce="abc123">
                 </div>
             `;
         };
@@ -366,7 +366,7 @@
             
 
 
-            
+
         });
     });
 
