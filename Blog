@@ -1,6 +1,6 @@
 <!--table-->
 <table>
-    <caption>블로그</caption>
+    <caption>{blog}</caption>
     <thead></thead>
     <tbody>
         <tr>

@@ -7,7 +7,7 @@
 
 <!--table-->
 <table id="gameFrame">
-    <caption>데모 환경 정보</caption>
+    <caption>{environment for prototype}</caption>
     <thead>
         <tr>
             <th>데모(DEMO)테스트1.0</th>

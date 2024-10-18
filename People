@@ -1,6 +1,6 @@
 <!--table-->
 <table>
-    <caption>컨설턴트 이력</caption>
+    <caption>{my introduction}</caption>
     <thead>
         <tr data-tooltip="For users of other languages,
         please use the translation function in your web browser.

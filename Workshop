@@ -60,7 +60,7 @@
 
 <!--table-->
 <table>
-    <caption>자료 다운로드 목록 (워크숍)</caption>
+    <caption>{download for programme}</caption>
     <thead>
         <tr>
             <th colspan="2">자료 다운로드</th>
