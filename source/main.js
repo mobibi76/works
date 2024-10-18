@@ -33,8 +33,29 @@
                 containerElement.innerHTML = text;
                 containerElement.scrollTop = 0;
                 bindInterLinkEvent();
-                const event = new CustomEvent('pageLoaded', { detail: { page: pageTitle }});
-                document.dispatchEvent(event);
+
+
+
+                
+
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.addedNodes.length) {
+                            const footer = document.querySelector('footer');
+                            if (footer) {
+                                const event = new CustomEvent('pageLoaded', { detail: { page: pageTitle } });
+                                document.dispatchEvent(event);
+                                observer.disconnect();
+                            }
+                        }
+                    });
+                });
+                observer.observe(containerElement, { childList: true, subtree: true });
+
+
+
+
+
                 if (pageTitle.includes('Demo')) {
                     loadIframeWithTimeout('iframe', 'https://test.pdbops.com:8000/test/', 3500);
                 }
