@@ -80,6 +80,11 @@
     align-items: center;
 }
 
+#email a {
+    font-size: 1.1rem;
+    color: beige;
+}
+
 #formlink {
     margin: 0px;
 }
