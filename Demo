@@ -2,7 +2,8 @@
 <iframe
     src="https://test.pdbops.com:8000/test/"
     sandbox="allow-scripts allow-same-origin"
-    title="Demo Test">
+    title="Demo Test"
+    nonce="nonce-20inline24">
 </iframe>
 
 <!--table-->
