@@ -1,5 +1,6 @@
 <!--table-->
 <table>
+    <caption>블로그</caption>
     <tr>
         <th colspan="2">블로그:문제해결(소통){체계역학과정설계;}</th>
     </tr>
@@ -47,5 +48,9 @@
     <p id="formlink">
         <a href="#!People" class="inter-link">🖱️누구(WHO)🖱️</a>
     </p>
-    <p>processdesignbase@gmail.com (125-51-00257)</p>
+    <p id="email"><p>
+        <script>
+            document.getElementById('email').innerHTML = 
+                '<a href="mailto:processdesignbase@gmail.com">processdesignbase@gmail.com</a> (125-51-00257)';
+        </script>
 </footer>

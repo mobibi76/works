@@ -1,5 +1,6 @@
 <!--table-->
 <table>
+    <caption>컨설턴트 이력</caption>
     <tr data-tooltip="For users of other languages,
     please use the translation function in your web browser.
     The content below is about the 'consultant's footprint.'">
@@ -305,5 +306,9 @@
     <p id="formlink">
         <a href="#!Demo" class="inter-link">🖱️데모(DEMO)🖱️</a>
     </p>
-    <p>processdesignbase@gmail.com (125-51-00257)</p>
+    <p id="email"><p>
+        <script>
+            document.getElementById('email').innerHTML = 
+                '<a href="mailto:processdesignbase@gmail.com">processdesignbase@gmail.com</a> (125-51-00257)';
+        </script>
 </footer>

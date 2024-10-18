@@ -1,7 +1,13 @@
-<iframe src="https://test.pdbops.com:8000/test/" sandbox="allow-scripts allow-same-origin"></iframe>
+<!--iframe-->
+<iframe
+    src="https://test.pdbops.com:8000/test/"
+    sandbox="allow-scripts allow-same-origin"
+    title="Demo Test">
+</iframe>
 
 <!--table-->
 <table id="gameFrame">
+    <caption>데모 환경 정보</caption>
     <tr>
         <th>데모(DEMO)테스트1.0</th>
     </tr>

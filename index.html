@@ -3,29 +3,22 @@
     <head>
         <title>리스크 애자일 프로세스 및 팀 네트워크 디자인 | Process Design and People Define Based Ops. </title>
 
-        <!--SEO, mobile ops. and encoding-->
+        <!--seo, mobile ops. and encoding-->
         <meta name="description"
             content="리스크 관리와 애자일 프로세스를 중심으로 한 팀 네트워크 설계와 교육 및
                     기업을 위한 데이터 기반 리스크 탐색과 의사결정 지원 솔루션 제공">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
 
-        <!--setup dynamic nonce-->
-        <script>
-            const nonce = Array.from(window.crypto.getRandomValues(new Uint8Array(16)))
-                .map(b => b.toString(16).padStart(2, '0')).join('');
-            document.nonce = nonce;
-        </script>
-
-        <!--content security policy (CSP) with nonce-->
+        <!--setup content security policy-->
         <meta http-equiv="Content-Security-Policy"
             content="
                 default-src 'self';
-                script-src 'self' 'nonce-${nonce}'
+                script-src 'self' 'strict-dynamic'
                                 https://ajax.googleapis.com
                                 https://www.googletagmanager.com
                                 https://www.youtube.com;
-                style-src 'self' 'nonce-${nonce}';
+                style-src 'self';
                 img-src 'self' data:;
                 font-src 'self';
                 base-uri 'self';
@@ -43,22 +36,22 @@
         <!--referrer policy-->
         <meta name="referrer" content="no-referrer">
 
-        <!--jQuery google CDN with SRI-->
+        <!--jquery google cdn with sri-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs"
             crossorigin="anonymous" async>
         </script>
 
         <!--google analytics tag (gtag.js)-->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-24VQ8R21C5"></script>
-		<script nonce="${document.nonce}">
+		<script src="https://www.googletagmanager.com/gtag/js?id=G-24VQ8R21C5" async></script>
+		<script>
   			window.dataLayer = window.dataLayer || [];
   			function gtag(){dataLayer.push(arguments);}
   			gtag('js', new Date());
 			gtag('config', 'G-24VQ8R21C5');
 		</script>
 
-        <!--pre-load and apply style_n.css-->
+        <!--preload and apply style_n.css-->
         <link rel="preload" href="./style/style_1.css" as="style">
         <link rel="preload" href="./style/style_3.css" as="style">
         <link rel="stylesheet" href="./style/style_2.css">
@@ -93,6 +86,6 @@
         </div>
 
         <!--main.js-->
-        <script src="./source/main.js" type="module" nonce="${document.nonce}" defer></script>
+        <script src="./source/main.js" type="module" defer></script>
     </body>
 </html>
