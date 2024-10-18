@@ -38,19 +38,12 @@
 
 
 
-                const emailElement = document.querySelector('#email');
-                if (emailElement) {
-                    emailElement.innerHTML = 
-                        '<a href="mailto:processdesignbase@gmail.com">processdesignbase@gmail.com</a> (125-51-00257)';
-                    console.log('Email inserted directly.');
-                } else {
-                    console.error('Email Element Not Found in introFetch.');
-                }
-
-
-
-
-
+                insertEmailIfPresent();
+                
+                
+                
+                
+                
                 if (pageTitle.includes('Demo')) {
                     loadIframeWithTimeout('iframe', 'https://test.pdbops.com:8000/test/', 3500);
                 }
@@ -78,6 +71,27 @@
         });
     }
 
+
+
+
+
+    // B3. insert contact infomarion
+    function insertEmailIfPresent() {
+        const emailElement = document.querySelector('#email');
+        if (emailElement) {
+            emailElement.innerHTML = 
+                '<a href="mailto:processdesignbase@gmail.com">processdesignbase@gmail.com</a> (125-51-00257)';
+            console.log('Email inserted successfully.');
+        } else {
+            console.log('#email element not found, skipping insertion.');
+        }
+    }
+
+
+
+
+
+    
 /*--C. calculate header-flex to fix scroll issue on container--*/
     function adjustContainerHeight() {
         const headers = document.querySelectorAll('header h1, header h2');
