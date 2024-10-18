@@ -38,10 +38,14 @@
 
 
 
-                setTimeout(() => {
-                    const event = new CustomEvent('pageLoaded', { detail: { page: pageTitle } });
-                    document.dispatchEvent(event);
-                }, 100);
+                const emailElement = document.querySelector('#email');
+                if (emailElement) {
+                    emailElement.innerHTML = 
+                        '<a href="mailto:processdesignbase@gmail.com">processdesignbase@gmail.com</a> (125-51-00257)';
+                    console.log('Email inserted directly.');
+                } else {
+                    console.error('Email Element Not Found in introFetch.');
+                }
 
 
 
