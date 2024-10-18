@@ -62,4 +62,3 @@
     </p>
     <p id="email"></p>
 </footer>
-<script src="./source/mail.js" defer></script>
