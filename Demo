@@ -1,4 +1,4 @@
-<iframe src="https://test.pdbops.com:8000/test/"></iframe>
+<iframe src="https://test.pdbops.com:8000/test/" sandbox="allow-scripts allow-same-origin"></iframe>
 
 <!--table-->
 <table id="gameFrame">

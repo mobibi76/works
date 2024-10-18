@@ -10,16 +10,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
 
+        <!--setup dynamic nonce-->
+        <script>
+            const nonce = Array.from(window.crypto.getRandomValues(new Uint8Array(16)))
+                .map(b => b.toString(16).padStart(2, '0')).join('');
+            document.nonce = nonce;
+        </script>
+
         <!--content security policy (CSP) with nonce-->
         <meta http-equiv="Content-Security-Policy"
             content="
                 default-src 'self';
-                script-src 'self'
+                script-src 'self' 'nonce-${nonce}'
                                 https://ajax.googleapis.com
                                 https://www.googletagmanager.com
-                                https://www.youtube.com
-                                'nonce-abc123';
-                style-src 'self' 'nonce-abc123';
+                                https://www.youtube.com;
+                style-src 'self' 'nonce-${nonce}';
                 img-src 'self' data:;
                 font-src 'self';
                 base-uri 'self';
@@ -45,7 +51,7 @@
 
         <!--google analytics tag (gtag.js)-->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-24VQ8R21C5"></script>
-		<script nonce="abc123">
+		<script nonce="${document.nonce}">
   			window.dataLayer = window.dataLayer || [];
   			function gtag(){dataLayer.push(arguments);}
   			gtag('js', new Date());
@@ -87,6 +93,6 @@
         </div>
 
         <!--main.js-->
-        <script src="./source/main.js" type="module" nonce="abc123" defer></script>
+        <script src="./source/main.js" type="module" nonce="${document.nonce}" defer></script>
     </body>
 </html>
