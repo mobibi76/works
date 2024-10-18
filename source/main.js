@@ -33,7 +33,8 @@
                 containerElement.innerHTML = text;
                 containerElement.scrollTop = 0;
                 bindInterLinkEvent();
-                loadEmailScript();
+                const event = new CustomEvent('pageLoaded', { detail: { page: pageTitle }});
+                document.dispatchEvent(event);
                 if (pageTitle.includes('Demo')) {
                     loadIframeWithTimeout('iframe', 'https://test.pdbops.com:8000/test/', 3500);
                 }
@@ -59,13 +60,6 @@
         }).catch(error => {
             console.error('Fetch Operation Failure:', error);
         });
-    }
-    // B3. load email.js
-    function loadEmailScript() {
-        const script = document.createElement('script');
-        script.src = './source/email.js';
-        script.type = 'module';
-        document.body.appendChild(script);
     }
 
 /*--C. calculate header-flex to fix scroll issue on container--*/
