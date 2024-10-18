@@ -8,20 +8,24 @@
 <!--table-->
 <table id="gameFrame">
     <caption>데모 환경 정보</caption>
-    <tr>
-        <th>데모(DEMO)테스트1.0</th>
-    </tr>
-    <tr>
-        <td>
-            <ul>
-                <li>Chrome, Edge</li>
-                <li>Python 3.10.12</li>
-                <li>Django 5.1.2</li>
-                <li>WSL 2.3.24.0 (kernel 5.15.153.1-2)</li>
-                <li>___T B D___</li>
-                <li>XR:Unity(2022.3.50f1.LTS)-WebGL</li>
-                <li>Ubuntu 24.04.1-Live Server</li>
-            </ul>
-        </td>
-    </tr>
+    <thead>
+        <tr>
+            <th>데모(DEMO)테스트1.0</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <ul>
+                    <li>Chrome, Edge</li>
+                    <li>Python 3.10.12</li>
+                    <li>Django 5.1.2</li>
+                    <li>WSL 2.3.24.0 (kernel 5.15.153.1-2)</li>
+                    <li>___T B D___</li>
+                    <li>XR:Unity(2022.3.50f1.LTS)-WebGL</li>
+                    <li>Ubuntu 24.04.1-Live Server</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
 </table>

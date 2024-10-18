@@ -1,46 +1,49 @@
 <!--table-->
 <table>
     <caption>블로그</caption>
-    <tr>
-        <th colspan="2">블로그:문제해결(소통){체계역학과정설계;}</th>
-    </tr>
-    <tr>
-        <td id="year">2024.10월</td>
-        <td>
-            <ul>
-                <li>
-                    <a href="https://pdbops.blogspot.com/2024/10/no2.html" target="_blank">
-                        문제해결(소통){체계역학과정설계;} 시작하기 No.2
-                    </a>
-                </li>
-                <li>
-                    <a href="https://pdbops.blogspot.com/2024/10/pdbopscom.html" target="_blank">
-                        문제해결(소통){체계역학과정설계;} 시작하기 No.1
-                    </a>
-                </li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <th colspan="2">블로그:일반</th>
-    </tr>
-    <tr>
-        <td id="year">2024.10월</td>
-        <td>
-            <ul>
-                <li>
-                    <a href="https://pdbops.blogspot.com/2024/10/this-page-cannot-support-english.html" target="_blank">
-                        [스타트업] 서비스 랜딩 페이지 제작 후기
-                    </a>
-                </li>
-                <li>
-                    <a href="https://pdbops.blogspot.com/2024/10/risk.html" target="_blank">
-                        [프로젝트매니저 시리즈] 위험(Risk)관리
-                    </a>
-                </li>
-            </ul>
-        </td>
-    </tr>
+    <thead></thead>
+    <tbody>
+        <tr>
+            <th colspan="2">블로그:문제해결(소통){체계역학과정설계;}</th>
+        </tr>
+        <tr>
+            <td id="year">2024.10월</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="https://pdbops.blogspot.com/2024/10/no2.html" target="_blank">
+                            문제해결(소통){체계역학과정설계;} 시작하기 No.2
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://pdbops.blogspot.com/2024/10/pdbopscom.html" target="_blank">
+                            문제해결(소통){체계역학과정설계;} 시작하기 No.1
+                        </a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">블로그:일반</th>
+        </tr>
+        <tr>
+            <td id="year">2024.10월</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="https://pdbops.blogspot.com/2024/10/this-page-cannot-support-english.html" target="_blank">
+                            [스타트업] 서비스 랜딩 페이지 제작 후기
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://pdbops.blogspot.com/2024/10/risk.html" target="_blank">
+                            [프로젝트매니저 시리즈] 위험(Risk)관리
+                        </a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
 </table>
 
 <!--footer-->
@@ -48,9 +51,6 @@
     <p id="formlink">
         <a href="#!People" class="inter-link">🖱️누구(WHO)🖱️</a>
     </p>
-    <p id="email"><p>
-        <script>
-            document.getElementById('email').innerHTML = 
-                '<a href="mailto:processdesignbase@gmail.com">processdesignbase@gmail.com</a> (125-51-00257)';
-        </script>
+    <p id="email"></p>
 </footer>
+<script src="./source/mail.js" defer></script>
