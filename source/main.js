@@ -289,9 +289,9 @@
         }
         const timer = setTimeout(function() {
             iframe.srcdoc = `
-                <div style="text-align: center;" nonce="20inline24">
+                <div style="text-align: center;">
                     <p>Server Response Failure. Try Later.<br>The server may be off.</p>
-                    <img src="../notice/demoLoadFailure.png" alt="Demo Load Failure" style="width: 100%;" nonce="20inline24">
+                    <img src="../notice/demoLoadFailure.png" alt="Demo Load Failure" style="width: 100%;">
                 </div>
             `;
         }, timeout);
@@ -301,9 +301,9 @@
         iframe.onerror = function() {
             clearTimeout(timer);
             iframe.srcdoc = `
-                <div style="text-align: center;" nonce="20inline24">
+                <div style="text-align: center;">
                     <p>Server Response Failure. Try Later.<br>The server may be off.</p>
-                    <img src="../notice/demoLoadFailure.png" alt="Demo Load Failure" style="width: 100%;" nonce="20inline24">
+                    <img src="../notice/demoLoadFailure.png" alt="Demo Load Failure" style="width: 100%;">
                 </div>
             `;
         };
