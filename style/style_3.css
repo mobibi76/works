@@ -80,10 +80,6 @@
     align-items: center;
 }
 
-#email {
-    display: block;
-}
-
 #formlink {
     margin: 0px;
 }
@@ -175,6 +171,9 @@ footer {
 
 footer p {
     color: white;
+    margin: 3px;
+    display: block;
+    visibility: visible;
 }
 
 h2 {
