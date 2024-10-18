@@ -1,38 +1,62 @@
 <!--contents-->
-<img data-tooltip="[하는 일: What We Do]
+<img
+    data-tooltip="[하는 일: What We Do]
                 ✓Process design for problem-solving.
                 ✓Connecting knowledge and technology.
                 ✓Risk management and agile processes."
-    src="./img/articleHead.png" width="100%">
-<img data-tooltip="[Process Design Workshop Overview]
+    src="./img/articleHead.png"
+    width="100%"
+    alt="What We Do">
+<img
+    data-tooltip="[Process Design Workshop Overview]
                 ✓Day-by-day process design steps.
                 ✓Agile risk management and communication."
-    src="./img/programme.png" width="100%">
-<img data-tooltip="[소통: Interaction]
+    src="./img/programme.png"
+    width="100%"
+    alt="Workshop Overview">
+<img
+    data-tooltip="[소통: Interaction]
                 ✓Combining Process and Domain Knowledge.
                 ✓Building processes with agile communication.
                 ✓Risk exploration and storytelling in action."
-    src="./img/interaction.png" width="100%">
-<img data-tooltip="[기술: Analysis and Design]
+    src="./img/interaction.png"
+    width="100%"
+    alt="Interaction">
+<img
+    data-tooltip="[기술: Analysis and Design]
                 [등록IP: Patent KR101791086B1/WO2018212398A1]
                 ✓From Start to Goal: Process Flow.
                 ✓Mapping the path to success.
                 ✓Step-by-step process towards the goal."
-    src="./img/process.png" width="100%">
-<img data-tooltip="✓Designing solutions with process technology.
+    src="./img/process.png"
+    width="100%"
+    alt="Patent(IP)">
+<img
+    data-tooltip="✓Designing solutions with process technology.
                 ✓System Dynamics for agile and risk reduction.
                 ✓Process design and analysis games coming soon.
                 --Beta testing in 2025"
-    src="./img/value.png" width="100%">
-<img data-tooltip="[툴 데모: DEMO concept]" 
-    src="./img/toolConcept.png" width="100%">
-<img data-tooltip="[툴 워크플로: DEMO workflow]"
-    src="./img/techConcept.png" width="100%">
-<img data-tooltip="[About Consultant]
+    src="./img/value.png"
+    width="100%"
+    alt="Value Proposition">
+<img
+    data-tooltip="[툴 데모: DEMO concept]" 
+    src="./img/toolConcept.png"
+    width="100%"
+    alt="Tool Concept">
+<img
+    data-tooltip="[툴 워크플로: DEMO workflow]"
+    src="./img/techConcept.png"
+    width="100%"
+    alt="Workflow Concept">
+<img
+    data-tooltip="[About Consultant]
                 ✓Expert in government and corporate risk management.
                 ✓Certified Risk Management Expert.
                 ✓Process design patent holder."
-    src="./img/consultant.png" width="100%">
+    src="./img/consultant.png"
+    width="100%"
+    alt="About Consultant">
 
 <!--table-->
 <table>
@@ -65,12 +89,18 @@
 </table>
 
 <!--contents-->
-<img data-tooltip="[서비스 경험: Experiences]"
-    src="./img/history.png" width="100%">
-<img data-tooltip="[Consulting Service Scope]
+<img
+    data-tooltip="[서비스 경험: Experiences]"
+    src="./img/history.png"
+    width="100%"
+    alt="Experience">
+<img
+    data-tooltip="[Consulting Service Scope]
                 ✓(Government Tech.)Project risk management from A to Z.
                 ✓Agile risk communication workshops."
-    src="./img/serviceApply.png" width="100%">
+    src="./img/serviceApply.png"
+    width="100%"
+    alt="Service Scope">
 
 <!--footer-->
 <footer>
