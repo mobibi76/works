@@ -1,7 +1,7 @@
 /*--A. click event to all inter-link class--*/
     // A1. remove and rebind interlink
     function bindInterLinkEvent() {
-        console.log("Inter-links are binding.");
+        console.log("Inter-links Binded.");
         try {
             const nav = document.querySelector('#nav');
             const container = document.querySelector('#container');
@@ -10,37 +10,37 @@
             container.removeEventListener('click', handleInterLinkClick);
             container.addEventListener('click', handleInterLinkClick);
         } catch (error) {
-            console.error('Binding inter-links were ERROR.:', error);
+            console.error('Error in Binding Inter-links.:', error);
         }
     }
     // A2. handle interlink click event
     function handleInterLinkClick(event) {
         try {
-            console.log("Inter-link is clicked.");
+            console.log("Inter-link Clicked.");
             const link = event.target.closest('.inter-link');
             if (link) {
                 event.preventDefault();
                 const pageTitle = link.getAttribute('href').replace(/^#!/, '');
-                console.log(`Page is loading.: ${pageTitle}`);
+                console.log(`Page Loaded.: ${pageTitle}`);
                 introFetch(pageTitle);
                 loadRandomStylesheet();
             }
         } catch (error) {
-            console.error('Handling inter-link click was ERROR.:', error);
+            console.error('Error in Handling Inter-link Click.:', error);
         }
     }
 
 /*--B. fetch.js control--*/
     // B1. define introFetch function
     function introFetch(pageTitle) {
-        console.log(`Page is fetching.: ${pageTitle}`);
+        console.log(`Page Fetched.: ${pageTitle}`);
         fetch(pageTitle).then(response => {
             if (!response.ok) {
-                throw new Error(`Network was ERROR: ${response.statusText}`);
+                throw new Error(`Error in Network.: ${response.statusText}`);
             }
             return response.text();
         }).then(text => {
-            console.log(`Content is fetched.: ${pageTitle}`);
+            console.log(`Content Fetched.: ${pageTitle}`);
             const containerElement = document.querySelector('#container');
             if (containerElement) {
                 containerElement.innerHTML = text;
@@ -52,14 +52,14 @@
                 }
             }
         }).catch(error => {
-            console.error('Fetch operation was failure.:', error);
+            console.error('Fetch Operation Failed.:', error);
         });
     }
     // B2. load pages through fetch.js with error handling
     function fetchPageContent(pageTitle, targetElementSelector) {
         return fetch(pageTitle).then(response => {
             if (!response.ok) {
-                throw new Error('Network was failure.');
+                throw new Error('Network Failed.');
             }
             return response.text();
         }).then(text => {
@@ -70,7 +70,7 @@
                 targetElement.scrollTop = 0;
             }
         }).catch(error => {
-            console.error('Fetch operation was failure.:', error);
+            console.error('Fetch Operation Failed.:', error);
         });
     }
     // B3. insert contact infomarion
@@ -79,9 +79,9 @@
         if (emailElement) {
             emailElement.innerHTML = 
                 '<a href="mailto:processdesignbase@gmail.com">processdesignbase@gmail.com</a> (125-51-00257)';
-            console.log('Email is inserted.');
+            console.log('Email Inserted.');
         } else {
-            console.log('#email element was not found, thus skip inserting');
+            console.log('#email Element Not founded, Skip Insert.');
         }
     }
 
@@ -110,7 +110,7 @@
         tooltip.id = 'tooltip';
         document.body.appendChild(tooltip);
         let currentTooltipTarget = null;
-        console.log("Tooltip event handlers are initialising.");
+        console.log("Tooltip Event Handlers Initialised.");
         try {
             // D1. mouse event for desktop
             document.addEventListener('click', function (e) {
@@ -162,31 +162,11 @@
                 currentTooltipTarget = null;
             });
         } catch (error) {
-            console.error("TooltipEventHandle was ERROR.:", error);
+            console.error("ERROR in {Tooltip-Event-Handle}.:", error);
         }
     }
 
 /*--E. popup--*/
-    /*function openPopup() {
-        const donotShowAgain = localStorage.getItem('donotShowPopup');
-        if (donotShowAgain !== 'true') {
-            document.getElementById('popup').style.display = 'flex';
-        } else {
-            document.getElementById('popup').style.display = 'none';
-        }
-    }
-    document.getElementById('close-popup').addEventListener('click', function() {
-        const donotShowAgainCheckbox = document.getElementById('donot-show-again');
-        if (donotShowAgainCheckbox.checked) {
-            localStorage.setItem('donotShowPopup', 'true');
-        }
-        document.getElementById('popup').style.display = 'none';
-    });*/
-
-
-
-
-
     function setupPopup(popupId) {
         const closeButton = document.querySelector(`#close-${popupId}`);
         if (closeButton) {
@@ -194,7 +174,7 @@
                 const checkbox = document.querySelector(`#donot-show-again-${popupId.split('-')[1]}`);
                 if (checkbox && checkbox.checked) {
                     localStorage.setItem(`donotShowPopup_${popupId}`, 'true');
-                    console.log(`Popup status saved: donotShowPopup_${popupId} = true`);
+                    console.log(`Popup Status Saved.: donotShowPopup_${popupId} = true`);
                 }
                 closePopup(popupId);
             });
@@ -205,14 +185,14 @@
     function handlePopupVisibility(popupId) {
         try {
             const donotShowAgain = localStorage.getItem(`donotShowPopup_${popupId}`);
-            console.log(`Popup visibility check for ${popupId}: ${donotShowAgain}`);
+            console.log(`Popup Visibility Checked for ${popupId}: ${donotShowAgain}`);
             if (donotShowAgain === 'true') {
                 closePopup(popupId);
             } else {
                 openPopup(popupId);
             }
         } catch (error) {
-            console.error(`Error in handling popup visibility: ${error}`);
+            console.error(`Error in Handling Popup Visibility.: ${error}`);
         }
     }
 
@@ -221,10 +201,10 @@
             const popup = document.getElementById(popupId);
             if (popup) {
                 popup.style.display = 'flex';
-                console.log(`Popup ${popupId} is opened.`);
+                console.log(`Popup ${popupId} Opened.`);
             }
         } catch (error) {
-            console.error(`Error opening popup: ${error}`);
+            console.error(`Error in Opening Popup.: ${error}`);
         }
     }
 
@@ -233,10 +213,10 @@
             const popup = document.getElementById(popupId);
             if (popup) {
                 popup.style.display = 'none';
-                console.log(`Popup ${popupId} is closed.`);
+                console.log(`Popup ${popupId} Closed.`);
             }
         } catch (error) {
-            console.error(`Error closing popup: ${error}`);
+            console.error(`Error in Closing Popup.: ${error}`);
         }
     }
 
@@ -246,7 +226,7 @@
 
 /*--F. play the video identified--*/
     function videoPlay() {
-        console.log("Video play is initialising.");
+        console.log("Video Play Initialised.");
         try {
             const videoElement = document.getElementById("pdbopsVideo");
                 if (videoElement) {
@@ -269,7 +249,7 @@
                     observer.observe(videoElement);
                 }
         } catch (error) {
-            console.error("VideoPlay was ERROR.:", error);
+            console.error("Error in Video Play.:", error);
         }
     }
 
@@ -283,7 +263,7 @@
     }
     // G1. start canvas animation
     function startCanvasAnimation() {
-        console.log("Canvas animation is started.");
+        console.log("Canvas Animation Started.");
         try {
             const canvas = document.getElementById("aniCanvas");
             if (canvas && !isAnimating) {
@@ -325,12 +305,12 @@
                 animationFrameID = requestAnimationFrame(drawObject);
             }
         } catch (error) {
-            console.error("Canvas animation was ERROR.:", error);
+            console.error("Error in Canvas Animation.:", error);
         }
     }
     // G2. stop canvas animation
     function stopCanvasAnimation() {
-        console.log("Canvas animation is terminated.");
+        console.log("Canvas Animation Terminated.");
         try {
             if (isAnimating) {
                 cancelAnimationFrame(animationFrameID);
@@ -338,7 +318,7 @@
                 isAnimating = false;
             }
         } catch (error) {
-            console.error("Canvas animation was ERROR.:", error);
+            console.error("Error in Canvas Animation.:", error);
         }
     }
 
@@ -358,13 +338,13 @@
     function loadIframeWithTimeout(iframeSelector, src, timeout) {
         const iframe = document.querySelector(iframeSelector);
         if (!iframe) {
-            console.error(`There is no iframe with selector: ${iframeSelector}`);
+            console.error(`No-Iframe with Selector: ${iframeSelector}`);
             return;
         }
         const timer = setTimeout(function() {
             iframe.srcdoc = `
                 <div style="text-align: center;">
-                    <p>Server Response Failure. Try Later.<br>The server may be off.</p>
+                    <p>Server Response Failed. Try Later.<br>The Server May Be Off.</p>
                     <img src="../notice/demoLoadFailure.png" alt="Demo Load Failure" style="width: 100%;">
                 </div>
             `;
@@ -376,7 +356,7 @@
             clearTimeout(timer);
             iframe.srcdoc = `
                 <div style="text-align: center;">
-                    <p>Server Response Failure. Try Later.<br>The server may be off.</p>
+                    <p>Server Response Failed. Try Later.<br>The Server May Be Off.</p>
                     <img src="../notice/demoLoadFailure.png" alt="Demo Load Failure" style="width: 100%;">
                 </div>
             `;
@@ -418,7 +398,7 @@
             setCookie('LOGIN_INFO', generateSecureRandomValue(), domain);
             setCookie('COMPASS', generateSecureRandomValue(), domain);
         });
-        console.log('Session cookies have been set for each domain respectively.');
+        console.log('Session Cookies Set for Each Domain Respectively.');
 
         Promise.all([
             fetchPageContent('Menu', '#nav'),
@@ -434,7 +414,7 @@
 
 
 
-            setupPopup('popup-main');
+            setupPopup('popup-rep');
             setupPopup('popup-sub1');
 
 
