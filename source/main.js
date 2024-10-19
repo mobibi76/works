@@ -184,7 +184,7 @@
     }
     document.querySelectorAll('.close-popup').forEach(button => {
         button.addEventListener('click', function () {
-            const popupId = this.dataset.popup;
+            const popupId = this.getAttribute('data-popup');
             const donotShowAgainCheckbox = document.querySelector(`#${popupId} input[type="checkbox"]`);
             if (donotShowAgainCheckbox && donotShowAgainCheckbox.checked) {
                 localStorage.setItem(`donotShowPopup_${popupId}`, 'true');
