@@ -176,14 +176,12 @@
             popup.style.display = 'flex';
         }
     }
-    
     function closePopup(popupId) {
         const popup = document.getElementById(popupId);
         if (popup) {
             popup.style.display = 'none';
         }
     }
-
     document.querySelectorAll('.close-popup').forEach(button => {
         button.addEventListener('click', function () {
             const popupId = this.dataset.popup;
