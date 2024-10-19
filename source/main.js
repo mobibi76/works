@@ -181,6 +181,7 @@
             closePopup(popupId);
         });
     }
+
     function handlePopupVisibility(popupId) {
         const donotShowAgain = localStorage.getItem(`donotShowPopup_${popupId}`);
         console.log(`Popup State from Storage: ${donotShowAgain}`);
@@ -191,6 +192,7 @@
             openPopup(popupId);
         }
     }
+
     function openPopup(popupId) {
         const popup = document.getElementById(popupId);
         if (popup) {
@@ -198,6 +200,7 @@
             console.log(`Popup ${popupId} opened.`);
         }
     }
+
     function closePopup(popupId) {
         const popup = document.getElementById(popupId);
         if (popup) {
@@ -387,7 +390,7 @@
 
             handlePopupVisibility('popup');
 
-            
+
 
 
 
