@@ -183,16 +183,17 @@
             popup.style.display = 'none';
         }
     }
-    document.querySelectorAll('.close-popup').forEach(button => {
-        button.addEventListener('click', function () {
+    const closeButton = document.querySelector('#close-popup');
+    if (closeButton) {
+        closeButton.addEventListener('click', function () {
             const popupId = this.getAttribute('data-popup');
             const donotShowAgainCheckbox = document.querySelector(`#${popupId} input[type="checkbox"]`);
             if (donotShowAgainCheckbox && donotShowAgainCheckbox.checked) {
                 localStorage.setItem(`donotShowPopup_${popupId}`, 'true');
-            }
+            }         
             closePopup(popupId);
         });
-    });
+    }
 
 
 
