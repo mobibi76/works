@@ -187,58 +187,56 @@
 
 
 
-    const closeButton = document.querySelector('#close-popup');
-    if (closeButton) {
-        closeButton.addEventListener('click', function () {
-            const popupId = this.getAttribute('data-popup');
-            const donotShowAgainCheckbox = document.querySelector(`#${popupId} input[type="checkbox"]`);
-            if (donotShowAgainCheckbox && donotShowAgainCheckbox.checked) {
-                localStorage.setItem(`donotShowPopup_${popupId}`, 'true');
-                console.log(`Popup status is saving to local storage: donotShowPopup_${popupId} = true`);
-            }
-            closePopup(popupId);
-        });
+    function setupPopup(popupId) {
+        const closeButton = document.querySelector(`#close-${popupId}`);
+        if (closeButton) {
+            closeButton.addEventListener('click', function () {
+                const checkbox = document.querySelector(`#donot-show-again-${popupId.split('-')[1]}`);
+                if (checkbox && checkbox.checked) {
+                    localStorage.setItem(`donotShowPopup_${popupId}`, 'true');
+                    console.log(`Popup status saved: donotShowPopup_${popupId} = true`);
+                }
+                closePopup(popupId);
+            });
+        }
+        handlePopupVisibility(popupId);
     }
 
     function handlePopupVisibility(popupId) {
         try {
-            console.log(`Popup visibility is checking.: ${popupId}`);
             const donotShowAgain = localStorage.getItem(`donotShowPopup_${popupId}`);
-            console.log(`Popup status is cheking from local storage.: ${donotShowAgain}`);
+            console.log(`Popup visibility check for ${popupId}: ${donotShowAgain}`);
             if (donotShowAgain === 'true') {
-                console.log(`Popup ${popupId} will not be shown.`);
                 closePopup(popupId);
             } else {
                 openPopup(popupId);
             }
         } catch (error) {
-            console.error(`Handling popup visibility was ERROR.: ${error}`);
+            console.error(`Error in handling popup visibility: ${error}`);
         }
     }
 
     function openPopup(popupId) {
         try {
-            console.log(`Popup is opening.: ${popupId}`);
             const popup = document.getElementById(popupId);
             if (popup) {
                 popup.style.display = 'flex';
                 console.log(`Popup ${popupId} is opened.`);
             }
-        } catch {
-            console.error(`Opening popup was ERROR.: ${error}`);
+        } catch (error) {
+            console.error(`Error opening popup: ${error}`);
         }
     }
 
     function closePopup(popupId) {
         try {
-            console.log(`Popup is closing.: ${popupId}`);
             const popup = document.getElementById(popupId);
             if (popup) {
                 popup.style.display = 'none';
                 console.log(`Popup ${popupId} is closed.`);
             }
         } catch (error) {
-            console.error(`Closing popup was ERROR.: ${error}`);
+            console.error(`Error closing popup: ${error}`);
         }
     }
 
@@ -436,8 +434,8 @@
 
 
 
-            handlePopupVisibility('popup');
-            handlePopupVisibility('popup-sub1');
+            setupPopup('popup-main');
+            setupPopup('popup-sub1');
 
 
 
