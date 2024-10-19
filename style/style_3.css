@@ -47,7 +47,7 @@
 }
 
 .popup-overlay {
-    display: none;
+    display: flex;
     position: fixed;
     top: 10%;
     width: auto;

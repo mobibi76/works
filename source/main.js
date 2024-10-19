@@ -437,7 +437,7 @@
 
 
             handlePopupVisibility('popup');
-
+            handlePopupVisibility('popup-sub1');
 
 
 
