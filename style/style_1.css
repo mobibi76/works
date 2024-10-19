@@ -36,6 +36,7 @@
 }
 
 .popup-overlay {
+    display: none;
     position: fixed;
     top: 10%;
     width: auto;

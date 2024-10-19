@@ -181,14 +181,15 @@
             closePopup(popupId);
         });
     }
-    function checkAndOpenPopup(popupId) {
+    function handlePopupVisibility(popupId) {
         const donotShowAgain = localStorage.getItem(`donotShowPopup_${popupId}`);
         console.log(`Popup State from Storage: ${donotShowAgain}`);
         if (donotShowAgain === 'true') {
-            console.log('Popup will not be shown based on localStorage setting.');
-            return;
+            console.log(`Popup ${popupId} will not be shown.`);
+            closePopup(popupId);
+        } else {
+            openPopup(popupId);
         }
-        openPopup(popupId);
     }
     function openPopup(popupId) {
         const popup = document.getElementById(popupId);
@@ -384,7 +385,7 @@
 
 
 
-            checkAndOpenPopup('popup');
+            handlePopupVisibility('popup');
 
             
 
