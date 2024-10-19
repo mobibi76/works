@@ -169,21 +169,6 @@
 
 
 
-    function openPopup(popupId) {
-        const donotShowAgain = localStorage.getItem(`donotShowPopup_${popupId}`);
-        console.log(`Popup State Storage: ${donotShowAgain}`);
-        const popup = document.getElementById(popupId);
-        if (popup && donotShowAgain !== 'true') {
-            popup.style.display = 'flex';
-        }
-    }
-    function closePopup(popupId) {
-        console.log(`Close Popup: ${popupId}`);
-        const popup = document.getElementById(popupId);
-        if (popup) {
-            popup.style.display = 'none';
-        }
-    }
     const closeButton = document.querySelector('#close-popup');
     if (closeButton) {
         closeButton.addEventListener('click', function () {
@@ -191,9 +176,33 @@
             const donotShowAgainCheckbox = document.querySelector(`#${popupId} input[type="checkbox"]`);
             if (donotShowAgainCheckbox && donotShowAgainCheckbox.checked) {
                 localStorage.setItem(`donotShowPopup_${popupId}`, 'true');
-            }         
+                console.log(`Saved to localStorage: donotShowPopup_${popupId} = true`);
+            }
             closePopup(popupId);
         });
+    }
+    function checkAndOpenPopup(popupId) {
+        const donotShowAgain = localStorage.getItem(`donotShowPopup_${popupId}`);
+        console.log(`Popup State from Storage: ${donotShowAgain}`);
+        if (donotShowAgain === 'true') {
+            console.log('Popup will not be shown based on localStorage setting.');
+            return;
+        }
+        openPopup(popupId);
+    }
+    function openPopup(popupId) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+            popup.style.display = 'flex';
+            console.log(`Popup ${popupId} opened.`);
+        }
+    }
+    function closePopup(popupId) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+            popup.style.display = 'none';
+            console.log(`Popup ${popupId} closed.`);
+        }
     }
 
 
