@@ -452,6 +452,7 @@
 
             setupPopup('popup-rep');
             setupPopup('popup-sub1');
+            setupPopup('popup-sub2');
 
 
 
