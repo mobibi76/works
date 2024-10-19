@@ -166,7 +166,17 @@
         }
     }
 
+
+
+
+
+
+
+
+
+    
 /*--E. popup--*/
+    // E1. setup popup and check visibility
     function setupPopup(popupId) {
         const closeButton = document.querySelector(`#close-${popupId}`);
         if (closeButton) {
@@ -181,7 +191,6 @@
         }
         handlePopupVisibility(popupId);
     }
-
     function handlePopupVisibility(popupId) {
         try {
             const donotShowAgain = localStorage.getItem(`donotShowPopup_${popupId}`);
@@ -195,17 +204,36 @@
             console.error(`Error in Handling Popup Visibility.: ${error}`);
         }
     }
-
+    // E2. open and close popup
+    let popupOffset = 10;
+    let highestZIndex = 1000;
+    
     function openPopup(popupId) {
         try {
             const popup = document.getElementById(popupId);
             if (popup) {
+                const lastPopup = getLastVisiblePopup();
+                if (lastPopup) {
+                    const { bottom } = lastPopup.getBoundingClientRect();
+                    popup.style.top = `${bottom + popupOffset}px`;
+                } else {
+                    popup.style.top = '10%';
+                }
                 popup.style.display = 'flex';
+                popup.style.zIndex = getNextZIndex();
                 console.log(`Popup ${popupId} Opened.`);
             }
         } catch (error) {
             console.error(`Error in Opening Popup.: ${error}`);
         }
+    }
+    function getLastVisiblePopup() {
+        const visiblePopups = Array.from(document.querySelectorAll('.popup-overlay'))
+            .filter(popup => popup.style.display === 'flex');
+        return visiblePopups.length > 0 ? visiblePopups[visiblePopups.length - 1] : null;
+    }
+    function getNextZIndex() {
+        return ++highestZIndex;
     }
 
     function closePopup(popupId) {
@@ -219,6 +247,11 @@
             console.error(`Error in Closing Popup.: ${error}`);
         }
     }
+
+
+
+
+
 
 
 
