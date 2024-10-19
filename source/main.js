@@ -206,7 +206,7 @@
         }
     }
     // E3. open and close popup
-    let popupOffset = 2;
+    let popupOffset = 1;
     let highestZIndex = 1000;
 
     function openPopup(popupId) {
