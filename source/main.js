@@ -10,7 +10,7 @@
             container.removeEventListener('click', handleInterLinkClick);
             container.addEventListener('click', handleInterLinkClick);
         } catch (error) {
-            console.error('Binding inter-links are ERROR.:', error);
+            console.error('Binding inter-links were ERROR.:', error);
         }
     }
     // A2. handle interlink click event
@@ -26,7 +26,7 @@
                 loadRandomStylesheet();
             }
         } catch (error) {
-            console.error('Handling inter-link click is ERROR.:', error);
+            console.error('Handling inter-link click was ERROR.:', error);
         }
     }
 
@@ -36,7 +36,7 @@
         console.log(`Page is fetching.: ${pageTitle}`);
         fetch(pageTitle).then(response => {
             if (!response.ok) {
-                throw new Error(`Network ERROR: ${response.statusText}`);
+                throw new Error(`Network was ERROR: ${response.statusText}`);
             }
             return response.text();
         }).then(text => {
@@ -79,9 +79,9 @@
         if (emailElement) {
             emailElement.innerHTML = 
                 '<a href="mailto:processdesignbase@gmail.com">processdesignbase@gmail.com</a> (125-51-00257)';
-            console.log('Email was inserted.');
+            console.log('Email is inserted.');
         } else {
-            console.log('#email element is not found, thus skip inserting');
+            console.log('#email element was not found, thus skip inserting');
         }
     }
 
@@ -162,7 +162,7 @@
                 currentTooltipTarget = null;
             });
         } catch (error) {
-            console.error("TooltipEventHandle is ERROR.:", error);
+            console.error("TooltipEventHandle was ERROR.:", error);
         }
     }
 
@@ -212,7 +212,7 @@
                 openPopup(popupId);
             }
         } catch (error) {
-            console.error(`Handling popup visibility is ERROR.: ${error}`);
+            console.error(`Handling popup visibility was ERROR.: ${error}`);
         }
     }
 
@@ -222,10 +222,10 @@
             const popup = document.getElementById(popupId);
             if (popup) {
                 popup.style.display = 'flex';
-                console.log(`Popup ${popupId} was opened.`);
+                console.log(`Popup ${popupId} is opened.`);
             }
         } catch {
-            console.error(`Opening popup is ERROR.: ${error}`);
+            console.error(`Opening popup was ERROR.: ${error}`);
         }
     }
 
@@ -235,10 +235,10 @@
             const popup = document.getElementById(popupId);
             if (popup) {
                 popup.style.display = 'none';
-                console.log(`Popup ${popupId} was closed.`);
+                console.log(`Popup ${popupId} is closed.`);
             }
         } catch (error) {
-            console.error(`Closing popup is ERROR.: ${error}`);
+            console.error(`Closing popup was ERROR.: ${error}`);
         }
     }
 
@@ -271,7 +271,7 @@
                     observer.observe(videoElement);
                 }
         } catch (error) {
-            console.error("VideoPlay is ERROR.:", error);
+            console.error("VideoPlay was ERROR.:", error);
         }
     }
 
@@ -327,7 +327,7 @@
                 animationFrameID = requestAnimationFrame(drawObject);
             }
         } catch (error) {
-            console.error("Canvas animation is ERROR.:", error);
+            console.error("Canvas animation was ERROR.:", error);
         }
     }
     // G2. stop canvas animation
@@ -340,7 +340,7 @@
                 isAnimating = false;
             }
         } catch (error) {
-            console.error("Canvas animation is ERROR.:", error);
+            console.error("Canvas animation was ERROR.:", error);
         }
     }
 
