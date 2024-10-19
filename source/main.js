@@ -442,7 +442,9 @@
             window.addEventListener('resize', adjustContainerHeight);
             bindInterLinkEvent();
             tooltipEventHandle();
-            //openPopup();
+            videoPlay();
+            startCanvasAnimation();
+            insertEmailIfPresent();
 
 
 
@@ -454,9 +456,7 @@
 
 
 
-            videoPlay();
-            startCanvasAnimation();
-            insertEmailIfPresent();
+
         });
     });
 
