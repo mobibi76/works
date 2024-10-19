@@ -33,17 +33,7 @@
                 containerElement.innerHTML = text;
                 containerElement.scrollTop = 0;
                 bindInterLinkEvent();
-
-
-
-
-
                 insertEmailIfPresent();
-                
-                
-                
-                
-                
                 if (pageTitle.includes('Demo')) {
                     loadIframeWithTimeout('iframe', 'https://test.pdbops.com:8000/test/', 3500);
                 }
@@ -70,11 +60,6 @@
             console.error('Fetch Operation Failure:', error);
         });
     }
-
-
-
-
-
     // B3. insert contact infomarion
     function insertEmailIfPresent() {
         const emailElement = document.querySelector('#email');
@@ -86,11 +71,6 @@
             console.log('#email Element Not Found, Skip Insert');
         }
     }
-
-
-
-
-
 
 /*--C. calculate header-flex to fix scroll issue on container--*/
     function adjustContainerHeight() {
@@ -169,7 +149,7 @@
     }
 
 /*--E. popup--*/
-    function openPopup() {
+    /*function openPopup() {
         const donotShowAgain = localStorage.getItem('donotShowPopup');
         if (donotShowAgain !== 'true') {
             document.getElementById('popup').style.display = 'flex';
@@ -183,7 +163,41 @@
             localStorage.setItem('donotShowPopup', 'true');
         }
         document.getElementById('popup').style.display = 'none';
+    });*/
+
+
+
+
+
+    function openPopup(popupId) {
+        const donotShowAgain = localStorage.getItem(`donotShowPopup_${popupId}`);
+        const popup = document.getElementById(popupId);
+        if (popup && donotShowAgain !== 'true') {
+            popup.style.display = 'flex';
+        }
+    }
+    
+    function closePopup(popupId) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+            popup.style.display = 'none';
+        }
+    }
+
+    document.querySelectorAll('.close-popup').forEach(button => {
+        button.addEventListener('click', function () {
+            const popupId = this.dataset.popup;
+            const donotShowAgainCheckbox = document.querySelector(`#${popupId} input[type="checkbox"]`);
+            if (donotShowAgainCheckbox && donotShowAgainCheckbox.checked) {
+                localStorage.setItem(`donotShowPopup_${popupId}`, 'true');
+            }
+            closePopup(popupId);
+        });
     });
+
+
+
+
 
 /*--F. play the video identified--*/
     function videoPlay() {
@@ -354,19 +368,21 @@
             window.addEventListener('resize', adjustContainerHeight);
             bindInterLinkEvent();
             tooltipEventHandle();
-            openPopup();
+            //openPopup();
+
+
+
+
+
+            openPopup('popup');
+
+            
+
+
+
             videoPlay();
             startCanvasAnimation();
-
-
-
-
             insertEmailIfPresent();
-            
-            
-
-
-
         });
     });
 
