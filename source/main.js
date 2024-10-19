@@ -176,7 +176,7 @@
 
 
 /*--E. popup--*/
-    // E1. setup popup and check visibility
+    // E1. setup popup
     function setupPopup(popupId) {
         const closeButton = document.querySelector(`#close-${popupId}`);
         if (closeButton) {
@@ -191,6 +191,7 @@
         }
         handlePopupVisibility(popupId);
     }
+    // E2. check visibility of popup
     function handlePopupVisibility(popupId) {
         try {
             const donotShowAgain = localStorage.getItem(`donotShowPopup_${popupId}`);
@@ -204,10 +205,10 @@
             console.error(`Error in Handling Popup Visibility.: ${error}`);
         }
     }
-    // E2. open and close popup
+    // E3. open and close popup
     let popupOffset = 2;
     let highestZIndex = 1000;
-    
+
     function openPopup(popupId) {
         try {
             const popup = document.getElementById(popupId);
