@@ -171,6 +171,7 @@
 
     function openPopup(popupId) {
         const donotShowAgain = localStorage.getItem(`donotShowPopup_${popupId}`);
+        console.log(`Popup State Storage: ${donotShowAgain}`);
         const popup = document.getElementById(popupId);
         if (popup && donotShowAgain !== 'true') {
             popup.style.display = 'flex';
