@@ -384,7 +384,7 @@
 
 
 
-            openPopup('popup');
+            checkAndOpenPopup('popup');
 
             
 
