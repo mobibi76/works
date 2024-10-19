@@ -174,7 +174,7 @@
 
 
 
-    
+
 /*--E. popup--*/
     // E1. setup popup and check visibility
     function setupPopup(popupId) {
@@ -205,7 +205,7 @@
         }
     }
     // E2. open and close popup
-    let popupOffset = 10;
+    let popupOffset = 2;
     let highestZIndex = 1000;
     
     function openPopup(popupId) {
@@ -217,7 +217,7 @@
                     const { bottom } = lastPopup.getBoundingClientRect();
                     popup.style.top = `${bottom + popupOffset}px`;
                 } else {
-                    popup.style.top = '10%';
+                    popup.style.top = '8%';
                 }
                 popup.style.display = 'flex';
                 popup.style.zIndex = getNextZIndex();
