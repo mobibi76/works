@@ -18,12 +18,12 @@
 
 .popup-content {
     font-family: 'freesentation4';
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     background: linear-gradient(90deg, transparent, greenyellow, beige, transparent);
     padding: 10px;
     border-radius: 8px;
     text-align: center;
-    max-width: 500px;
+    max-width: 450px;
 }
 
 .popup-content img {
@@ -37,8 +37,7 @@
 
 .popup-overlay {
     position: fixed;
-    top: 9%;
-    left: 1%;
+    top: 10%;
     width: auto;
     height: auto;
     justify-content: center;
@@ -81,7 +80,7 @@
 }
 
 #email a {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: beige;
 }
 
@@ -115,7 +114,7 @@
 }
 
 #nav a {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     color: white;
 }
 
@@ -148,7 +147,7 @@
     font-family: 'freesentation4';
     padding: 8px;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 0.925rem;
     z-index: 1000;
     white-space: pre-line;
 }
@@ -168,7 +167,6 @@ footer {
     width: 100%;
     bottom: 0px;
     font-family:'freesentation4';
-    font-size: 1rem;
     background-color: steelblue;
     text-align: center;
     margin-top: auto;
@@ -206,16 +204,20 @@ label {
 
 table {
     font-family: 'freesentation4';
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     text-align: left;
     width: 100%;
     margin-top: 80px;
     margin-bottom: 80px;
 }
 
+table caption {
+    color: yellowgreen;
+}
+
 table th {
     font-family: 'freesentation3';
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 
 @media (max-width: 620px) {
@@ -229,7 +231,7 @@ table th {
     }
 
     #nav a {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
     }
 
     #nav li {
@@ -241,11 +243,7 @@ table th {
     }
 
     #tooltip {
-        font-size: 1rem;
-    }
-
-    footer {
-        font-size: 1rem;
+        display: none;
     }
 
     h1 {
@@ -253,10 +251,10 @@ table th {
     }
 
     table, #gameFrame li {
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
 
     table th, #gameFrame {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 }
