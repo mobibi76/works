@@ -210,9 +210,9 @@
                 const lastPopup = getLastVisiblePopup();
                 if (lastPopup) {
                     const { bottom } = lastPopup.getBoundingClientRect();
-                    popup.style.top = `${bottom + 1}px`;
+                    popup.style.top = `${bottom + 2}px`;
                 } else {
-                    popup.style.top = '65px';
+                    popup.style.top = '67px';
                 }
                 popup.style.display = 'flex';
                 popup.style.zIndex = getNextZIndex();
@@ -244,11 +244,11 @@
     // E4. align popup (the 1st index.html loading)
     function alignPopupsOnLoad() {
         const popups = Array.from(document.querySelectorAll('.popup-overlay'));
-        let currentBottom = 65;
+        let currentBottom = 67;
         popups.forEach(popup => {
             popup.style.top = `${currentBottom}px`;
             popup.style.display = 'flex';
-            currentBottom += popup.offsetHeight + 1;
+            currentBottom += popup.offsetHeight + 2;
         });
         console.log('Popups Aligned on Initial Load.');
     }
