@@ -453,7 +453,7 @@
             setupPopup('popup-rep');
             setupPopup('popup-sub1');
             setupPopup('popup-abc123');
-            setTimeout(alignPopupsOnLoad, 50);
+            requestAnimationFrame(() => (alignPopupsOnLoad));
 
 
 
