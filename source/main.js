@@ -212,7 +212,7 @@
                     const { bottom } = lastPopup.getBoundingClientRect();
                     popup.style.top = `${bottom + 2}px`;
                 } else {
-                    popup.style.top = '100px';
+                    popup.style.top = '80px';
                 }
                 popup.style.display = 'flex';
                 popup.style.zIndex = getNextZIndex();
