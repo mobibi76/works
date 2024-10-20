@@ -403,17 +403,6 @@
         const linkElement = document.createElement('link');
         linkElement.rel = 'stylesheet';
         linkElement.href = stylesheets[randomIndex];
-
-
-
-
-
-        linkElement.setAttribute('media', 'print');
-
-
-
-
-
         linkElement.onload = function() {
             document.body.style.visibility = 'visible';
             console.log(`Random Stylesheet Loaded: ${linkElement.href}`);
