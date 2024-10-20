@@ -210,7 +210,7 @@
                 const lastPopup = getLastVisiblePopup();
                 if (lastPopup) {
                     const { bottom } = lastPopup.getBoundingClientRect();
-                    popup.style.top = `${bottom + 2}px`;
+                    popup.style.top = `${bottom + 1}px`;
                 } else {
                     popup.style.top = '80px';
                 }
@@ -248,7 +248,7 @@
         popups.forEach(popup => {
             popup.style.top = `${currentBottom}px`;
             popup.style.display = 'flex';
-            currentBottom += popup.offsetHeight + 2;
+            currentBottom += popup.offsetHeight + 1;
         });
         console.log('Popups Aligned on Initial Load.');
     }

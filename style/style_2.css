@@ -18,18 +18,18 @@
 
 .custom-button {
     font-family: 'freesentation3';
-    font-size: 1.3rem;
+    font-size: 1.05rem;
 }
 
 .custom-checkbox {
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
     margin-right: 10px;
 }
 
 .popup-content {
     font-family: 'freesentation4';
-    font-size: 1.3rem;
+    font-size: 1.05rem;
     background: linear-gradient(90deg, transparent, greenyellow, beige, transparent);
     padding: 10px;
     border-radius: 8px;
