@@ -244,13 +244,13 @@
     // E4. align popup (the 1st index.html loading)
     function alignPopupsOnLoad() {
         const popups = Array.from(document.querySelectorAll('.popup-overlay'));
-        let currentBottom = 100;
+        let currentBottom = 80;
         popups.forEach(popup => {
             popup.style.top = `${currentBottom}px`;
             popup.style.display = 'flex';
             currentBottom += popup.offsetHeight + 2;
         });
-        console.log('Popups aligned on initial load.');
+        console.log('Popups Aligned on Initial Load.');
     }
 
 
