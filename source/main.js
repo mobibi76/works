@@ -255,6 +255,8 @@
 
 
 
+
+
 /*--F. play the video identified--*/
     function videoPlay() {
         console.log("Video Play Initialised.");
