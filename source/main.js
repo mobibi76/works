@@ -200,8 +200,7 @@
             console.error(`Error in Handling Popup Visibility.: ${error}`);
         }
     }
-    // E3. open and close popup
-    let popupOffset = 1;
+    // E3. open and close popup (normal)
     let highestZIndex = 1000;
 
     function openPopup(popupId) {
@@ -211,9 +210,9 @@
                 const lastPopup = getLastVisiblePopup();
                 if (lastPopup) {
                     const { bottom } = lastPopup.getBoundingClientRect();
-                    popup.style.top = `${bottom + popupOffset}px`;
+                    popup.style.top = `${bottom + 2}px`;
                 } else {
-                    popup.style.top = '8%';
+                    popup.style.top = '100px';
                 }
                 popup.style.display = 'flex';
                 popup.style.zIndex = getNextZIndex();
@@ -231,7 +230,6 @@
     function getNextZIndex() {
         return ++highestZIndex;
     }
-
     function closePopup(popupId) {
         try {
             const popup = document.getElementById(popupId);
@@ -243,8 +241,17 @@
             console.error(`Error in Closing Popup.: ${error}`);
         }
     }
-
-
+    // E4. align popup (the 1st index.html loading)
+    function alignPopupsOnLoad() {
+        const popups = Array.from(document.querySelectorAll('.popup-overlay'));
+        let currentBottom = 100;
+        popups.forEach(popup => {
+            popup.style.top = `${currentBottom}px`;
+            popup.style.display = 'flex';
+            currentBottom += popup.offsetHeight + 2;
+        });
+        console.log('Popups aligned on initial load.');
+    }
 
 
 
