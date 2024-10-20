@@ -34,7 +34,7 @@
     padding: 10px;
     border-radius: 8px;
     text-align: center;
-    max-width: 400px;
+    max-width: 300px;
 }
 
 .popup-content img {
@@ -49,12 +49,10 @@
 .popup-overlay {
     display: none;
     position: absolute;
-    top: 10%;
     width: auto;
     height: auto;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
 }
 
 .tooltip-image {
