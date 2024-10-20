@@ -212,7 +212,7 @@
                     const { bottom } = lastPopup.getBoundingClientRect();
                     popup.style.top = `${bottom + 1}px`;
                 } else {
-                    popup.style.top = '80px';
+                    popup.style.top = '65px';
                 }
                 popup.style.display = 'flex';
                 popup.style.zIndex = getNextZIndex();
@@ -244,7 +244,7 @@
     // E4. align popup (the 1st index.html loading)
     function alignPopupsOnLoad() {
         const popups = Array.from(document.querySelectorAll('.popup-overlay'));
-        let currentBottom = 80;
+        let currentBottom = 65;
         popups.forEach(popup => {
             popup.style.top = `${currentBottom}px`;
             popup.style.display = 'flex';
