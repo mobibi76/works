@@ -85,7 +85,7 @@
     flex-direction: column;
     overflow-y: auto;
     scrollbar-width: auto;
-    width: 680px;
+    width: 620px;
     align-items: center;
 }
 
@@ -230,7 +230,7 @@ table th {
     font-size: 1.4rem;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 620px) {
     ::-webkit-scrollbar {
         display: none;
     }
@@ -241,7 +241,7 @@ table th {
 
     #container {
         width: auto;
-        max-width: 520px;
+        max-width: 420px;
     }
 
     #nav a {
