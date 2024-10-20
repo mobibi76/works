@@ -237,6 +237,10 @@ table th {
         display: none;
     }
 
+    .popup-overlay, #tooltip {
+        display: none !important;
+    }
+
     #container {
         width: auto;
         max-width: 520px;
@@ -252,10 +256,6 @@ table th {
 
     #formlink a {
         font-size: 1.4rem;
-    }
-
-    #tooltip {
-        display: none;
     }
 
     h1 {
