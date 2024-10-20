@@ -240,8 +240,7 @@ table th {
     }
 
     #container {
-        width: auto;
-        max-width: 90%;
+        width: 95%;
     }
 
     #nav a {
