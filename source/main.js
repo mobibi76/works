@@ -415,6 +415,7 @@
         linkElement.href = stylesheets[randomIndex];
         linkElement.onload = function() {
             document.body.style.visibility = 'visible';
+            console.log(`Random Stylesheet Loaded: ${linkElement.href}`);
         };
         document.body.style.visibility = 'hidden';
         document.head.appendChild(linkElement);
@@ -458,6 +459,8 @@
 
 
 
+        }). catch(error => {
+            console.error('Error in Loding Content.:', error);
         });
     });
 
