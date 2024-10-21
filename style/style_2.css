@@ -30,7 +30,7 @@
 .popup-content {
     font-family: 'freesentation4';
     font-size: 1.05rem;
-    background: linear-gradient(90deg, transparent, greenyellow, beige, transparent);
+    background: linear-gradient(90deg, transparent, beige, greenyellow);
     padding-left: 20px;
     border-radius: 8px;
     text-align: center;
