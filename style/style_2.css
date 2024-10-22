@@ -65,28 +65,20 @@
 
 
 .popup-overlay {
-    background-color: white;
     border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 99%;
     display: block;
 }
 
 .popup-pannel {
     position: fixed;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%; 
+    top: 70px;
+    width: 350px; 
     height: 70%; 
-    background-color: rgba(0, 0, 0, 0.8); 
-    border-radius: 10px;
-    padding: 15px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 2px;
     z-index: 1000;
 }
 
@@ -279,7 +271,7 @@ table th {
         display: none;
     }
 
-    .popup-overlay, #tooltip {
+    #tooltip {
         display: none !important;
     }
 
