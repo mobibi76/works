@@ -78,7 +78,7 @@
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 3px;
     z-index: 1000;
 }
 
