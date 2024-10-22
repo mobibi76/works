@@ -46,14 +46,57 @@
     margin-bottom: 1px;
 }
 
-.popup-overlay {
+/*.popup-overlay {
     display: none;
     position: absolute;
     width: auto;
     height: auto;
     justify-content: center;
     align-items: center;
+}*/
+
+
+
+
+
+
+
+
+
+
+.popup-overlay {
+    display: block;
+    width: 100%; /* 패널에 맞게 조정 */
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 15px; /* 팝업 간의 간격 유지 */
 }
+
+.popup-panel {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; 
+    height: 70%; 
+    background-color: rgba(0, 0, 0, 0.8); 
+    border-radius: 10px;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1000;
+}
+
+
+
+
+
+
+
+
+
 
 .tooltip-image {
     background-color: beige;

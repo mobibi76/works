@@ -166,10 +166,6 @@
         }
     }
 
-
-
-
-
 /*--E. popup--*/
     // E1. setup popup
     function setupPopup(popupId) {
@@ -201,7 +197,7 @@
         }
     }
     // E3. open and close popup (normal)
-    let highestZIndex = 1000;
+    /*let highestZIndex = 1000;
 
     function openPopup(popupId) {
         try {
@@ -251,7 +247,68 @@
             currentBottom += popup.offsetHeight + 2;
         });
         console.log('Popups Aligned on Initial Load.');
+    }*/
+
+
+
+
+
+
+
+
+
+
+    // E3. open and close popup (within the panel)
+    let highestZIndex = 1000;
+
+    function openPopup(popupId) {
+        try {
+            const popup = document.getElementById(popupId);
+            if (popup) {
+                popup.style.display = 'flex';
+                popup.style.zIndex = getNextZIndex();
+                console.log(`Popup ${popupId} Opened.`);
+            }
+        } catch (error) {
+            console.error(`Error in Opening Popup.: ${error}`);
+        }
     }
+
+    function getLastVisiblePopup() {
+        const visiblePopups = Array.from(document.querySelectorAll('.popup-overlay'))
+            .filter(popup => popup.style.display === 'flex');
+        return visiblePopups.length > 0 ? visiblePopups[visiblePopups.length - 1] : null;
+    }
+
+    function getNextZIndex() {
+        return ++highestZIndex;
+    }
+
+    function closePopup(popupId) {
+        try {
+            const popup = document.getElementById(popupId);
+            if (popup) {
+                popup.style.display = 'none';
+                console.log(`Popup ${popupId} Closed.`);
+            }
+        } catch (error) {
+            console.error(`Error in Closing Popup.: ${error}`);
+        }
+    }
+    // E4. align popup (the 1st index.html loading)
+    function alignPopupsOnLoad() {
+        const popups = Array.from(document.querySelectorAll('.popup-overlay'));
+        popups.forEach(popup => {
+            popup.style.display = 'flex';
+        });
+
+        console.log('Popups Aligned on Initial Load.');
+    }
+
+
+
+
+
 
 
 
