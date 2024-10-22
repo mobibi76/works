@@ -65,11 +65,12 @@
 
 
 .popup-overlay {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
     display: block;
-    width: 100%; /* 패널에 맞게 조정 */
-    max-height: 300px;
-    overflow-y: auto;
-    margin-bottom: 15px; /* 팝업 간의 간격 유지 */
 }
 
 .popup-panel {
