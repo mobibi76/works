@@ -46,14 +46,50 @@
     margin-bottom: 1px;
 }
 
-.popup-overlay {
+/*.popup-overlay {
     display: none;
     position: absolute;
     width: auto;
     height: auto;
     justify-content: center;
     align-items: center;
+}*/
+
+
+
+
+
+
+
+
+
+
+.popup-overlay {
+    border-radius: 8px;
+    width: 99%;
+    display: block;
 }
+
+.popup-pannel {
+    position: fixed;
+    top: 70px;
+    width: 350px; 
+    height: 70%; 
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    z-index: 1000;
+}
+
+
+
+
+
+
+
+
+
 
 .tooltip-image {
     background-color: gold;
