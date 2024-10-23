@@ -196,58 +196,6 @@
             console.error(`Error in Handling Popup Visibility.: ${error}`);
         }
     }
-    // E3. open and close popup (normal)
-    /*let highestZIndex = 1000;
-
-    function openPopup(popupId) {
-        try {
-            const popup = document.getElementById(popupId);
-            if (popup) {
-                const lastPopup = getLastVisiblePopup();
-                if (lastPopup) {
-                    const { bottom } = lastPopup.getBoundingClientRect();
-                    popup.style.top = `${bottom + 2}px`;
-                } else {
-                    popup.style.top = '67px';
-                }
-                popup.style.display = 'flex';
-                popup.style.zIndex = getNextZIndex();
-                console.log(`Popup ${popupId} Opened.`);
-            }
-        } catch (error) {
-            console.error(`Error in Opening Popup.: ${error}`);
-        }
-    }
-    function getLastVisiblePopup() {
-        const visiblePopups = Array.from(document.querySelectorAll('.popup-overlay'))
-            .filter(popup => popup.style.display === 'flex');
-        return visiblePopups.length > 0 ? visiblePopups[visiblePopups.length - 1] : null;
-    }
-    function getNextZIndex() {
-        return ++highestZIndex;
-    }
-    function closePopup(popupId) {
-        try {
-            const popup = document.getElementById(popupId);
-            if (popup) {
-                popup.style.display = 'none';
-                console.log(`Popup ${popupId} Closed.`);
-            }
-        } catch (error) {
-            console.error(`Error in Closing Popup.: ${error}`);
-        }
-    }
-    // E4. align popup (the 1st index.html loading)
-    function alignPopupsOnLoad() {
-        const popups = Array.from(document.querySelectorAll('.popup-overlay'));
-        let currentBottom = 67;
-        popups.forEach(popup => {
-            popup.style.top = `${currentBottom}px`;
-            popup.style.display = 'flex';
-            currentBottom += popup.offsetHeight + 2;
-        });
-        console.log('Popups Aligned on Initial Load.');
-    }*/
 
 
 
@@ -268,6 +216,7 @@
             if (popup) {
                 popup.style.display = 'flex';
                 popup.style.zIndex = getNextZIndex();
+                adjustPannelHeight();
                 pannel.style.display = 'flex';
                 console.log(`Popup ${popupId} Opened.`);
             }
@@ -276,11 +225,11 @@
         }
     }
 
-    function getLastVisiblePopup() {
+    /*function getLastVisiblePopup() {
         const visiblePopups = Array.from(document.querySelectorAll('.popup-overlay'))
             .filter(popup => popup.style.display === 'flex');
         return visiblePopups.length > 0 ? visiblePopups[visiblePopups.length - 1] : null;
-    }
+    }*/
 
     function getNextZIndex() {
         return ++highestZIndex;
@@ -302,14 +251,12 @@
     function alignPopupsOnLoad() {
         const pannel = document.querySelector('.popup-pannel');
         const popups = Array.from(document.querySelectorAll('.popup-overlay'));
-        /*popups.forEach(popup => {
-            popup.style.display = 'flex';
-        });*/
         if (popups.length > 0) {
             pannel.style.display = 'flex';
             popups.forEach(popup => {
                 popup.style.display = 'flex';
             });
+            adjustPannelHeight();
         } else {
             pannel.style.display = 'none';
         }
@@ -320,11 +267,22 @@
         const pannel = document.querySelector('.popup-pannel');
         const visiblePopups = Array.from(pannel.querySelectorAll('.popup-overlay'))
             .filter(popup => popup.style.display === 'flex');
-    
         if (visiblePopups.length === 0) {
             pannel.style.display = 'none';
             console.log('All Popups Closed. Pannel Hidden.');
+        } else {
+            adjustPannelHeight();
         }
+    }
+    // E6. adjust pannel height
+    function adjustPannelHeight() {
+        const pannel = document.querySelector('.popup-pannel');
+        const visiblePopups = Array.from(pannel.querySelectorAll('.popup-overlay'))
+            .filter(popup => popup.style.display === 'flex');
+        const totalHeight = visiblePopups.reduce((acc, popup) => acc + popup.offsetHeight, 0);
+        const maxHeight = window.innerHeight * 0.7;
+        pannel.style.height = `${Math.min(totalHeight, maxHeight)}px`;
+        pannel.style.overflowY = totalHeight > maxHeight ? 'auto' : 'hidden';
     }
 
 
