@@ -271,8 +271,8 @@ table th {
         display: none;
     }
 
-    #tooltip {
-        display: none !important;
+    .popup-pannel {
+        width: 62% !important;
     }
 
     #container {
@@ -301,5 +301,9 @@ table th {
 
     table th, #gameFrame {
         font-size: 1.2rem;
+    }
+
+    #tooltip {
+        display: none !important;
     }
 }
