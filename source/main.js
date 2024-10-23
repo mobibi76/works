@@ -264,7 +264,7 @@
     function openPopup(popupId) {
         try {
             const popup = document.getElementById(popupId);
-            const pannel = document.querySelector('.popup-panel');
+            const pannel = document.querySelector('.popup-pannel');
             if (popup) {
                 popup.style.display = 'flex';
                 popup.style.zIndex = getNextZIndex();
