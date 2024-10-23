@@ -76,7 +76,7 @@
     width: 350px; 
     height: 85%; 
     overflow-y: auto;
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 3px;
     z-index: 1000;

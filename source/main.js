@@ -264,9 +264,11 @@
     function openPopup(popupId) {
         try {
             const popup = document.getElementById(popupId);
+            const pannel = document.querySelector('.popup-panel');
             if (popup) {
                 popup.style.display = 'flex';
                 popup.style.zIndex = getNextZIndex();
+                pannel.style.display = 'flex';
                 console.log(`Popup ${popupId} Opened.`);
             }
         } catch (error) {
@@ -290,6 +292,7 @@
             if (popup) {
                 popup.style.display = 'none';
                 console.log(`Popup ${popupId} Closed.`);
+                checkAndHidePannel();
             }
         } catch (error) {
             console.error(`Error in Closing Popup.: ${error}`);
@@ -297,12 +300,31 @@
     }
     // E4. align popup (the 1st index.html loading)
     function alignPopupsOnLoad() {
+        const pannel = document.querySelector('.popup-pannel');
         const popups = Array.from(document.querySelectorAll('.popup-overlay'));
-        popups.forEach(popup => {
+        /*popups.forEach(popup => {
             popup.style.display = 'flex';
-        });
-
+        });*/
+        if (popups.length > 0) {
+            pannel.style.display = 'flex';
+            popups.forEach(popup => {
+                popup.style.display = 'flex';
+            });
+        } else {
+            pannel.style.display = 'none';
+        }
         console.log('Popups Aligned on Initial Load.');
+    }
+    // E5. check and hide pannel
+    function checkAndHidePannel() {
+        const pannel = document.querySelector('.popup-pannel');
+        const visiblePopups = Array.from(pannel.querySelectorAll('.popup-overlay'))
+            .filter(popup => popup.style.display === 'flex');
+    
+        if (visiblePopups.length === 0) {
+            pannel.style.display = 'none';
+            console.log('All Popups Closed. Pannel Hidden.');
+        }
     }
 
 
